@@ -1,16 +1,13 @@
-![logo_github_h40](https://user-images.githubusercontent.com/312873/35063615-acf68302-fbd8-11e7-91c5-0b3b6f5966c4.png)
-=
-
-## Documentation
+# Documentation
 
 Deployment and development instructions for various platforms.
 
-### Deployment
+## Deployment
 * [Docker](https://github.com/vavgustov/snibox/blob/master/docs/deployment/docker.md)
 * [Heroku](https://github.com/vavgustov/snibox/blob/master/docs/deployment/heroku.md)
 * [Ubuntu](https://github.com/vavgustov/snibox/blob/master/docs/deployment/ubuntu.md)
 
-### Development
+## Development
 > Note: Snibox works fast on both development and production environments. If you have 
 performance issues in development mode then you should launch webpack-dev-server to serve 
 javascript packs instead of default compiling on each page request. Also this server 
