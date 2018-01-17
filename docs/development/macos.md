@@ -57,4 +57,4 @@ To launch webpack-dev-sever:
 ./bin/webpack-dev-server
 ```
 
-To setup development emails for 'reset password' feature: [Setup development emails](https://github.com/vavgustov/snibox/blob/master/docs/development/dev_emails.md)
+To setup development emails for 'reset password' feature: [setup development emails](https://github.com/vavgustov/snibox/blob/master/docs/development/dev_emails.md).
