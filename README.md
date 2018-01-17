@@ -1,4 +1,4 @@
-![logo_github](https://user-images.githubusercontent.com/312873/35063370-efcff1aa-fbd7-11e7-8a10-de5c68dfc882.png)
+![logo_github_h40](https://user-images.githubusercontent.com/312873/35063615-acf68302-fbd8-11e7-91c5-0b3b6f5966c4.png)
 =
 
 coming soon...
