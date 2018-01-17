@@ -3,6 +3,8 @@
 
 ## Documentation
 
+Deployment and development instructions for various platforms.
+
 ### [Deployment](https://github.com/vavgustov/snibox/blob/master/docs/deployment)
 * [Docker](https://github.com/vavgustov/snibox/blob/master/docs/deployment/docker.md)
 * [Heroku](https://github.com/vavgustov/snibox/blob/master/docs/deployment/heroku.md)
