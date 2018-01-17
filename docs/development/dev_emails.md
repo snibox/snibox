@@ -1,6 +1,6 @@
 # Setup development emails
 
-Snibox uses [Mailtrap](https://mailtrap.io/) to receive development emails.
+Snibox uses [Mailtrap](https://mailtrap.io/) to send development emails.
 
 Follow steps below to setup them:
 

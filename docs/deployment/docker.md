@@ -1,5 +1,10 @@
 # Deploy using Docker
 
+Pull the sources:
+```
+git pull https://github.com/vavgustov/snibox
+```
+
 Copy .env.production.sample to .env
 ```
 cp .env.production.sample .env
