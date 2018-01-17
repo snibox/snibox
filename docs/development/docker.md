@@ -1,22 +1,21 @@
 # Setup dev environment using Docker
 
-* Build development image:
+Build development image:
 ```
 docker-compose -f docker-compose.yml -f docker-compose.development.yml build
 ```
 
-* Create database:
+Create database:
 ```
 docker-compose -f docker-compose.yml -f docker-compose.development.yml run backend db:create
 ```
 
-* Run migrations:
+Run migrations:
 ```
 docker-compose -f docker-compose.yml -f docker-compose.development.yml run backend db:migrate
 ```
 
-
-* Launch application at [http://localhost:3000](http://localhost:3000):
+Launch application at [http://localhost:3000](http://localhost:3000):
 ```
 docker-compose -f docker-compose.yml -f docker-compose.development.yml up 
 ```
