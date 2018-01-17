@@ -1,4 +1,4 @@
-# Setup on macOS
+# Setup dev environment on macOS
 
 * Install brew package manager [https://brew.sh/](https://brew.sh/).
 * Install needed packages: 
