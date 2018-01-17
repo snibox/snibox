@@ -1,23 +1,23 @@
 # Setup dev environment on macOS
 
-* Install brew package manager [https://brew.sh/](https://brew.sh/).
-* Install needed packages: 
+Install brew package manager [https://brew.sh/](https://brew.sh/).
+Install needed packages: 
 ```
 brew install rbenv ruby-build postgresql yarn
 ```
-* Install ruby 2.5.0:
+Install ruby 2.5.0:
 ```
 rbenv install 2.5.0
 ```
-* Install bundler:
+Install bundler:
 ```
 gem install bundler
 ```
-* Go to project root directory:
+Go to project root directory:
 ```
 cd <path_to_project>
 ```
-* Set ruby local version to 2.5.0 if you have other global version:
+Set ruby local version to 2.5.0 if you have other global version:
 ```
 rbenv local 2.5.0
 ```
@@ -25,27 +25,27 @@ or if you want 2.5.0 to be global:
 ```
 rbenv global 2.5.0
 ```
-* Install dependencies:
+Install dependencies:
 ```
 bundle install
 ```
-* Install node packages:
+Install node packages:
 ```
 yarn install --pure-lockfile
 ```
-* Compile frontend packs:
+Compile frontend packs:
 ```
 ./bin/webpack
 ```
-* Create database: 
+Create database: 
 ``` 
 ./bin/rake db:create
 ```
-* Run database migrations:
+Run database migrations:
 ``` 
 ./bin/rake db:migrate
 ```
-* Launch development server
+Launch development server
 ```
 ./bin/rails s
 ```
