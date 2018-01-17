@@ -26,7 +26,7 @@ Run migrations:
 docker-compose -f docker-compose.yml -f docker-compose.production.yml run backend rake db:migrate
 ```
 
-Launch project at [http://localhost/](http://localhost/):
+Launch project at your host (e.g. on [http://localhost/](http://localhost/) if you are on your dev machine):
 ```
 docker-compose -f docker-compose.yml -f docker-compose.production.yml up
 ```
