@@ -4,13 +4,12 @@
 @todo: add description
 
 ## Demo
-
 @todo: add image with link to demo
 
 ## Technology stack
-Backend: [Ruby on Rails](http://rubyonrails.org/)
-
 Frontend: [Vue.js](https://vuejs.org/)
+
+Backend: [Ruby on Rails](http://rubyonrails.org/)
 
 ## Deployment
 The fastest ways to deploy Snibox are Docker or Heroku. Deployment instructions for various platforms
@@ -21,5 +20,4 @@ Development instructions for various platform available at
 [development guide](https://github.com/vavgustov/snibox/blob/master/docs#development).
 
 ## License
-
 Snibox is released under the [MIT License](https://opensource.org/licenses/MIT).
