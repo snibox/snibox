@@ -7,9 +7,8 @@
 @todo: add image with link to demo
 
 ## Technology stack
-Frontend: [Vue.js](https://vuejs.org/)
-
-Backend: [Ruby on Rails](http://rubyonrails.org/)
+* Frontend: [Vue.js](https://vuejs.org/)
+* Backend: [Ruby on Rails](http://rubyonrails.org/)
 
 ## Deployment
 The fastest ways to deploy Snibox are Docker or Heroku. Deployment instructions for various platforms
