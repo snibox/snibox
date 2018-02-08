@@ -6,7 +6,7 @@
 ## Demo
 @todo: add image with link to demo
 
-## Technology stack
+## Built with
 * Frontend: [Vue.js](https://vuejs.org/)
 * Backend: [Ruby on Rails](http://rubyonrails.org/)
 
