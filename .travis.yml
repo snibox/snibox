@@ -10,6 +10,7 @@ env:
 language: ruby
 addons:
   postgresql: 9.4
+  chrome: stable
 cache:
   bundler: true
   yarn: true
@@ -21,6 +22,7 @@ rvm:
   - 2.5.0
 before_install:
   - gem install bundler -v 1.16.1
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
   - ./bin/rake db:setup assets:precompile
 script:
