@@ -1,0 +1,35 @@
+<nav id="navbar" class="navbar is-fixed-top animated slideInDown">
+  <div class="container is-fluid">
+    <div class="navbar-brand">
+      <%= link_to root_path, class: 'navbar-item' do %>
+        <img id="logo" :src="logo" alt="Snibox"/>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="navbar-burger burger" data-target="navbar-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      <% end %>
+    </div>
+
+    <% if user_signed_in? %>
+      <div id="navbar-menu" class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to "Dashboard", root_path, id: "dashboard", class: "navbar-item #{is_active_page(root_path)}" %>
+          <!-- TODO: search link -->
+          <% if current_page?(root_path) %>
+            <a id="snippet-new" class="navbar-item" href="#" @click="addSnippet($event, false)">Add snippet</a>
+          <% else %>
+            <a id="snippet-new" class="navbar-item" href="#" @click="addSnippet($event, true)">Add snippet</a>
+          <% end %>
+        </div>
+        <div class="navbar-end">
+          <%= link_to "Help", help_path, id: "help", class: "navbar-item #{is_active_page(help_path)}" %>
+          <%= link_to "Settings", edit_user_registration_path, id: "settings", class: "navbar-item #{is_active_page(edit_user_registration_path)}" %>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete, id: :logout, class: "navbar-item") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</nav>

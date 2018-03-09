@@ -1,0 +1,22 @@
+.menu-list {
+  li {
+    a {
+      padding:    0.25em 1em;
+      min-height: 30px;
+
+      #snippets & {
+        display: flex;
+      }
+    }
+  }
+}
+
+.menu-top {
+  margin:      1em 0.75em;
+  line-height: 26px;
+}
+
+.menu-form,
+.menu-text {
+  margin: 1em;
+}

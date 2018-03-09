@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Snibox</title>
-    <%= csrf_meta_tags %>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <title>Snibox | <%= @page_title.empty? ? yield(:page_title) : @page_title %></title>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= render 'shared/apple_touch_icons' %>
+
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag asset_pack_path('images/favicon.ico') %>
+
+  <%= stylesheet_pack_tag 'common' %>
+  <%= render 'shared/rspec_disable_animations' if Rails.env.test?%>
+</head>
+
+<body class="<%= @body_class %>">
+<%= render 'shared/navbar' %>
+
+<%= yield %>
+
+<!-- js -->
+<%= javascript_pack_tag 'manifest' %>
+<%= javascript_pack_tag 'vendor' %>
+<%= javascript_pack_tag 'common' %>
+<%= javascript_pack_tag 'navbar' %>
+<% if @activate_repository %>
+  <%= javascript_pack_tag 'repository' %>
+<% else %>
+  <%= javascript_pack_tag 'auth' %>
+<% end %>
+
+</body>
 </html>

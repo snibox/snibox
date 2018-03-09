@@ -1,0 +1,9 @@
+.editor {
+  font-size: 12px;
+  padding:   0;
+  height: calc(100vh - 50px - 45px - 190px);
+  min-height: 200px;
+  border: 1px solid $border;
+  width: 100%;
+  border-radius: 3px;
+}

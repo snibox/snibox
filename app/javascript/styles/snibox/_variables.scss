@@ -1,0 +1,18 @@
+@import "../../../node_modules/bulma/sass/utilities/initial-variables";
+
+// override bulma
+$family-monospace: "Menlo", "Consolas", "Ubuntu", monospace;
+$primary: #337ab7;
+$green: #4caf50;
+$link: $primary;
+$body-size: 15px;
+$menu-item-radius: 0;
+$panel-heading-radius: 0;
+
+$desktop: $tablet + 1px;
+
+// app variables
+$animation-duration: .3s;
+$app-background: #f5f8fa;
+$border: #dbdbdb;
+$sidebar-width: 200px;

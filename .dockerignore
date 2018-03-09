@@ -1,0 +1,12 @@
+coverage
+docs
+node_modules
+public/assets
+public/packs*
+tmp/cache
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.DS_Store

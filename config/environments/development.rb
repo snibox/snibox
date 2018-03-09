@@ -54,4 +54,21 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # make x-frame-options compatible with https://github.com/kitze/sizzy
+  config.action_dispatch.default_headers = {
+    'X-Frame-Options' => 'ALLOWALL'
+  }
+
+  # mails
+  config.action_mailer.default_url_options = { host: ENV['DOMAIN'], port: ENV['PORT'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['MAILTRAP_USER_NAME'],
+    :password => ENV['MAILTRAP_PASSWORD'],
+    :address => 'smtp.mailtrap.io',
+    :domain => 'smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
 end

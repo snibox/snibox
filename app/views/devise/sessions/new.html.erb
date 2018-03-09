@@ -1,0 +1,34 @@
+<% content_for(:page_title, 'Sign in') %>
+
+<%= render 'shared/auth_form', title: 'Sign in' do %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <div class="control">
+        <%= f.email_field :email, class: :input, placeholder: :email, autofocus: true %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.password_field :password, class: :input, placeholder: :password, autocomplete: "off" %>
+      </div>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <div class="control">
+          <%= f.label :remember_me, class: :checkbox do %>
+              <%= f.check_box :remember_me %>
+              Remember me
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.submit "Sign in", class: 'button is-primary' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

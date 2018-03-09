@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  frontend:
+    image: snibox/nginx-puma:1.13.8
+    ports:
+      - "8000:80"
+    volumes:
+      - static-files:/var/www/html
+    depends_on:
+      - backend
+
+  backend:
+    image: snibox/snibox:latest
+    command: sh -c "rm -rf tmp/pids && ./bin/rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASS: "${DB_PASS}"
+      DB_HOST: "${DB_HOST}"
+      DB_PORT: "${DB_PORT}"
+      SECRET_KEY_BASE: "${SECRET_KEY_BASE}"
+    volumes:
+      - static-files:/app/public
+    depends_on:
+      - database
+
+  database:
+    image: postgres:10.1-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
+  static-files:

@@ -1,0 +1,28 @@
+<section class="section">
+  <div id="auth-wrapper" class="animated fadeInUp">
+    <div class="container is-fluid">
+      <div class="columns">
+        <div class="column is-offset-3 is-6">
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title"><%= title %></p>
+            </header>
+
+            <div class="card-content">
+              <%= render_notifications if !flash.empty? %>
+              <div class="content">
+                <%= yield %>
+              </div>
+            </div>
+
+            <% unless user_signed_in? %>
+              <footer class="card-footer">
+                <%= render "devise/shared/links" %>
+              </footer>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

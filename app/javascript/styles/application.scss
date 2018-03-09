@@ -1,0 +1,145 @@
+@import "snibox/variables";
+@import "snibox/vendor";
+
+@import "snibox/components/card";
+@import "snibox/components/editor";
+@import "snibox/components/icon";
+@import "snibox/components/menu";
+@import "snibox/components/nav";
+@import "snibox/components/navbar";
+@import "snibox/components/panel";
+
+@import "snibox/utils/codemirror";
+@import "snibox/utils/toasted";
+
+html {
+  background: $app-background;
+}
+
+body {
+  &.dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+em {
+  font-size: 12px;
+}
+
+#app {
+  display: flex;
+  box-shadow: 0 0 1px #868686;
+  z-index: 10;
+  margin-top: 50px;
+}
+
+#code {
+  font-size: 12px;
+}
+
+#snippets {
+  .menu-form {
+    margin-top: 0;
+  }
+}
+
+.section {
+  background: none;
+}
+
+#auth-wrapper {
+  display: none;
+  padding-top: 6rem;
+}
+
+.menu-top {
+  background-color: $white;
+  margin: 0;
+  padding: 1em 0.75em;
+  width: calc(#{$sidebar-width} - 2px);
+}
+
+.animated {
+  animation-duration: $animation-duration;
+}
+
+.content p:not(:last-child) {
+  margin-bottom: 0;
+}
+
+aside {
+  padding-bottom: 15px;
+}
+
+.sidebar {
+  position: relative;
+  width: $sidebar-width;
+  height: auto;
+  background-color: $white;
+  overflow: auto;
+  //padding-bottom: 15px;
+  z-index: 1;
+}
+
+.sidebar-snippets {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+.main {
+  position: relative;
+  overflow: auto;
+  width: calc(100% - #{$sidebar-width} * 2);
+}
+
+.form-footer {
+  bottom: 0;
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.level.is-mobile .level-item {
+  margin-right: 0;
+}
+
+// phones
+@media (max-width: $tablet) {
+  html,
+  body {
+    height: auto;
+  }
+
+  .menu-top {
+    width: 100%;
+  }
+
+
+  #app {
+    flex-direction: column;
+    margin: 70px 20px 20px;
+    box-shadow: none;
+    z-index: 0;
+  }
+
+  .sidebar {
+    width: auto;
+    border: 1px solid $border;
+    margin-bottom: 20px;
+    max-height: 300px;
+  }
+
+  .main {
+    width: auto;
+    border: 1px solid $border;
+
+    .card-content {
+      height: auto;
+    }
+  }
+}

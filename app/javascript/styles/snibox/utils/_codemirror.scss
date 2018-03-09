@@ -1,0 +1,14 @@
+@import "../variables";
+
+.CodeMirror {
+  font-family: $family-monospace;
+  width:       100%;
+  height:      100%;
+
+  pre {
+    &.CodeMirror-placeholder {
+      color:         #9c9c9c;
+      margin-bottom: 0;
+    }
+  }
+}

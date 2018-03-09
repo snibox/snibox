@@ -1,0 +1,37 @@
+languages:
+  automatically: Automatically
+  coffeescript: CoffeeScript
+  d: D
+  dart: Dart
+  django: Django
+  dockerfile: Dockerfile
+  erlang: Erlang
+  go: Go
+  groovy: Groovy
+  haml: HAML
+  haskell: Haskell
+  http: HTTP
+  javascript: JavaScript
+  julia: Julia
+  lua: Lua
+  markdown: Markdown
+  nginx: Nginx
+  perl: Perl
+  php: PHP
+  plain: Plain Text
+  puppet: Puppet
+  python: Python
+  ruby: Ruby
+  rust: Rust
+  sass: Sass
+  shell: Shell
+  slim: Slim
+  smarty: Smarty
+  solr: Solr
+  sql: SQL
+  swift: Swift
+  tornado: Tornado
+  twig: Twig
+  xml: XML
+  xquery: XQuery
+  yaml: YAML

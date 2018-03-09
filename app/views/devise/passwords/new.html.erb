@@ -1,0 +1,19 @@
+<% content_for(:page_title, 'Reset password') %>
+
+<%= render 'shared/auth_form', title: 'Forgot your password?' do %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render_auth_errors %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.email_field :email, class: :input, autofocus: true %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.submit "Send me reset password instructions", class: 'button is-primary' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

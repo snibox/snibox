@@ -1,0 +1,33 @@
+$navbar-height: 50px;
+
+.navbar > .container {
+  min-height: initial;
+}
+
+#navbar {
+  display: none;
+  height: $navbar-height;
+  z-index: 5;
+}
+
+.navbar {
+  box-shadow: 0 0 1px #868686;
+}
+
+.navbar-menu {
+  &.is-active {
+    background: $white;
+  }
+}
+
+.navbar-item {
+  &.is-active {
+    background: $navbar-item-hover-background-color !important;
+  }
+}
+
+@media (max-width: $tablet) {
+  #navbar-menu {
+    box-shadow: 0 0 1px #868686;
+  }
+}

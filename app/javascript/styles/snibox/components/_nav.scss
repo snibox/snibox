@@ -1,0 +1,6 @@
+.nav-item a:not(.button).is-tab,
+a.nav-item:not(.button).is-tab {
+  border-bottom: 2px solid transparent;
+  border-top:    2px solid transparent;
+  color:         #363636;
+}

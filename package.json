@@ -2,10 +2,23 @@
   "name": "snibox",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.3.0",
+    "@rails/webpacker": "^3.2.0",
+    "animate.css": "^3.5.2",
+    "axios": "^0.16.2",
+    "bulma": "^0.6.2",
+    "clipboard": "^1.7.1",
+    "codemirror": "^5.26.0",
+    "coffeescript": "1.12.7",
+    "lodash": "^4.17.4",
+    "octicons": "^5.0.1",
+    "precss": "^2.0.0",
+    "rails-ujs": "^5.1.4",
     "vue": "^2.5.13",
-    "vue-loader": "^14.2.1",
-    "vue-template-compiler": "^2.5.13"
+    "vue-highlightjs": "^1.2.3",
+    "vue-loader": "^13.6.2",
+    "vue-template-compiler": "^2.5.13",
+    "vue-toasted": "^1.0.27",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.1.0"

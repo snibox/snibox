@@ -1,0 +1,29 @@
+<% content_for(:page_title, 'Change your password') %>
+
+<%= render 'shared/auth_form', title: 'Change your password' do %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render_auth_errors %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.password_field :password, class: :input, placeholder: :password, autocomplete: "off" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.password_field :password_confirmation, class: :input, placeholder: 'Password confirmation', autocomplete: "off" %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br/>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.submit "Change my password", class: 'button is-primary' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

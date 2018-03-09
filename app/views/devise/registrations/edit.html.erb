@@ -1,0 +1,44 @@
+<%= render 'shared/auth_form', title: "Account settings" do %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render_auth_errors %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.email_field :email, class: :input, placeholder: :email, autofocus: true %>
+      </div>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+    <% end %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.password_field :password, class: :input, placeholder: :password, autocomplete: "off" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.password_field :password_confirmation, class: :input, placeholder: 'Password confirmation', autocomplete: "off" %>
+        <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br/>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :current_password, class: :input, placeholder: 'Current password', autocomplete: "off" %>
+      <em>we need your current password to confirm your changes</em>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= f.submit "Update", class: "button is-primary" %>
+      </div>
+      <div class="control">
+        <%= link_to "Cancel my account", registration_path(resource_name), class: 'button is-danger' , data: { confirm: "Are you sure?" }, method: :delete %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
