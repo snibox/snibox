@@ -7,6 +7,10 @@ env:
     - PORT=3000
     - RUN_SIMPLECOV=false
 language: ruby
+addons:
+  postgresql: 9.4
+cache:
+  bundler: true
 rvm:
   - 2.5.0
 before_install:
