@@ -1,6 +1,7 @@
 sudo: false
 env:
   global:
+    - RAILS_ENV=test
     - DOMAIN=localhost
     - JAVASCRIPT_DRIVER=headless_chrome
     - MAILER_SENDER=localhost
@@ -11,9 +12,16 @@ addons:
   postgresql: 9.4
 cache:
   bundler: true
+  yarn: true
+  directories:
+    - node_modules
+notifications:
+  email: false
 rvm:
   - 2.5.0
 before_install:
   - gem install bundler -v 1.16.1
+before_script:
+  - ./bin/rake db:setup assets:precompile
 script:
   - bundle exec rspec
