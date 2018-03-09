@@ -1,5 +1,6 @@
 ![Logo](https://user-images.githubusercontent.com/312873/35063615-acf68302-fbd8-11e7-91c5-0b3b6f5966c4.png)
 =
+[![Build Status](https://img.shields.io/travis/snibox/snibox/master.svg)](https://travis-ci.org/snibox/snibox) 
 
 @todo: add description
 
