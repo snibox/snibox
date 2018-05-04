@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/rails/webpacker.git
+  revision: 90373c21b1987bed4f8e040bccb7e5e33cac9a71
+  specs:
+    webpacker (4.0.0.pre.pre.2)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -47,6 +56,8 @@ GEM
       activerecord (>= 4.2.8)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
     arel (8.0.0)
     awesome_print (1.8.0)
     bcrypt (3.1.11)
@@ -60,20 +71,20 @@ GEM
     bootsnap (1.1.8)
       msgpack (~> 1.0)
     builder (3.2.3)
-    capybara (2.18.0)
+    capybara (3.0.3)
       addressable
       mini_mime (>= 0.1.3)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (>= 2.0, < 4.0)
-    capybara-selenium (0.0.6)
-      capybara
-      selenium-webdriver
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      xpath (~> 3.0)
     case_transform (0.2)
       activesupport
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (1.2.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
@@ -107,6 +118,7 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    io-like (0.3.0)
     json (2.1.0)
     jsonapi-renderer (0.2.0)
     listen (3.1.5)
@@ -135,10 +147,10 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.3)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-proxy (0.6.4)
       rack
-    rack-test (0.8.3)
+    rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.1.5)
       actioncable (= 5.1.5)
@@ -230,10 +242,6 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (3.3.0)
-      activesupport (>= 4.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -250,8 +258,8 @@ DEPENDENCIES
   better_errors (~> 2.4)
   binding_of_caller (~> 0.8.0)
   bootsnap
-  capybara (~> 2.16, >= 2.16.1)
-  capybara-selenium (~> 0.0.6)
+  capybara (~> 3.0, >= 3.0.3)
+  chromedriver-helper
   debug-extras
   devise (~> 4.3)
   dotenv-rails (~> 2.2, >= 2.2.1)
@@ -264,6 +272,7 @@ DEPENDENCIES
   rails (~> 5.1.5)
   rails-controller-testing (~> 1.0, >= 1.0.1)
   rspec-rails (~> 3.5)
+  selenium-webdriver
   shoulda-matchers (~> 3.1, >= 3.1.1)
   simplecov (~> 0.14.1)
   spring
@@ -272,7 +281,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (~> 3.2)
   web-console (>= 3.3.0)
-  webpacker (~> 3.3)
+  webpacker!
 
 RUBY VERSION
    ruby 2.5.1p57

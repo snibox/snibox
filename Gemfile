@@ -16,7 +16,7 @@ gem 'active_model_serializers', '~> 0.10.7'
 
 # assets: tools
 gem 'uglifier', '~> 3.2'
-gem 'webpacker', '~> 3.3'
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 
 # authentification
 gem 'devise', '~> 4.3'
@@ -47,8 +47,6 @@ group :development, :test do
   gem 'faker', '~> 1.7', '>= 1.7.3'
 
   # testing
-  gem 'capybara', '~> 2.16', '>= 2.16.1'
-  gem 'capybara-selenium', '~> 0.0.6'
   gem 'rspec-rails', '~> 3.5'
 
   # speed up tests
@@ -56,6 +54,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'capybara', '~> 3.0', '>= 3.0.3'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
   # stats

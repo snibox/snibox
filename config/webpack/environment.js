@@ -1,26 +1,26 @@
 const { environment } = require('@rails/webpacker')
-const webpack = require('webpack')
-const vue = require('./loaders/vue')
+const { VueLoaderPlugin } = require('vue-loader')
+const vue =  require('./loaders/vue')
 
+environment.plugins.append('VueLoaderPlugin', new VueLoaderPlugin())
 environment.loaders.append('vue', vue)
-// environment.loaders.delete('url')
-environment.plugins.append(
-    'CommonsChunkVendor',
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: (module) => {
-      // this assumes your vendor imports exist in the node_modules directory
-      return module.context && module.context.indexOf('node_modules') !== -1
-    }
-})
-)
 
-environment.plugins.append(
-    'CommonsChunkManifest',
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      minChunks: Infinity
-    })
-)
+// based on https://github.com/webpack/webpack/tree/master/examples/common-chunk-and-vendor-chunk
+// let's use chunks just for vendor for now
+environment.config.merge({
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: "initial",
+          name: "vendor",
+          priority: 10,
+          enforce: true
+        }
+      }
+    }
+  },
+})
 
 module.exports = environment
