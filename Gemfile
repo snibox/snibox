@@ -7,7 +7,7 @@ end
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.1.6'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.11'
 
