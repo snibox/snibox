@@ -26,4 +26,5 @@ yarn-debug.log*
 /.idea
 /.env
 /.rake_tasks
+/coverage
 /public/assets
