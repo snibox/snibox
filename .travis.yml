@@ -1,11 +1,11 @@
 sudo: required
 env:
   global:
-    - RAILS_ENV=test
     - DOMAIN=localhost
     - JAVASCRIPT_DRIVER=headless_chrome
     - MAILER_SENDER=noreply@localhost
     - PORT=3000
+    - RAILS_ENV=test
     - RUN_SIMPLECOV=false
 language: ruby
 addons:
