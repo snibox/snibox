@@ -26,3 +26,9 @@ before_script:
   - ./bin/rake db:setup assets:precompile
 script:
   - bundle exec rspec
+after_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t snibox/snibox .
+  - docker push snibox/snibox
+
+# TODO: https://docs.travis-ci.com/user/build-stages/share-docker-image/
