@@ -20,15 +20,26 @@ notifications:
   email: false
 rvm:
   - 2.5.1
-before_install:
-  - gem install bundler -v 1.16.1
-before_script:
-  - ./bin/rake db:setup assets:precompile
-script:
-  - bundle exec rspec
-after_script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t snibox/snibox .
-  - docker push snibox/snibox
+#before_install:
+#  - gem install bundler -v 1.16.1
+#before_script:
+#  - ./bin/rake db:setup assets:precompile
+#script:
+#  - bundle exec rspec
+#after_script:
+#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+#  - docker build -t snibox/snibox .
+#  - docker push snibox/snibox
 
 # TODO: https://docs.travis-ci.com/user/build-stages/share-docker-image/
+jobs:
+  include:
+    - stage: tests
+      script:
+      - echo "run tests"
+    - stage: build docker image
+      script:
+      - echo "build docker image"
+    - stage: deploy image
+      script:
+      - echo "deploy image"
