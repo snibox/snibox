@@ -54,9 +54,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.0', '>= 3.0.3'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'capybara', '~> 3.1'
+  gem 'selenium-webdriver', '~> 3.12'
+  gem 'chromedriver-helper', '~> 1.2'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
   # stats
