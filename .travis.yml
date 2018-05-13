@@ -4,7 +4,7 @@ env:
     - RAILS_ENV=test
     - DOMAIN=localhost
     - JAVASCRIPT_DRIVER=headless_chrome
-    - MAILER_SENDER=localhost
+    - MAILER_SENDER=noreply@localhost
     - PORT=3000
     - RUN_SIMPLECOV=false
 language: ruby
@@ -22,7 +22,7 @@ rvm:
   - 2.5.1
 before_install:
   - gem install bundler -v 1.16.1
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
   - ./bin/rake db:setup assets:precompile
 script:
