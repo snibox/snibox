@@ -22,7 +22,6 @@ rvm:
   - 2.5.1
 before_install:
   - gem install bundler -v 1.16.1
-#  - google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
   - ./bin/rake db:setup assets:precompile
 script:
