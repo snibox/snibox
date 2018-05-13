@@ -5,6 +5,7 @@ RUN apk -U upgrade \
     build-base \
     postgresql-dev \
   && apk add \
+    git \
     tzdata \
     nodejs \
     yarn \
