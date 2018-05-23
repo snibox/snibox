@@ -12,7 +12,7 @@ let set_active_label = (state, data) => {
   let snippet = factory.methods.factory().snippet
   localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
   state.label_snippets.active = snippet
-  state.label_snippets.active.tag_list = data.name
+  state.label_snippets.active.label = data.name
   state.label_snippets.mode = 'create'
 }
 

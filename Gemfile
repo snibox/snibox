@@ -7,25 +7,15 @@ end
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.0'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 3.11'
 
-# api
 gem 'active_model_serializers', '~> 0.10.7'
-
-# assets: tools
+gem 'bootsnap', '~> 1.3', require: false
+gem 'devise', '~> 4.3'
 gem 'uglifier', '~> 3.2'
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
-
-# authentification
-gem 'devise', '~> 4.3'
-
-# tags
-gem 'acts-as-taggable-on', '~> 5.0'
-
-# performance
-gem 'bootsnap', require: false
 
 group :development do
   gem 'awesome_print', '~> 1.8'
@@ -41,16 +31,9 @@ end
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
-
-  # data
   gem 'factory_bot_rails', '~> 4.8'
   gem 'faker', '~> 1.7', '>= 1.7.3'
-
-  # testing
   gem 'rspec-rails', '~> 3.5'
-
-  # speed up tests
-  gem 'spring-commands-rspec'
 end
 
 group :test do
@@ -59,7 +42,6 @@ group :test do
   gem 'chromedriver-helper', '~> 1.2'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
-  # stats
   gem 'simplecov', '~> 0.14.1', require: false
 end
 

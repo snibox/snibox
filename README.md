@@ -21,3 +21,14 @@ Development instructions for various platform available at
 
 ## License
 Snibox is released under the [MIT License](https://opensource.org/licenses/MIT).
+
+vault -> repository
+
+vault: / cancel -> implement just labels?
+id
+title: string
+
+
+label
+title: string, unique
+

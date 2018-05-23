@@ -1,5 +1,5 @@
 class Snippet < ApplicationRecord
-  acts_as_taggable
+  # acts_as_taggable
 
   validates :title, presence: true, uniqueness: true
   validates :content, presence: true, length: { maximum: 10000 }
