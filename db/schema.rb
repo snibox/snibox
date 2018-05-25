@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_173657) do
+ActiveRecord::Schema.define(version: 2018_05_23_173677) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "labels", force: :cascade do |t|
-    t.string "title"
-    t.index ["title"], name: "index_labels_on_title", unique: true
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_labels_on_name", unique: true
   end
 
   create_table "snippets", force: :cascade do |t|
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_05_23_173657) do
     t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["label_id"], name: "index_snippets_on_label_id", unique: true
+    t.index ["label_id"], name: "index_snippets_on_label_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -76,7 +76,9 @@ class SnippetService extends BackendService {
         content: this.component.editor.getValue(),
         language: this.component.snippet.language,
         tabs: this.component.snippet.tabs,
-        label: this.component.snippet.label
+        label_attributes: {
+          name: this.component.snippet.label.name
+        }
       }
     }
     super.save(response => {

@@ -128,6 +128,7 @@ export default new Vuex.Store({
       commit('setSnippets', data.snippets)
 
       // set labels
+      // TODO: tags deprecated
       snippets.forEach(snippet => {
         snippet.tags.forEach(tag => {
           labels.push(tag)

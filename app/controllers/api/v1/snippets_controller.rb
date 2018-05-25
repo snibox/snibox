@@ -4,12 +4,7 @@ class Api::V1::SnippetsController < Api::BaseController
   before_action :set_snippet, except: :create
 
   def create
-    # remove act as taggable
-    # use own tags implentation
-
-    dd params.permit!
     @snippet = Snippet.new(snippet_params)
-
     completed = @snippet.save
     render json: snippet_save_data(@snippet, completed)
   end
@@ -35,7 +30,13 @@ class Api::V1::SnippetsController < Api::BaseController
     @snippet = Snippet.find(params[:id])
   end
 
+  # TODO: refactor this
   def snippet_params
-    params.require(:snippet).permit(:title, :content, :language, :tabs, :label)
+    data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:name])
+    unless data[:label_attributes]['name'].blank?
+      label = Label.where(name: data[:label_attributes]['name']).first
+      data = label.nil? ? data : data.except(:label_attributes).merge(label: label)
+    end
+    data
   end
 end

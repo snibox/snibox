@@ -45,7 +45,7 @@
               <div class="control is-expanded">
                 <input id="snippet-labels" class="input" type="text"
                        placeholder="Label"
-                       v-model="snippet.tag_list">
+                       v-model="snippet.label.name">
               </div>
             </div>
           </div>

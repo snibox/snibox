@@ -8,8 +8,9 @@ export default {
           content: '',
           language: 'automatically',
           tabs: 2,
-          tags: [],
-          tag_list: ''
+          label: {
+            name: ''
+          }
         }
       }
     }
