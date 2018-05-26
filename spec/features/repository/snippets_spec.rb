@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'Snippets', js: true do
   before do
     login
+    sleep 0.5
   end
 
   context 'create' do

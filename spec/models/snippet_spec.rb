@@ -15,14 +15,14 @@ describe Snippet do
   end
 
   describe '#tag_list_size' do
-    let(:snippet_valid_tag_list) { build(:snippet_with_tag, tag_list: 'a' * 20) }
-    let(:snippet_not_valid_tag_list) { build(:snippet_with_tag, tag_list: 'a' * 21) }
+    let(:snippet_valid_tag_list) { build(:snippet_with_tag, label_attributes: { name: 'a' * 20 }) }
+    let(:snippet_not_valid_tag_list) { build(:snippet_with_tag, label_attributes: { name: 'a' * 21}) }
 
-    it 'not valid when tags list size more than 100 characters' do
+    it 'not valid when tags list size more than 20 characters' do
       expect(snippet_not_valid_tag_list).to_not be_valid
     end
 
-    it 'valid when tags list size no more than 100 characters' do
+    it 'valid when tags list size no more than 20 characters' do
       expect(snippet_valid_tag_list).to be_valid
     end
   end

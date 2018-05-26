@@ -33,7 +33,9 @@ class Api::V1::SnippetsController < Api::BaseController
   # TODO: refactor this
   def snippet_params
     data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:name])
-    unless data[:label_attributes]['name'].blank?
+    if data[:label_attributes]['name'].blank?
+      data = data.except(:label_attributes)
+    else
       label = Label.where(name: data[:label_attributes]['name']).first
       data = label.nil? ? data : data.except(:label_attributes).merge(label: label)
     end

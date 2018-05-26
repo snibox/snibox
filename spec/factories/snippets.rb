@@ -4,7 +4,7 @@ FactoryBot.define do
     content { Faker::Lorem.sentence }
     language 'plain'
     tabs 2
-    tag_list { ['tag_1'] }
+    label_attributes { { name: 'tag_1' } }
   end
 
   factory :snippet_without_tag, class: Snippet do

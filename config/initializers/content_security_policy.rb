@@ -8,8 +8,8 @@ Rails.application.config.content_security_policy do |policy|
   if Rails.env.production?
     policy.script_src :self, :https
   else
-    policy.connect_src :self, :https, "http://0.0.0.0:3035", "ws://0.0.0.0:3035"
-    policy.script_src :self, :https, :unsafe_eval
+    policy.connect_src :self, :http, "http://localhost:3035", "ws://localhost:3035"
+    policy.script_src :self, :http, :unsafe_eval
   end
 #   policy.default_src :self, :https
 #   policy.font_src    :self, :https, :data

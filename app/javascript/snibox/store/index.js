@@ -93,7 +93,7 @@ export default new Vuex.Store({
   actions: {
     setActiveFromStorage({state}, default_snippet) {
       // set active values from local storage
-      // TODO: local values should be cheked for valid
+      // TODO: local values should be checked to be valid
       // search them in available snippets
       let local_active = {
         labels: localStorage.getItem('labels_active'),
@@ -113,10 +113,6 @@ export default new Vuex.Store({
           }
         }
       })
-    },
-
-    hello() {
-      console.log('hello!')
     },
 
     setData({commit, state, getters}, data) {
@@ -158,7 +154,7 @@ export default new Vuex.Store({
         // reset active label if snippets with such label not exists and label isn't untagged
         if (_.isEmpty(label_snippets) && !(state.labels.active.hasOwnProperty('id') && state.labels.active.id === 0)) {
           label_snippets = snippets
-          commit('setActive', {data: {}, entity: 'labels'})
+          commit('setActive', {data: { name: ''}, entity: 'labels'})
         }
       }
       commit('setItems', {items: label_snippets, entity: 'label_snippets'})
