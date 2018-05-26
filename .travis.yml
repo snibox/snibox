@@ -6,7 +6,8 @@ env:
     - MAILER_SENDER=noreply@localhost
     - PORT=3000
     - RAILS_ENV=test
-    - RUN_SIMPLECOV=false
+    - SIMPLECOV=true
+    - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
 language: ruby
 addons:
   postgresql: 9.4
@@ -24,9 +25,13 @@ before_install:
   - gem install bundler -v 1.16.1
 before_script:
   - ./bin/rake db:setup assets:precompile
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - bundle exec rspec
 after_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t snibox/snibox .
   - docker push snibox/snibox
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
