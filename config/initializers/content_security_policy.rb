@@ -6,7 +6,8 @@
 
 Rails.application.config.content_security_policy do |policy|
   if Rails.env.production?
-    policy.script_src :self, :https
+    # TODO: replace :unsafe_eval with better solution. Otherwise it's useless.
+    policy.script_src :self, :https, :unsafe_eval
   else
     policy.connect_src :self, :http, "http://localhost:3035", "ws://localhost:3035"
     policy.script_src :self, :http, :unsafe_eval
