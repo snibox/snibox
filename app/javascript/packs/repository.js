@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     store,
     el: '#app',
     template: '<Repository/>',
-    components: { Repository }
+    components: {Repository}
   })
 })

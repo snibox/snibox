@@ -37,7 +37,7 @@ $card-border: $border !default;
   }
 
   .dashboard & {
-    height:  calc(100vh - #{$navbar-height} - #{$card-header-height});
+    min-height:  calc(100vh - #{$navbar-height} - #{$card-header-height});
   }
 }
 

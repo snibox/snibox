@@ -5,11 +5,11 @@
       <p class="card-header-title" v-if="!snippet.title">Select snippet</p>
       <p class="card-header-title" v-if="snippet.content">{{ snippet.title }}</p>
       <div class="card-header-title" v-if="snippet.content">
-        <div class="field has-addons">
+        <div class="field" :class="{ 'has-addons': !isMarkdown }">
           <p class="control">
             <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw" target="_blank"><span>Raw</span></a>
           </p>
-          <p class="control">
+          <p class="control" v-if="!isMarkdown">
             <a id="snippet-copy" class="button is-outlined is-small" data-clipboard-target="#code">
               <icon class="icon-clippy" type="clippy"></icon>
               <span>Copy</span></a>
@@ -29,9 +29,14 @@
     </header>
 
     <div class="card-content" slot="card-content">
-      <pre v-highlightjs="snippet.content" v-if="snippet.content"><code id="code"
-                                                                        :class="snippet.language === 'automatically' ? '' : snippet.language "></code></pre>
-      <p v-else>Nothing to show. Select a snippet to view or create new one!</p>
+      <div class='markdown-body' v-if="isMarkdown">
+        <vue-markdown>{{ snippet.content }}</vue-markdown>
+      </div>
+      <div v-else>
+        <pre v-highlightjs="snippet.content" v-if="snippet.content"><code id="code"
+                                                                          :class="snippet.language === 'automatically' ? '' : snippet.language "></code></pre>
+        <p v-else>Nothing to show. Select a snippet to view or create new one!</p>
+      </div>
     </div>
 
   </card>
@@ -43,11 +48,12 @@
   import Card from '../Card.vue'
   import Icon from '../Icon.vue'
   import backend from '../../api/backend'
+  import VueMarkdown from 'vue-markdown'
 
   export default {
     name: 'snippet-show',
 
-    components: {Card, Icon},
+    components: {Card, Icon, VueMarkdown},
 
     data() {
       return {
@@ -77,6 +83,9 @@
       snippet() {
         return this.$store.state.label_snippets.active
       },
+      isMarkdown() {
+        return this.$store.state.label_snippets.active.language === 'markdown'
+      }
     },
 
     methods: {
