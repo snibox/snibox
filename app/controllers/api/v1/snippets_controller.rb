@@ -30,9 +30,8 @@ class Api::V1::SnippetsController < Api::BaseController
     @snippet = Snippet.find(params[:id])
   end
 
-  # TODO: refactor this
   def snippet_params
-    data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:name])
+    data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:id, :name])
     if data[:label_attributes]['name'].blank?
       data = data.except(:label_attributes)
     else

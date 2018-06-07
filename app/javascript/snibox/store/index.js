@@ -17,9 +17,11 @@ let set_active_label = (state, data) => {
 }
 
 let set_active_label_snippet = (state) => {
-  if (_.isArray(state.label_snippets.active.tags) && state.label_snippets.active.tags.length) {
-    localStorage.setItem('labels_active', JSON.stringify(_.head(state.label_snippets.active.tags)))
-    state.labels.active = _.head(state.label_snippets.active.tags)
+  if (!_.isNull(state.label_snippets.active.label)) {
+    if (!_.isEmpty(state.label_snippets.active.label.name)) {
+      localStorage.setItem('labels_active', JSON.stringify(state.label_snippets.active.label))
+      state.labels.active = state.label_snippets.active.label
+    }
   }
 }
 
@@ -85,7 +87,7 @@ export default new Vuex.Store({
 
     untagged: state => {
       return _.filter(state.snippets, v => {
-        return _.isEmpty(v.tags)
+        return _.isEmpty(v.label.name)
       })
     }
   },
@@ -124,11 +126,10 @@ export default new Vuex.Store({
       commit('setSnippets', data.snippets)
 
       // set labels
-      // TODO: tags deprecated
       snippets.forEach(snippet => {
-        snippet.tags.forEach(tag => {
-          labels.push(tag)
-        })
+        if (!_.isEmpty(snippet.label.name)) {
+          labels.push(snippet.label)
+        }
       })
       if (labels.length) {
         labels = _.uniqBy(labels, 'id')

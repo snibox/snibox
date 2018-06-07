@@ -8,12 +8,9 @@ export default {
         label_snippets = store.getters.untagged
       } else {
         label_snippets = _.filter(snippets, snippet => {
-          return _.find(snippet.tags, tag => {
-            return _.isEqual(tag.id, store.state.labels.active.id)
-          })
+          return _.isEqual(snippet.label.id, store.state.labels.active.id)
         })
       }
-
       return label_snippets
     }
   }
