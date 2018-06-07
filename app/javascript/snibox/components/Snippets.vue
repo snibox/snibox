@@ -76,7 +76,7 @@
       },
 
       title() {
-        if (_.isEmpty(this.$store.state.labels.active)) {
+        if (_.isEmpty(this.$store.state.labels.active.name)) {
           return 'All snippets'
         }
 
