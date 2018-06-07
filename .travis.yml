@@ -6,7 +6,6 @@ env:
     - MAILER_SENDER=noreply@localhost
     - PORT=3000
     - RAILS_ENV=test
-    - SIMPLECOV=true
     - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
 language: ruby
 addons:
