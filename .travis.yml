@@ -7,17 +7,16 @@ env:
     - PORT=3000
     - RAILS_ENV=test
     - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
+    - TRAVIS_NODE_VERSION=10.2.1
 language: ruby
 rvm:
   - 2.5.1
-node_js:
-  - 10.2.1
 addons:
   postgresql: 9.4
   chrome: stable
 cache:
-  bundler: true
-  yarn: true
+  - bundler
+  - yarn
   directories:
     - node_modules
 notifications:
