@@ -8,6 +8,10 @@ env:
     - RAILS_ENV=test
     - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
 language: ruby
+rvm:
+  - 2.5.1
+node_js:
+  - 10.2.1
 addons:
   postgresql: 9.4
   chrome: stable
@@ -18,10 +22,10 @@ cache:
     - node_modules
 notifications:
   email: false
-rvm:
-  - 2.5.1
 before_install:
   - gem install bundler -v 1.16.1
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
+  - export PATH="$HOME/.yarn/bin:$PATH"
 before_script:
   - ./bin/rake db:setup assets:precompile
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
