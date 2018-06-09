@@ -25,8 +25,7 @@ before_install:
   - gem install bundler -v 1.16.1
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-  - sudo apt-get install -y nodejs
+  - nvm use 10
 before_script:
   - node -v
   - ./bin/rake db:setup assets:precompile
