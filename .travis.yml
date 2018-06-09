@@ -7,7 +7,6 @@ env:
     - PORT=3000
     - RAILS_ENV=test
     - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
-    - TRAVIS_NODE_VERSION=10
 language: ruby
 rvm:
   - 2.5.1
@@ -25,10 +24,10 @@ before_install:
   - gem install bundler -v 1.16.1
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.7.0
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - nvm install 10.2.1
-  - nvm use 10.2.1
 before_script:
   - node -v
+  - yarn -v
+  - ruby -v
   - ./bin/rake db:setup assets:precompile
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter

@@ -1,8 +1,4 @@
 {
-  "engines": {
-    "node": "10.2.1",
-    "yarn": "1.7.0"
-  },
   "dependencies": {
     "@rails/webpacker": "^4.0.0-pre.2",
     "animate.css": "^3.5.2",
