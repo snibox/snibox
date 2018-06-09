@@ -5,7 +5,7 @@ class CreateSnippets < ActiveRecord::Migration[5.1]
       t.text :content
       t.string :language
       t.integer :tabs, limit: 2
-      t.string :label
+      t.belongs_to :label
 
       t.timestamps
     end

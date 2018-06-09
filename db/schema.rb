@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_05_23_173677) do
 
   create_table "labels", force: :cascade do |t|
     t.string "name"
-    t.integer "taggings_count", default: 0
+    t.integer "snippets_count", default: 0
     t.index ["name"], name: "index_labels_on_name", unique: true
   end
 

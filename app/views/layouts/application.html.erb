@@ -23,12 +23,12 @@
 <!-- js -->
 <%= javascript_pack_tag 'vendor' %>
 <%= javascript_pack_tag 'common' %>
-<%= javascript_pack_tag 'navbar' %>
 <% if @activate_repository %>
   <%= javascript_pack_tag 'repository' %>
 <% else %>
   <%= javascript_pack_tag 'auth' %>
 <% end %>
+<%= javascript_pack_tag 'navbar' %>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-// TODO: refactor mixins import (factory)
+// TODO: refactor this
 
 import Vue from 'vue/dist/vue.esm'
 import Vuex from 'vuex'
@@ -12,16 +12,15 @@ let set_active_label = (state, data) => {
   let snippet = factory.methods.factory().snippet
   localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
   state.label_snippets.active = snippet
-  state.label_snippets.active.label = data.name
+  state.label_snippets.active.label = data
   state.label_snippets.mode = 'create'
 }
 
 let set_active_label_snippet = (state) => {
-  if (!_.isNull(state.label_snippets.active.label)) {
-    if (!_.isEmpty(state.label_snippets.active.label.name)) {
-      localStorage.setItem('labels_active', JSON.stringify(state.label_snippets.active.label))
-      state.labels.active = state.label_snippets.active.label
-    }
+  if (!_.isEmpty(state.label_snippets.active.label.name)) {
+  // if (_.isObject(state.label_snippets.active.label) && !_.isEmpty(state.label_snippets.active.label.name)) {
+    localStorage.setItem('labels_active', JSON.stringify(state.label_snippets.active.label))
+    state.labels.active = state.label_snippets.active.label
   }
 }
 
@@ -137,7 +136,7 @@ export default new Vuex.Store({
         labels.push({
           id: 0,
           name: 'untagged',
-          taggings_count: getters.untagged.length
+          snippets_count: getters.untagged.length
         })
         commit('setItems', {items: labels, entity: 'labels'})
       }

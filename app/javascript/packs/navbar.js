@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addSnippet(e, redirect = false) {
         e.preventDefault()
 
+        // TODO: refactor this
         let that = this
         if (typeof repository !== 'undefined') {
           that = repository

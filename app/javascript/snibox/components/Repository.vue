@@ -43,11 +43,11 @@
         backend.data.get('/api/v1/data/default-state', response => {
           let that = this
 
-          this.$store.dispatch('setActiveFromStorage', that.factory().snippet)
+          this.$store.dispatch('setActiveFromStorage', this.factory().snippet)
           this.$store.dispatch('setData', response.data)
 
           // set snippets in create mode
-          if (_.isEmpty(that.$store.state.label_snippets.active)) {
+          if (_.isEmpty(this.$store.state.label_snippets.active)) {
             that.$store.commit('setSnippetMode', 'create')
             that.$store.commit('setActive', {data: that.factory().snippet, entity: 'label_snippets'})
           }

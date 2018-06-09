@@ -3,6 +3,7 @@
 
 import _ from 'lodash'
 import axios from 'axios'
+import factory from '../mixins/factory'
 
 class BackendService {
   constructor(component = null, options) {
@@ -35,9 +36,8 @@ class BackendService {
           }
         })
       .catch(error => {
-        // render error notification
+        console.log(error)
         this.component.$toasted.error(error_message, {duration: 6000})
-        console.log('Error for ' + this.options.method + ' at ' + this.options.path)
       })
   }
 
@@ -51,6 +51,7 @@ class BackendService {
         }
       })
       .catch(error => {
+        console.log(error)
         this.component.$toasted.error(this.options.messages.error, {duration: 6000})
       })
   }
@@ -90,7 +91,7 @@ class SnippetService extends BackendService {
     super.destroy(response => {
       // release snippet area
       this.component.$store.commit('setSnippetMode', 'show')
-      this.component.$store.commit('setActive', {data: {}, entity: 'label_snippets'})
+      // this.component.$store.commit('setActive', {data: factory.methods.factory().snippet, entity: 'label_snippets'})
     })
   }
 }

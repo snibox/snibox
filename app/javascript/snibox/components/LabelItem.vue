@@ -12,7 +12,7 @@
         </div>
         <div class="level-right">
           <div class="level-item">
-            <span class="tag is-rounded">{{ label.taggings_count }}</span>
+            <span class="tag is-rounded">{{ label.snippets_count }}</span>
           </div>
         </div>
       </div>
