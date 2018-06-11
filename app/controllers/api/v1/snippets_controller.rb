@@ -6,12 +6,12 @@ class Api::V1::SnippetsController < Api::BaseController
   def create
     @snippet = Snippet.new(snippet_params)
     completed = @snippet.save
-    render json: snippet_save_data(@snippet, completed)
+    render json: entity_save_data(@snippet, completed)
   end
 
   def update
     completed = @snippet.update(snippet_params)
-    render json: snippet_save_data(@snippet, completed)
+    render json: entity_save_data(@snippet, completed)
   end
 
   def destroy
@@ -31,13 +31,11 @@ class Api::V1::SnippetsController < Api::BaseController
   end
 
   def snippet_params
-    data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:id, :name])
-    if data[:label_attributes]['name'].blank?
-      data = data.except(:label_attributes)
-    else
-      label = Label.where(name: data[:label_attributes]['name']).first
-      data = label.nil? ? data : data.except(:label_attributes).merge(label: label)
-    end
-    data
+    # nested attributes have some issues with core counter_cache
+    # @see: https://github.com/rails/rails/issues/33113
+    # let's move to direct Label objects usage for a while
+    data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:name])
+    label = data[:label_attributes]['name'].blank? ? nil : Label.find_or_create_by(name: data[:label_attributes]['name'])
+    data.except(:label_attributes).merge(label: label)
   end
 end

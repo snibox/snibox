@@ -1,11 +1,11 @@
 module ResponseData
   extend ActiveSupport::Concern
 
-  def snippet_save_data(snippet, completed)
+  def entity_save_data(entity, completed)
     if completed
-      { completed: true, snippet: SnippetSerializer.new(snippet).attributes }
+      { completed: true, entity: "#{entity.class}Serializer".constantize.new(entity).attributes }
     else
-      { completed: false, errors: snippet.errors.full_messages }
+      { completed: false, errors: entity.errors.full_messages }
     end
   end
 end

@@ -1,10 +1,11 @@
 class Api::V1::LabelsController < Api::BaseController
+  include ResponseData
+
   before_action :set_label, only: [:update]
 
   def update
-    data = { completed: false }
-    data[:completed] = true if @label.update(label_params)
-    render json: data
+    completed = @label.update(label_params)
+    render json: entity_save_data(@label, completed)
   end
 
   private
