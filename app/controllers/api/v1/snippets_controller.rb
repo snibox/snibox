@@ -31,9 +31,7 @@ class Api::V1::SnippetsController < Api::BaseController
   end
 
   def snippet_params
-    # nested attributes have some issues with core counter_cache
-    # @see: https://github.com/rails/rails/issues/33113
-    # let's move to direct Label objects usage for a while
+    # TODO: it's legacy for core counter_cache issues
     data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:name])
     label = data[:label_attributes]['name'].blank? ? nil : Label.find_or_create_by(name: data[:label_attributes]['name'])
     data.except(:label_attributes).merge(label: label)

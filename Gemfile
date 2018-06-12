@@ -13,6 +13,7 @@ gem 'puma', '~> 3.11'
 
 gem 'active_model_serializers', '~> 0.10.7'
 gem 'bootsnap', '~> 1.3', require: false
+gem 'counter_culture', '~> 1.12'
 gem 'devise', '~> 4.3'
 gem 'uglifier', '~> 3.2'
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
