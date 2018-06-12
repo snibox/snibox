@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
           that = repository
         }
 
-        that.$store.commit('setActive', {data: this.factory().snippet, entity: 'label_snippets'})
+        that.$store.commit('setActive', {data: this.factory().snippet, entity: 'labelSnippets'})
         that.$store.commit('setSnippetMode', 'create')
 
         if (redirect) {

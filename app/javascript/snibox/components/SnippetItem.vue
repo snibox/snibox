@@ -19,7 +19,7 @@
     methods: {
       loadSnippet(e) {
         e.preventDefault()
-        this.$store.commit('setActive', {data: this.snippet, entity: 'label_snippets'})
+        this.$store.commit('setActive', {data: this.snippet, entity: 'labelSnippets'})
         this.$store.commit('setSnippetMode', 'show')
       }
     }

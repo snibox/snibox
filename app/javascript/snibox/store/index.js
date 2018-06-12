@@ -11,36 +11,55 @@ Vue.use(Vuex)
 let set_active_label = (state, data) => {
   let snippet = factory.methods.factory().snippet
   localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
-  state.label_snippets.active = snippet
-  state.label_snippets.active.label = data
-  state.label_snippets.mode = 'create'
+  state.labelSnippets.active = snippet
+  state.labelSnippets.active.label = data
+  state.labelSnippets.mode = 'create'
+  state.labels.editName = data.name
 }
 
 let set_active_label_snippet = (state) => {
-  if (!_.isEmpty(state.label_snippets.active.label.name)) {
-  // if (_.isObject(state.label_snippets.active.label) && !_.isEmpty(state.label_snippets.active.label.name)) {
-    localStorage.setItem('labels_active', JSON.stringify(state.label_snippets.active.label))
-    state.labels.active = state.label_snippets.active.label
+  if (!_.isEmpty(state.labelSnippets.active.label.name)) {
+  // if (_.isObject(state.labelSnippets.active.label) && !_.isEmpty(state.labelSnippets.active.label.name)) {
+    localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
+    state.labels.active = state.labelSnippets.active.label
+    state.labelSnippets.editTitle = state.labelSnippets.active.title
+    state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
   }
 }
 
 export default new Vuex.Store({
+  // strict: true,
   state: {
     snippets: [],
     labels: {
       items: [],
-      active: {}
+      active: {},
+      editName: ''
     },
-    label_snippets: {
+    labelSnippets: {
       items: [],
       active: {},
-      mode: ''
+      mode: '',
+      editTitle: '',
+      editLabelName: ''
     },
     languages: {},
     ready: false
   },
 
   mutations: {
+    setLabelEditName(state, value) {
+      state.labels.editName = value
+    },
+
+    setLabelSnippetEditTitle(state, value) {
+      state.labelSnippets.editTitle = value
+    },
+
+    setLabelSnippetEditLabelName(state, value) {
+      state.labelSnippets.editLabelName = value
+    },
+
     setSnippets(state, snippets) {
       state.snippets = snippets
     },
@@ -57,13 +76,13 @@ export default new Vuex.Store({
         set_active_label(state, data)
       }
 
-      if (entity === 'label_snippets') {
+      if (entity === 'labelSnippets') {
         set_active_label_snippet(state)
       }
     },
 
     setSnippetMode(state, mode) {
-      state.label_snippets.mode = mode
+      state.labelSnippets.mode = mode
     },
 
     setLanguages(state, languages) {
@@ -80,8 +99,8 @@ export default new Vuex.Store({
       return state.labels.items
     },
 
-    label_snippets: state => {
-      return state.label_snippets.items
+    labelSnippets: state => {
+      return state.labelSnippets.items
     },
 
     untagged: state => {
@@ -92,34 +111,34 @@ export default new Vuex.Store({
   },
 
   actions: {
-    setActiveFromStorage({state}, default_snippet) {
+    setActiveFromStorage({commit, state}, default_snippet) {
       // set active values from local storage
       // TODO: local values should be checked to be valid
       // search them in available snippets
       let local_active = {
         labels: localStorage.getItem('labels_active'),
-        label_snippets: localStorage.getItem('label_snippets_active'),
+        labelSnippets: localStorage.getItem('label_snippets_active'),
       }
       _.forEach(local_active, (v, k) => {
         if (v && !_.isEmpty(v) && _.isEmpty(state[k].active)) {
           let local_value = JSON.parse(v)
-          if (k === 'label_snippets') {
+          if (k === 'labelSnippets') {
             if (!_.isEqual(local_value, default_snippet)) {
-              state.label_snippets.mode = 'show'
-              state[k].active           = local_value
+              commit('setSnippetMode', 'show')
+              commit('setActive', {data: local_value, entity: 'labelSnippets'})
             }
           }
           else {
-            state[k].active = local_value
+            commit('setActive', {data: local_value, entity: 'labels'})
           }
         }
       })
     },
 
     setData({commit, state, getters}, data) {
-      let snippets       = _.sortBy(data.snippets, ['title'])
-      let labels         = []
-      let label_snippets = []
+      let snippets      = _.sortBy(data.snippets, ['title'])
+      let labels        = []
+      let labelSnippets = []
 
       // set snippets
       commit('setSnippets', data.snippets)
@@ -146,18 +165,18 @@ export default new Vuex.Store({
 
       // set label snippets
       if (_.isEmpty(state.labels.active)) {
-        label_snippets = snippets
+        labelSnippets = snippets
       }
       else {
-        label_snippets = snippets_builder.methods.compute_label_snippets(this, snippets)
+        labelSnippets = snippets_builder.methods.computeLabelSnippets(this, snippets)
 
         // reset active label if snippets with such label not exists and label isn't untagged
-        if (_.isEmpty(label_snippets) && !(state.labels.active.hasOwnProperty('id') && state.labels.active.id === 0)) {
-          label_snippets = snippets
+        if (_.isEmpty(labelSnippets) && !(state.labels.active.hasOwnProperty('id') && state.labels.active.id === 0)) {
+          labelSnippets = snippets
           commit('setActive', {data: { name: ''}, entity: 'labels'})
         }
       }
-      commit('setItems', {items: label_snippets, entity: 'label_snippets'})
+      commit('setItems', {items: labelSnippets, entity: 'labelSnippets'})
 
       // set languages
       if (_.isEmpty(state.languages)) {

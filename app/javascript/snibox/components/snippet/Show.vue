@@ -81,10 +81,10 @@
         return '/api/v1/snippets/' + this.snippet.id + '/raw'
       },
       snippet() {
-        return this.$store.state.label_snippets.active
+        return this.$store.state.labelSnippets.active
       },
       isMarkdown() {
-        return this.$store.state.label_snippets.active.language === 'markdown'
+        return this.$store.state.labelSnippets.active.language === 'markdown'
       }
     },
 

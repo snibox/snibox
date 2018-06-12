@@ -18,7 +18,7 @@
 
     computed: {
       title() {
-        return 'Edit snippet ' + this.$store.state.label_snippets.active.title
+        return 'Edit snippet ' + this.$store.state.labelSnippets.active.title
       }
     }
   }

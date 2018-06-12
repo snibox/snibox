@@ -9,7 +9,9 @@
         </div>
         <div class="level-right">
           <div class="level-item">
-            <a id="label-edit" class="button is-outlined is-small" v-if="labeled" @click="editLabel"><icon type="pencil"></icon><span>Edit</span></a>
+            <a id="label-edit" class="button is-outlined is-small" v-if="labeled" @click="editLabel">
+              <icon type="pencil"></icon><span>{{ this.showLabelEdit ? 'Cancel' : 'Edit' }}</span>
+            </a>
           </div>
         </div>
       </div>
@@ -20,7 +22,7 @@
         <form id="label-edit-form" action="/" @submit="updateLabel">
           <div class="field has-addons">
             <p class="control" style="width: 100%">
-              <input id="label-title" class="input is-small" type="text" v-model.lazy="label.name">
+              <input id="label-title" class="input is-small" type="text" placeholder="Label" v-model="labelName">
             </p>
             <p class="control">
               <a id="label-save" class="button is-primary is-small" @click="updateLabel">Save</a>
@@ -53,14 +55,23 @@
 
     data() {
       return {
-        entity: 'label_snippets',
+        entity: 'labelSnippets',
         showLabelEdit: false
       }
     },
 
     computed: {
+      labelName: {
+        get () {
+          return this.$store.state.labels.editName
+        },
+        set (value) {
+          this.$store.commit('setLabelEditName', value)
+        }
+      },
+
       data() {
-        return this.$store.getters.label_snippets
+        return this.$store.getters.labelSnippets
       },
 
       ready() {
@@ -69,8 +80,8 @@
 
       // TODO: this activeId almost same with labels.vue
       activeId() {
-        if (!_.isEmpty(this.$store.state.label_snippets.active)) {
-          return this.$store.state.label_snippets.active.id
+        if (!_.isEmpty(this.$store.state.labelSnippets.active)) {
+          return this.$store.state.labelSnippets.active.id
         }
         return null
       },
@@ -95,7 +106,6 @@
     methods: {
       updateLabel(e) {
         e.preventDefault()
-        this.showLabelEdit = false
         backend.label.update(this)
       },
 

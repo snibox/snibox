@@ -33,8 +33,8 @@
       labelClick(e) {
         e.preventDefault()
         this.$store.commit('setActive', {data: this.label, entity: 'labels'})
-        let label_snippets = this.compute_label_snippets(this.$store, this.$store.state.snippets)
-        this.$store.commit('setItems', {items: label_snippets, entity: 'label_snippets'})
+        let labelSnippets = this.computeLabelSnippets(this.$store, this.$store.state.snippets)
+        this.$store.commit('setItems', {items: labelSnippets, entity: 'labelSnippets'})
       }
     }
   }

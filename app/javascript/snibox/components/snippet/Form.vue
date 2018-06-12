@@ -11,7 +11,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input id="title" class="input" type="text" placeholder="Title" v-model.lazy="snippet.title">
+                <input id="title" class="input" type="text" placeholder="Title" v-model="snippetTitle">
               </div>
             </div>
             <div class="field is-grouped is-grouped-right">
@@ -43,9 +43,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input id="snippet-labels" class="input" type="text"
-                       placeholder="Label"
-                       v-model.lazy="snippet.label.name">
+                <input id="snippet-labels" class="input" type="text" placeholder="Label" v-model="editLabelName">
               </div>
             </div>
           </div>
@@ -88,8 +86,26 @@
     },
 
     computed: {
+      snippetTitle: {
+        get () {
+          return this.$store.state.labelSnippets.editTitle
+        },
+        set (value) {
+          this.$store.commit('setLabelSnippetEditTitle', value)
+        }
+      },
+
+      editLabelName: {
+        get () {
+          return this.$store.state.labelSnippets.editLabelName
+        },
+        set (value) {
+          this.$store.commit('setLabelSnippetEditLabelName', value)
+        }
+      },
+
       snippet() {
-        return this.$store.state.label_snippets.active
+        return this.$store.state.labelSnippets.active
       }
     },
 
@@ -120,7 +136,7 @@
       this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
         lineNumbers: true
       })
-      this.editor.setOption('mode', this.$store.state.label_snippets.active.language)
+      this.editor.setOption('mode', this.$store.state.labelSnippets.active.language)
 
       // set focus on title textfield
       setTimeout(() => {

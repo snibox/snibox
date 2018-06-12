@@ -34,7 +34,7 @@
 
     computed: {
       showSnippet() {
-        return this.$store.state.label_snippets.mode
+        return this.$store.state.labelSnippets.mode
       }
     },
 
@@ -47,9 +47,9 @@
           this.$store.dispatch('setData', response.data)
 
           // set snippets in create mode
-          if (_.isEmpty(this.$store.state.label_snippets.active)) {
+          if (_.isEmpty(this.$store.state.labelSnippets.active)) {
             that.$store.commit('setSnippetMode', 'create')
-            that.$store.commit('setActive', {data: that.factory().snippet, entity: 'label_snippets'})
+            that.$store.commit('setActive', {data: that.factory().snippet, entity: 'labelSnippets'})
           }
 
           // load codemirror modes

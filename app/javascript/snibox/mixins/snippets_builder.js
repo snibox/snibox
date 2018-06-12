@@ -2,16 +2,16 @@ import _ from 'lodash'
 
 export default {
   methods: {
-    compute_label_snippets(store, snippets) {
-      let label_snippets = []
+    computeLabelSnippets(store, snippets) {
+      let labelSnippets = []
       if (_.isEqual(store.state.labels.active.id, 0)) {
-        label_snippets = store.getters.untagged
+        labelSnippets = store.getters.untagged
       } else {
-        label_snippets = _.filter(snippets, snippet => {
+        labelSnippets = _.filter(snippets, snippet => {
           return _.isEqual(snippet.label.id, store.state.labels.active.id)
         })
       }
-      return label_snippets
+      return labelSnippets
     }
   }
 }

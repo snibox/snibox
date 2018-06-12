@@ -73,16 +73,18 @@ class SnippetService extends BackendService {
     this.options.data = {
       snippet: {
         id: this.component.snippet.id,
-        title: this.component.snippet.title,
+        title: this.component.$store.state.labelSnippets.editTitle,
         content: this.component.editor.getValue(),
         language: this.component.snippet.language,
         tabs: this.component.snippet.tabs,
-        label_attributes: this.component.snippet.label
+        label_attributes: {
+          name: this.component.$store.state.labelSnippets.editLabelName
+        }
       }
     }
     super.save(response => {
       // show saved snippet
-      this.component.$store.commit('setActive', {data: response.data.entity, entity: 'label_snippets'})
+      this.component.$store.commit('setActive', {data: response.data.entity, entity: 'labelSnippets'})
       this.component.$store.commit('setSnippetMode', 'show')
     })
   }
@@ -101,10 +103,13 @@ class LabelService extends BackendService {
   save() {
     this.options.data = {
       label: {
-        name: this.component.label.name
+        name: this.component.$store.state.labels.editName
       }
     }
-    super.save()
+    super.save(response => {
+      this.component.$store.commit('setActive', {data: response.data.entity, entity: 'labels'})
+      this.component.showLabelEdit = false
+    })
   }
 }
 
