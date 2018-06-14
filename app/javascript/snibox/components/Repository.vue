@@ -17,14 +17,13 @@
 </template>
 
 <script>
-  import _ from 'lodash'
   import Card from './Card.vue';
   import Labels from './Labels.vue'
   import Snippets from './Snippets.vue'
   import SnippetNew from './snippet/New.vue'
   import SnippetShow from './snippet/Show.vue'
   import SnippetEdit from './snippet/Edit.vue'
-  import backend from '../api/backend'
+  import Backend from '../api/backend'
   import factory from '../mixins/factory'
 
   export default {
@@ -40,22 +39,15 @@
 
     mounted() {
       setTimeout(() => {
-        backend.data.get('/api/v1/data/default-state', response => {
-          let that = this
+          Backend.data.get('/api/v1/data/default-state', response => {
 
-          this.$store.dispatch('setActiveFromStorage', this.factory().snippet)
+          this.$store.dispatch('setDefaultActiveEntities')
           this.$store.dispatch('setData', response.data)
-
-          // set snippets in create mode
-          if (_.isEmpty(this.$store.state.labelSnippets.active)) {
-            that.$store.commit('setSnippetMode', 'create')
-            that.$store.commit('setActive', {data: that.factory().snippet, entity: 'labelSnippets'})
-          }
 
           // load codemirror modes
           let languages = this.$store.state.languages
           for (let mode in languages) {
-            if (mode !== 'plain' && mode !== 'automatically') {
+            if (!['automatically', 'plain'].includes(mode)) {
               require('codemirror/mode/' + mode + '/' + mode + '.js')
             }
           }

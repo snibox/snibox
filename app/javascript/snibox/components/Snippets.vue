@@ -1,5 +1,5 @@
 <template>
-  <aside id="snippets" class="menu animated fadeInUp" v-if="ready">
+  <aside id="snippets" class="menu animated fadeInUp" v-if="readyFlag">
     <div class="menu-top">
       <div class="level is-mobile">
         <div class="level-left">
@@ -48,10 +48,14 @@
   import Card from './Card.vue'
   import SnippetItem from './SnippetItem.vue'
   import Icon from './Icon.vue'
-  import backend from '../api/backend'
+  import Backend from '../api/backend'
+  import Flags from '../mixins/flags'
+  import DataHelpers from '../mixins/data_helpers'
 
   export default {
     components: {Card, SnippetItem, Icon},
+
+    mixins: [DataHelpers, Flags],
 
     data() {
       return {
@@ -68,22 +72,6 @@
         set (value) {
           this.$store.commit('setLabelEditName', value)
         }
-      },
-
-      data() {
-        return this.$store.getters.labelSnippets
-      },
-
-      ready() {
-        return this.$store.state.ready
-      },
-
-      // TODO: this activeId almost same with labels.vue
-      activeId() {
-        if (!_.isEmpty(this.$store.state.labelSnippets.active)) {
-          return this.$store.state.labelSnippets.active.id
-        }
-        return null
       },
 
       title() {
@@ -106,7 +94,7 @@
     methods: {
       updateLabel(e) {
         e.preventDefault()
-        backend.label.update(this)
+        Backend.label.update(this)
       },
 
       editLabel(e) {

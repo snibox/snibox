@@ -4,7 +4,7 @@ export default {
   methods: {
     computeLabelSnippets(store, snippets) {
       let labelSnippets = []
-      if (_.isEqual(store.state.labels.active.id, 0)) {
+      if (_.isNull(store.state.labels.active.id)) {
         labelSnippets = store.getters.untagged
       } else {
         labelSnippets = _.filter(snippets, snippet => {

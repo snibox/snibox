@@ -84,7 +84,7 @@ class SnippetService extends BackendService {
     }
     super.save(response => {
       // show saved snippet
-      this.component.$store.commit('setActive', {data: response.data.entity, entity: 'labelSnippets'})
+      this.component.$store.commit('setActiveLabelSnippet', response.data.entity)
       this.component.$store.commit('setSnippetMode', 'show')
     })
   }
@@ -93,7 +93,6 @@ class SnippetService extends BackendService {
     super.destroy(response => {
       // release snippet area
       this.component.$store.commit('setSnippetMode', 'show')
-      // this.component.$store.commit('setActive', {data: factory.methods.factory().snippet, entity: 'label_snippets'})
     })
   }
 }
@@ -107,7 +106,7 @@ class LabelService extends BackendService {
       }
     }
     super.save(response => {
-      this.component.$store.commit('setActive', {data: response.data.entity, entity: 'labels'})
+      this.component.$store.commit('setActiveLabel', response.data.entity)
       this.component.showLabelEdit = false
     })
   }

@@ -1,6 +1,6 @@
 <template>
 
-  <aside id="labels" class="menu animated fadeInUp" v-if="ready">
+  <aside id="labels" class="menu animated fadeInUp" v-if="readyFlag">
     <div class="menu-top">
       <div class="level is-mobile">
         <div class="level-left">
@@ -28,33 +28,18 @@
 <script>
   import Card from './Card.vue'
   import LabelItem from './LabelItem.vue'
-  import _ from 'lodash'
+  import Flags from '../mixins/flags'
+  import DataHelpers from '../mixins/data_helpers'
 
   export default {
     components: {Card, LabelItem},
+
+    mixins: [DataHelpers, Flags],
 
     data() {
       return {
         entity: 'labels'
       }
-    },
-
-    computed: {
-      data() {
-        return this.$store.getters.labels
-      },
-
-      ready() {
-        return this.$store.state.ready
-      },
-
-      activeId() {
-        if (!_.isEmpty(this.$store.state.labels.active)) {
-          return this.$store.state.labels.active.id
-        }
-        return null
-      }
-    },
-
+    }
   }
 </script>

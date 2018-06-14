@@ -69,7 +69,7 @@
   import CodeMirror from 'codemirror'
   import 'codemirror/addon/display/placeholder'
   import Editor from '../../mixins/editor'
-  import backend from '../../api/backend'
+  import Backend from '../../api/backend'
   import filters from '../../mixins/filters'
 
   export default {
@@ -112,7 +112,7 @@
     methods: {
       submitAction(e) {
         e.preventDefault()
-        backend.snippet[this.action](this)
+        Backend.snippet[this.action](this)
       },
 
       cancelAction(e) {

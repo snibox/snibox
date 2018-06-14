@@ -47,7 +47,7 @@
   import Clipboard from 'clipboard'
   import Card from '../Card.vue'
   import Icon from '../Icon.vue'
-  import backend from '../../api/backend'
+  import Backend from '../../api/backend'
   import VueMarkdown from 'vue-markdown'
 
   export default {
@@ -95,7 +95,7 @@
       },
 
       destroySnippet() {
-        backend.snippet.destroy(this)
+        Backend.snippet.destroy(this)
       }
     }
   }

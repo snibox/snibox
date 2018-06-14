@@ -9,6 +9,7 @@ export default {
           language: 'automatically',
           tabs: 2,
           label: {
+            id: null,
             name: ''
           }
         }
