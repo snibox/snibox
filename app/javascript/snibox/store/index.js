@@ -1,7 +1,7 @@
 import Vue from 'vue/dist/vue.esm'
 import Vuex from 'vuex'
 import _ from 'lodash'
-import factory from '../mixins/factory'
+import Factory from '../mixins/factory'
 import StoreHelpers from './helpers'
 
 Vue.use(Vuex)
@@ -117,7 +117,7 @@ export default new Vuex.Store({
       }
       else {
         if (_.isEmpty(localActive.labels.name)) {
-          commit('setActiveLabelSnippet', factory.methods.factory().snippet)
+          commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
         }
         else {
           commit('setActiveLabel', localActive.labels)

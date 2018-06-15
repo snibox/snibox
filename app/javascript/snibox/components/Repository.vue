@@ -24,12 +24,12 @@
   import SnippetShow from './snippet/Show.vue'
   import SnippetEdit from './snippet/Edit.vue'
   import Backend from '../api/backend'
-  import factory from '../mixins/factory'
+  import Factory from '../mixins/factory'
 
   export default {
     components: {Card, Labels, Snippets, SnippetNew, SnippetShow, SnippetEdit},
 
-    mixins: [factory],
+    mixins: [Factory],
 
     computed: {
       showSnippet() {

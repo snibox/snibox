@@ -9,10 +9,10 @@
 </template>
 
 <script>
-  import filters from '../mixins/filters'
+  import Filters from '../mixins/filters'
 
   export default {
-    mixins: [filters],
+    mixins: [Filters],
 
     props: ['snippet', 'active'],
 

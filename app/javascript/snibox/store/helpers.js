@@ -1,6 +1,6 @@
 import SnippetsBuilder from "../mixins/snippets_builder"
 import _ from "lodash"
-import factory from "../mixins/factory"
+import Factory from "../mixins/factory"
 
 export default {
   data: {
@@ -47,7 +47,7 @@ export default {
 
   active: {
     setLabel: (state, data) => {
-      let snippet = factory.methods.factory().snippet
+      let snippet = Factory.methods.factory().snippet
       localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
       state.labelSnippets.active = snippet
       state.labelSnippets.mode = 'create'
