@@ -3,7 +3,7 @@
 
 import _ from 'lodash'
 import axios from 'axios'
-// import factory from '../mixins/factory'
+import Factory from '../mixins/factory'
 
 class BackendService {
   constructor(component = null, options) {
@@ -83,7 +83,6 @@ class SnippetService extends BackendService {
       }
     }
     super.save(response => {
-      // show saved snippet
       this.component.$store.commit('setActiveLabelSnippet', response.data.entity)
       this.component.$store.commit('setSnippetMode', 'show')
     })
@@ -91,8 +90,8 @@ class SnippetService extends BackendService {
 
   destroy() {
     super.destroy(response => {
-      // release snippet area
-      this.component.$store.commit('setSnippetMode', 'show')
+      this.component.$store.commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
+      this.component.$store.commit('setSnippetMode', 'create')
     })
   }
 }
