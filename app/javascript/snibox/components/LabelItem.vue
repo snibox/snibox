@@ -3,11 +3,11 @@
     <a :class="{'is-active': active}" href="#" @click="labelClick">
       <div class="level is-mobile">
         <div class="level-left">
-          <div class="level-item" v-if="label.name != 'untagged'">
-            {{ label.name | clean}}
+          <div class="level-item" v-if="label.name === ''">
+            <i>untagged</i>
           </div>
           <div class="level-item" v-else>
-            <i>{{ label.name | clean}}</i>
+            {{ label.name | clean}}
           </div>
         </div>
         <div class="level-right">
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-  import filters from '../mixins/filters'
-  import snippets_builder from '../mixins/snippets_builder'
+  import Filters from '../mixins/filters'
+  import SnippetsBuilder from '../mixins/snippets_builder'
 
   export default {
-    mixins: [filters, snippets_builder],
+    mixins: [Filters, SnippetsBuilder],
 
     props: ['label', 'active'],
 

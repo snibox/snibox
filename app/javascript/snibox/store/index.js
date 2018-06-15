@@ -1,5 +1,3 @@
-// TODO: refactor this
-
 import Vue from 'vue/dist/vue.esm'
 import Vuex from 'vuex'
 import _ from 'lodash'
@@ -25,7 +23,10 @@ export default new Vuex.Store({
       editLabelName: ''
     },
     languages: {},
-    ready: false
+    flags: {
+      renderAllSnippets: false,
+      ready: false
+    }
   },
 
   mutations: {
@@ -73,8 +74,12 @@ export default new Vuex.Store({
       state.languages = languages
     },
 
+    setRenderAllSnippetsFlag(state, flag) {
+      state.flags.renderAllSnippets = flag
+    },
+
     setReadyFlag(state, flag) {
-      state.ready = flag
+      state.flags.ready = flag
     }
   },
 
@@ -98,8 +103,12 @@ export default new Vuex.Store({
     // TODO: check that local values exists in state
     setDefaultActiveEntities({commit, state}) {
       let localActive = {
-        labels: JSON.parse(localStorage.getItem('labels_active')),
-        labelSnippets: JSON.parse(localStorage.getItem('label_snippets_active')),
+        labels: JSON.parse(localStorage.getItem('labels_active')) || {},
+        labelSnippets: JSON.parse(localStorage.getItem('label_snippets_active')) || {},
+      }
+
+      if (!localActive.labels.hasOwnProperty('snippets_count')) {
+        commit('setRenderAllSnippetsFlag', true)
       }
 
       if (localActive.labelSnippets.id) {
@@ -122,7 +131,7 @@ export default new Vuex.Store({
       StoreHelpers.data.setLabels({commit, getters}, data)
       StoreHelpers.data.setLabelSnippets({commit, state}, this)
       StoreHelpers.data.setLanguages({commit, state}, data)
-      StoreHelpers.setReadyFlag({commit, state})
+      commit('setReadyFlag', true)
     }
   }
 })

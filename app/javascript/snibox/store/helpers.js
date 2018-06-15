@@ -22,7 +22,7 @@ export default {
         labels = _.sortBy(labels, ['name'])
         labels.push({
           id: null,
-          name: 'untagged',
+          name: '',
           snippets_count: getters.untagged.length
         })
         commit('setLabels', labels)
@@ -33,7 +33,7 @@ export default {
     },
 
     setLabelSnippets: ({commit, state}, store) => {
-      let labelSnippets = _.isEmpty(state.labels.active) ? state.snippets :
+      let labelSnippets = state.flags.renderAllSnippets ? state.snippets :
           SnippetsBuilder.methods.computeLabelSnippets(store, state.snippets)
       commit('setLabelSnippets', labelSnippets)
     },
@@ -50,22 +50,20 @@ export default {
       let snippet = factory.methods.factory().snippet
       localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
       state.labelSnippets.active = snippet
-      state.labelSnippets.active.label = data
       state.labelSnippets.mode = 'create'
+      state.labelSnippets.editLabelName = ''
+      state.labelSnippets.editTitle = ''
       state.labels.editName = data.name
+      state.flags.renderAllSnippets = false
     },
 
     setLabelSnippet: (state) => {
-      localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
-      state.labels.active = state.labelSnippets.active.label
-      state.labelSnippets.editTitle = state.labelSnippets.active.title
-      state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
-    }
-  },
-
-  setReadyFlag: ({commit, state}) => {
-    if (!state.ready) {
-      commit('setReadyFlag', true);
+      if (!state.flags.renderAllSnippets) {
+        localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
+        state.labels.active = state.labelSnippets.active.label
+        state.labelSnippets.editTitle = state.labelSnippets.active.title
+        state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
+      }
     }
   }
 }

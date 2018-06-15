@@ -10,7 +10,8 @@ export default {
           tabs: 2,
           label: {
             id: null,
-            name: ''
+            name: '',
+            snippets_count: 0
           }
         }
       }

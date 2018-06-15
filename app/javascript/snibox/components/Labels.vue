@@ -17,7 +17,7 @@
         <label-item v-for="item in data"
                     :key="item.id"
                     :label="item"
-                    :active="item.id == activeId">
+                    :active="item.id === activeId">
         </label-item>
       </ul>
     </div>

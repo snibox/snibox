@@ -36,7 +36,7 @@
         <snippet-item v-for="item in data"
                       :key="item.id"
                       :snippet="item"
-                      :active="item.id == activeId">
+                      :active="item.id === activeId">
         </snippet-item>
       </ul>
     </div>
@@ -75,8 +75,12 @@
       },
 
       title() {
-        if (_.isEmpty(this.$store.state.labels.active.name)) {
+        if (this.$store.state.flags.renderAllSnippets) {
           return 'All snippets'
+        }
+
+        if (_.isEmpty(this.$store.state.labels.active.name)) {
+          return 'Untagged'
         }
 
         return this.$store.state.labels.active.name
