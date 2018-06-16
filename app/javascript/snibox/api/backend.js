@@ -2,6 +2,8 @@ import _ from 'lodash'
 import axios from 'axios'
 import Factory from '../mixins/factory'
 
+const ERROR_MESSAGE_DURATION = 6000
+
 class BackendService {
   constructor(component = null, options) {
     this.component = component
@@ -29,12 +31,12 @@ class BackendService {
                 error_message = error_message + error + '.<br/>'
               })
             }
-            this.component.$toasted.error(error_message, {duration: 6000})
+            this.component.$toasted.error(error_message, {duration: ERROR_MESSAGE_DURATION})
           }
         })
       .catch(error => {
         console.log(error)
-        this.component.$toasted.error(error_message, {duration: 6000})
+        this.component.$toasted.error(error_message, {duration: ERROR_MESSAGE_DURATION})
       })
   }
 
@@ -49,7 +51,7 @@ class BackendService {
       })
       .catch(error => {
         console.log(error)
-        this.component.$toasted.error(this.options.messages.error, {duration: 6000})
+        this.component.$toasted.error(this.options.messages.error, {duration: ERROR_MESSAGE_DURATION})
       })
   }
 
@@ -60,7 +62,7 @@ class BackendService {
       })
       .catch(error => {
         console.log(error)
-        this.component.$toasted.error('Unable to update application state.', {duration: 6000})
+        this.component.$toasted.error('Unable to update application state.', {duration: ERROR_MESSAGE_DURATION})
       })
   }
 }
