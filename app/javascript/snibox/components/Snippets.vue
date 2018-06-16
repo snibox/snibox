@@ -4,7 +4,7 @@
       <div class="level is-mobile">
         <div class="level-left">
           <div class="level-item">
-            <div class="menu-label">{{ title }}</div>
+            <div class="menu-label">{{ title | setMaxLength('short') }}</div>
           </div>
         </div>
         <div class="level-right">
@@ -48,6 +48,7 @@
   import Backend from '../api/backend'
   import Card from './Card.vue'
   import DataHelpers from '../mixins/data_helpers'
+  import Filters from '../mixins/filters'
   import Flags from '../mixins/flags'
   import Icon from './Icon.vue'
   import SnippetItem from './SnippetItem.vue'
@@ -55,7 +56,7 @@
   export default {
     components: {Card, Icon, SnippetItem},
 
-    mixins: [DataHelpers, Flags],
+    mixins: [DataHelpers, Filters, Flags],
 
     data() {
       return {

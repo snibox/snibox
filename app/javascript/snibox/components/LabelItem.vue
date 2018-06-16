@@ -7,7 +7,7 @@
             <i>untagged</i>
           </div>
           <div class="level-item" v-else>
-            {{ label.name | clean}}
+            {{ label.name | setMaxLength('medium') }}
           </div>
         </div>
         <div class="level-right">

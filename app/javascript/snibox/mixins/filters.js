@@ -1,10 +1,18 @@
 import _ from 'lodash'
 
+const SETTINGS = Object.freeze({
+  textLength: {
+    short: 12,
+    medium: 14,
+    long: 18
+  }
+})
+
 export default {
   filters: {
-    clean(value) {
-      if (value.length < 25) return value
-      return value.substring(0, 22) + '...'
+    setMaxLength(value, type) {
+      if (value.length < SETTINGS.textLength[type]) return value
+      return value.substring(0, SETTINGS.textLength[type] - 1) + '...'
     },
 
     capitalize(value) {

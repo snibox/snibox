@@ -2,7 +2,7 @@
   <li>
     <a :class="{'is-active': active}" href="#" @click="loadSnippet">
       <div class="level is-mobile">
-        <div class="level-item">{{ snippet.title | clean }}</div>
+        <div class="level-item">{{ snippet.title | setMaxLength('long') }}</div>
       </div>
     </a>
   </li>
