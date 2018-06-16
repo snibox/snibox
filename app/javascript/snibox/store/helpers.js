@@ -58,12 +58,12 @@ export default {
     },
 
     setLabelSnippet: (state) => {
-      if (!state.flags.renderAllSnippets) {
+      if (!state.flags.renderAllSnippets && state.labelSnippets.active.label.id !== -1) {
         localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
         state.labels.active = state.labelSnippets.active.label
-        state.labelSnippets.editTitle = state.labelSnippets.active.title
-        state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
       }
+      state.labelSnippets.editTitle = state.labelSnippets.active.title
+      state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
     }
   }
 }

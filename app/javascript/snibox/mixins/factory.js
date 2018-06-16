@@ -9,7 +9,7 @@ export default {
           language: 'automatically',
           tabs: 2,
           label: {
-            id: null,
+            id: -1,
             name: '',
             snippets_count: 0
           }
