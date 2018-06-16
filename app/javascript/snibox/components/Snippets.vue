@@ -45,15 +45,15 @@
 
 <script>
   import _ from 'lodash'
-  import Card from './Card.vue'
-  import SnippetItem from './SnippetItem.vue'
-  import Icon from './Icon.vue'
   import Backend from '../api/backend'
-  import Flags from '../mixins/flags'
+  import Card from './Card.vue'
   import DataHelpers from '../mixins/data_helpers'
+  import Flags from '../mixins/flags'
+  import Icon from './Icon.vue'
+  import SnippetItem from './SnippetItem.vue'
 
   export default {
-    components: {Card, SnippetItem, Icon},
+    components: {Card, Icon, SnippetItem},
 
     mixins: [DataHelpers, Flags],
 

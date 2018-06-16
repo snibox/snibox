@@ -1,6 +1,6 @@
-import SnippetsBuilder from "../mixins/snippets_builder"
 import _ from "lodash"
 import Factory from "../mixins/factory"
+import SnippetsBuilder from "../mixins/snippets_builder"
 
 export default {
   data: {

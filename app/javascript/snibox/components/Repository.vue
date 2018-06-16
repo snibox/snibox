@@ -17,17 +17,17 @@
 </template>
 
 <script>
-  import Card from './Card.vue';
+  import Backend from '../api/backend'
+  import Card from './Card.vue'
+  import Factory from '../mixins/factory'
   import Labels from './Labels.vue'
   import Snippets from './Snippets.vue'
+  import SnippetEdit from './snippet/Edit.vue'
   import SnippetNew from './snippet/New.vue'
   import SnippetShow from './snippet/Show.vue'
-  import SnippetEdit from './snippet/Edit.vue'
-  import Backend from '../api/backend'
-  import Factory from '../mixins/factory'
 
   export default {
-    components: {Card, Labels, Snippets, SnippetNew, SnippetShow, SnippetEdit},
+    components: {Card, Labels, Snippets, SnippetEdit, SnippetNew, SnippetShow},
 
     mixins: [Factory],
 

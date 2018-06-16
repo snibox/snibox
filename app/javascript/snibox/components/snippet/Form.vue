@@ -65,19 +65,19 @@
 </template>
 
 <script>
+  import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import CodeMirror from 'codemirror'
   import 'codemirror/addon/display/placeholder'
   import Editor from '../../mixins/editor'
-  import Backend from '../../api/backend'
-  import filters from '../../mixins/filters'
+  import Filters from '../../mixins/filters'
 
   export default {
     props: ['title', 'action'],
 
     components: {Card},
 
-    mixins: [Editor, filters],
+    mixins: [Editor, Filters],
 
     data() {
       return {

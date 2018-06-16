@@ -1,6 +1,3 @@
-// TODO: rethink backend.js
-// TODO: move errors notifications from <br/> to lists
-
 import _ from 'lodash'
 import axios from 'axios'
 import Factory from '../mixins/factory'

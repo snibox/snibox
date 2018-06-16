@@ -27,9 +27,9 @@
 
 <script>
   import Card from './Card.vue'
-  import LabelItem from './LabelItem.vue'
-  import Flags from '../mixins/flags'
   import DataHelpers from '../mixins/data_helpers'
+  import Flags from '../mixins/flags'
+  import LabelItem from './LabelItem.vue'
 
   export default {
     components: {Card, LabelItem},

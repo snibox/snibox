@@ -44,10 +44,10 @@
 </template>
 
 <script>
-  import Clipboard from 'clipboard'
-  import Card from '../Card.vue'
-  import Icon from '../Icon.vue'
   import Backend from '../../api/backend'
+  import Card from '../Card.vue'
+  import Clipboard from 'clipboard'
+  import Icon from '../Icon.vue'
   import VueMarkdown from 'vue-markdown'
 
   export default {
