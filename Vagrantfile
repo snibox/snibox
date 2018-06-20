@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 provision = <<SHELL
-# add node 8.x
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+# add node 10.x
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 # add yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -24,8 +24,8 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # setup ruby
 # https://stackoverflow.com/a/30106828
-sudo -H -u vagrant bash -i -c 'rbenv install 2.5.0'
-sudo -H -u vagrant bash -i -c 'rbenv global 2.5.0'
+sudo -H -u vagrant bash -i -c 'rbenv install 2.5.1'
+sudo -H -u vagrant bash -i -c 'rbenv global 2.5.1'
 echo 'gem: --no-document' >> ~/.gemrc
 sudo -H -u vagrant bash -i -c 'gem install bundler'
 
