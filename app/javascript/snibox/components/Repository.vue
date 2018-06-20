@@ -39,10 +39,9 @@
 
     mounted() {
       setTimeout(() => {
-          Backend.data.get('/api/v1/data/default-state', response => {
-
-          this.$store.dispatch('setDefaultActiveEntities')
+        Backend.data.get('/api/v1/data/default-state', response => {
           this.$store.dispatch('setData', response.data)
+          this.$store.dispatch('setDefaultActiveEntities')
 
           // load codemirror modes
           let languages = this.$store.state.languages
@@ -53,7 +52,6 @@
           }
         })
       }, 250)
-
     }
   }
 </script>

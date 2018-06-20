@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 const SETTINGS = Object.freeze({
   textLength: {
-    short: 12,
+    short: 13,
     medium: 14,
     long: 18
   }

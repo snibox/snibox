@@ -2,9 +2,11 @@
 
   <card id="show-snippet" class="animated fadeInDown">
     <header class="card-header" slot="card-header">
-      <p class="card-header-title" v-if="!snippet.title">Select snippet</p>
-      <p class="card-header-title" v-if="snippet.content">{{ snippet.title }}</p>
-      <div class="card-header-title" v-if="snippet.content">
+      <div class="card-header-title">
+        <p v-if="snippet.id">{{ snippet.title }}</p>
+        <p v-else>Select snippet</p>
+      </div>
+      <div class="card-header-title" v-if="snippet.id">
         <div class="field" :class="{ 'has-addons': !isMarkdown }">
           <p class="control">
             <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw" target="_blank"><span>Raw</span></a>
@@ -16,7 +18,7 @@
           </p>
         </div>
       </div>
-      <div class="card-header-icon" v-if="snippet.content">
+      <div class="card-header-icon" v-if="snippet.id">
         <div class="block">
           <a id="snippet-edit" class="button is-outlined is-small" @click="editSnippet">
             <icon type="pencil"></icon>
@@ -33,7 +35,7 @@
         <vue-markdown>{{ snippet.content }}</vue-markdown>
       </div>
       <div v-else>
-        <pre v-highlightjs="snippet.content" v-if="snippet.content"><code id="code"
+        <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code"
                                                                           :class="snippet.language === 'automatically' ? '' : snippet.language "></code></pre>
         <p v-else>Nothing to show. Select a snippet to view or create new one!</p>
       </div>

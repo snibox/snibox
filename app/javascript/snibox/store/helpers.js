@@ -3,6 +3,30 @@ import Factory from "../mixins/factory"
 import SnippetsBuilder from "../mixins/snippets_builder"
 
 export default {
+  localStorage: {
+    setDefault: (commit) => {
+      let localActive = {
+        labels: JSON.parse(localStorage.getItem('labels_active')) || {},
+        labelSnippets: JSON.parse(localStorage.getItem('label_snippets_active')) || {},
+      }
+
+      if (localActive.labelSnippets.id) {
+        commit('setActiveLabelSnippet', localActive.labelSnippets)
+        commit('setSnippetMode', 'show')
+      }
+      else {
+        if (_.isEmpty(localActive.labels)) {
+          commit('setRenderAllSnippetsFlag', true)
+        }
+        else {
+          commit('setActiveLabel', localActive.labels)
+        }
+        commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
+        commit('setSnippetMode', 'create')
+      }
+    }
+  },
+
   data: {
     setSnippets: (commit, data) => {
       commit('setSnippets', _.sortBy(data.snippets, ['title']))
@@ -58,10 +82,24 @@ export default {
     },
 
     setLabelSnippet: (state) => {
+      // ignore active label update for initial and new snippets states
       if (!state.flags.renderAllSnippets && state.labelSnippets.active.label.id !== -1) {
         localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
         state.labels.active = state.labelSnippets.active.label
       }
+
+      // for the case if current active label has been destroyed by snippet reset state to default !!!!111one
+      if (state.labelSnippets.active.label.id === -1) {
+        let activeLabelExists = _.find(state.labels.items, o => {
+          return o.id === state.labels.active.id
+        })
+
+        if (!activeLabelExists) {
+          localStorage.removeItem('labels_active')
+          state.flags.renderAllSnippets = true
+        }
+      }
+
       state.labelSnippets.editTitle = state.labelSnippets.active.title
       state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
     }

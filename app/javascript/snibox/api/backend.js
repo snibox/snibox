@@ -17,11 +17,7 @@ class BackendService {
       .then(
         response => {
           if (response.data.completed) {
-            this.updateState()
-            this.component.$toasted.success(this.options.messages.success)
-            if (_.isFunction(callback)) {
-              callback(response)
-            }
+            this.updateState(callback, response)
           }
           else {
             // render error notification from api
@@ -43,11 +39,7 @@ class BackendService {
   destroy(callback = null) {
     axios.delete(this.options.path)
       .then(response => {
-        this.updateState()
-        this.component.$toasted.success(this.options.messages.success)
-        if (_.isFunction(callback)) {
-          callback(response)
-        }
+        this.updateState(callback, response)
       })
       .catch(error => {
         console.log(error)
@@ -55,10 +47,15 @@ class BackendService {
       })
   }
 
-  updateState() {
+  updateState(callback = null, data) {
     axios.get('/api/v1/data/default-state')
       .then(response => {
         this.component.$store.dispatch('setData', response.data)
+        if (_.isFunction(callback)) {
+          callback(data)
+        }
+        this.component.$store.dispatch('setDefaultActiveEntities')
+        this.component.$toasted.success(this.options.messages.success)
       })
       .catch(error => {
         console.log(error)
@@ -83,14 +80,12 @@ class SnippetService extends BackendService {
     }
     super.save(response => {
       this.component.$store.commit('setActiveLabelSnippet', response.data.entity)
-      this.component.$store.commit('setSnippetMode', 'show')
     })
   }
 
   destroy() {
     super.destroy(response => {
       this.component.$store.commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
-      this.component.$store.commit('setSnippetMode', 'create')
     })
   }
 }

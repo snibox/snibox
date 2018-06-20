@@ -100,38 +100,18 @@ export default new Vuex.Store({
   },
 
   actions: {
-    // TODO: check that local values exists in state
-    setDefaultActiveEntities({commit, state}) {
-      let localActive = {
-        labels: JSON.parse(localStorage.getItem('labels_active')) || {},
-        labelSnippets: JSON.parse(localStorage.getItem('label_snippets_active')) || {},
-      }
-
-      if (!localActive.labels.hasOwnProperty('snippets_count')) {
-        commit('setRenderAllSnippetsFlag', true)
-      }
-
-      if (localActive.labelSnippets.id) {
-        commit('setActiveLabelSnippet', localActive.labelSnippets)
-        commit('setSnippetMode', 'show')
-      }
-      else {
-        if (_.isEmpty(localActive.labels.name)) {
-          commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
-        }
-        else {
-          commit('setActiveLabel', localActive.labels)
-        }
-        commit('setSnippetMode', 'create')
-      }
-    },
-
     setData({commit, state, getters}, data) {
       StoreHelpers.data.setSnippets(commit, data)
       StoreHelpers.data.setLabels({commit, getters}, data)
-      StoreHelpers.data.setLabelSnippets({commit, state}, this)
       StoreHelpers.data.setLanguages({commit, state}, data)
-      commit('setReadyFlag', true)
+      if (!this.state.flags.ready) {
+        commit('setReadyFlag', true)
+      }
+    },
+
+    setDefaultActiveEntities({commit, state}) {
+      StoreHelpers.localStorage.setDefault(commit)
+      StoreHelpers.data.setLabelSnippets({commit, state}, this)
     }
   }
 })
