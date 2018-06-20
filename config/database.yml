@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: snibox_production
-  username: snibox
-  password: <%= ENV['SNIBOX_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'].presence || 'snibox_production' =>
+  username: <%= ENV['DB_USER'].presence || 'snibox' %>
+  password: <%= ENV['DB_PASS'].presence || '' %>
+  host: <%= ENV['DB_HOST'].presence || 'localhost' %>
+  port: <%= ENV['DB_PORT'].presence || '5432' %>
