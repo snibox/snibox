@@ -28,4 +28,3 @@ yarn-debug.log*
 /.rake_tasks
 /coverage
 /public/assets
-/config/database.yml
