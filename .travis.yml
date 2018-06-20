@@ -23,8 +23,6 @@ notifications:
 before_install:
   - gem install bundler -v 1.16.1
 before_script:
-  - cp config/database.postgresql.yml config/database.yml
-  - cp config/secrets.sample.yml config/secrets.yml
   - node --version
   - yarn --version
   - ./bin/rake db:setup assets:precompile
