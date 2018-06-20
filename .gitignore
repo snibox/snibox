@@ -29,4 +29,3 @@ yarn-debug.log*
 /coverage
 /public/assets
 /config/database.yml
-/config/secrets.yml
