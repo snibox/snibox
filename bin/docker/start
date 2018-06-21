@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-system "docker-compose down"
-system "docker-compose up"

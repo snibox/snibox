@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-system "docker-compose pull"
-system "cp .env.production.sample .env"
-system "docker-compose run --rm backend ./bin/rake db:create"
-system "docker-compose run --rm backend ./bin/rake db:migrate"
-system "docker-compose run --rm backend ./bin/rake assets:precompile"
