@@ -12,7 +12,7 @@
   <%= favicon_link_tag asset_pack_path('images/favicon.ico') %>
 
   <%= stylesheet_pack_tag 'common' %>
-  <%= render 'shared/rspec_disable_animations' if Rails.env.test?%>
+  <%= render 'shared/rspec_disable_animations' if Rails.env.test? %>
 </head>
 
 <body class="<%= @body_class %>">
@@ -23,11 +23,7 @@
 <!-- js -->
 <%= javascript_pack_tag 'vendor' %>
 <%= javascript_pack_tag 'common' %>
-<% if @activate_repository %>
-  <%= javascript_pack_tag 'repository' %>
-<% else %>
-  <%= javascript_pack_tag 'auth' %>
-<% end %>
+<%= @activate_repository ? javascript_pack_tag('repository') : javascript_pack_tag('auth') %>
 <%= javascript_pack_tag 'navbar' %>
 
 </body>

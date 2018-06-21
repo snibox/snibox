@@ -18,11 +18,7 @@
         <div class="navbar-start">
           <%= link_to "Dashboard", root_path, id: "dashboard", class: "navbar-item #{is_active_page(root_path)}" %>
           <!-- TODO: search link -->
-          <% if current_page?(root_path) %>
-            <a id="snippet-new" class="navbar-item" href="#" @click="addSnippet($event, false)">Add snippet</a>
-          <% else %>
-            <a id="snippet-new" class="navbar-item" href="#" @click="addSnippet($event, true)">Add snippet</a>
-          <% end %>
+          <a id="snippet-new" class="navbar-item" href="#" @click="addSnippet($event, <%= !current_page?(root_path) %>)">Add snippet</a>
         </div>
         <div class="navbar-end">
           <%= link_to "Help", help_path, id: "help", class: "navbar-item #{is_active_page(help_path)}" %>
