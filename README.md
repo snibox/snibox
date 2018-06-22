@@ -29,7 +29,7 @@ Deployment instructions for various platforms available at
 [deployment guide](https://github.com/snibox/snibox/wiki/Deployment).
 
 ## Development
-Development instructions for various platform available at 
+Development instructions for various platforms available at 
 [development guide](https://github.com/snibox/snibox/wiki/Development).
 
 ## Todo
