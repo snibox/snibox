@@ -26,11 +26,11 @@ Click the image below to launch demo:
 
 ## Deployment
 Deployment instructions for various platforms available at 
-[deployment guide](https://github.com/vavgustov/snibox/blob/master/docs#deployment).
+[deployment guide](https://github.com/snibox/snibox/wiki/Deployment).
 
 ## Development
 Development instructions for various platform available at 
-[development guide](https://github.com/vavgustov/snibox/blob/master/docs#development).
+[development guide](https://github.com/snibox/snibox/wiki/Development).
 
 ## Todo
 - [ ] Revisions
