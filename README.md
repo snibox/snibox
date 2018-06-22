@@ -18,7 +18,7 @@ Snibox is a self-hosted private snippets repository. [Demo](#demo).
 Click the image below to launch demo:
 > It may take up to 30 seconds to wake up free Heroku's server.
 
-[![screen shot 2018-06-22 at 10 33 13 pm](https://user-images.githubusercontent.com/312873/41795697-5950a0d4-766c-11e8-8e08-b8f35dd28607.png)](https://snibox-demo.herokuapp.com/)
+[![screen shot 2018-06-22 at 10 54 18 pm](https://user-images.githubusercontent.com/312873/41796454-486e6316-766f-11e8-8097-e6ff8228d89b.png)](https://snibox-demo.herokuapp.com/)
 
 ## Built with
 * Frontend: [Vue.js](https://vuejs.org/)
