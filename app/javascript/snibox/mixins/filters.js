@@ -4,7 +4,7 @@ const SETTINGS = Object.freeze({
   textLength: {
     short: 13,
     medium: 14,
-    long: 18
+    long: 20
   }
 })
 
