@@ -24,6 +24,7 @@ yarn-debug.log*
 .yarn-integrity
 
 /.idea
+/.vagrant
 /.env
 /.rake_tasks
 /coverage
