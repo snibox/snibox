@@ -88,7 +88,7 @@ export default {
         state.labels.active = state.labelSnippets.active.label
       }
 
-      // for the case if current active label has been destroyed by snippet reset state to default !!!!111one
+      // for the case if current active label has been destroyed by snippet reset state to default
       if (state.labelSnippets.active.label.id === -1) {
         let activeLabelExists = _.find(state.labels.items, o => {
           return o.id === state.labels.active.id
