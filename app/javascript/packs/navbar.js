@@ -20,16 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
       addSnippet(e, redirect = false) {
         e.preventDefault()
 
-        // TODO: refactor this
-        let that = this
         if (typeof repository !== 'undefined') {
-          that = repository
+          let snippet = this.factory().snippet
+          snippet.label = repository.$store.state.labels.active
+          repository.$store.commit('setActiveLabelSnippet', snippet)
+          repository.$store.commit('setSnippetMode', 'create')
         }
 
-        that.$store.commit('setActiveLabelSnippet', this.factory().snippet)
-        that.$store.commit('setSnippetMode', 'create')
-
         if (redirect) {
+          localStorage.removeItem('label_snippets_active')
           window.location = '/'
         }
       }

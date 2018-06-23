@@ -15,13 +15,16 @@ export default {
         commit('setSnippetMode', 'show')
       }
       else {
+        let snippet = Factory.methods.factory().snippet
+
         if (_.isEmpty(localActive.labels)) {
           commit('setRenderAllSnippetsFlag', true)
         }
         else {
           commit('setActiveLabel', localActive.labels)
+          snippet.label = localActive.labels
         }
-        commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
+        commit('setActiveLabelSnippet', snippet)
         commit('setSnippetMode', 'create')
       }
     }
@@ -70,14 +73,14 @@ export default {
   },
 
   active: {
-    setLabel: (state, data) => {
+    setLabel: (state, label) => {
       let snippet = Factory.methods.factory().snippet
       localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
       state.labelSnippets.active = snippet
       state.labelSnippets.mode = 'create'
-      state.labelSnippets.editLabelName = ''
+      state.labelSnippets.editLabelName = label.name
       state.labelSnippets.editTitle = ''
-      state.labels.editName = data.name
+      state.labels.editName = label.name
       state.flags.renderAllSnippets = false
     },
 
