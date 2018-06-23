@@ -17,6 +17,8 @@ jobs:
       - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
     rvm:
       - 2.5.1
+      - 2.4.4
+      - 2.3.7
     addons:
       postgresql: 9.4
       chrome: stable
@@ -38,7 +40,7 @@ jobs:
       - bundle exec rspec
     after_script:
       - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-  - stage: deploy docker image
+  - stage: build and push docker image
     install: skip
     script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
