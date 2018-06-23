@@ -1,12 +1,4 @@
 sudo: required
-
-language: ruby
-
-rvm:
-  - 2.3.7
-  - 2.4.4
-  - 2.5.1
-
 env:
   global:
     - DOMAIN=localhost
@@ -15,23 +7,21 @@ env:
     - PORT=3000
     - RAILS_ENV=test
     - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
-
-notifications:
-  email: false
-
+language: ruby
+rvm:
+  - 2.5.1
 addons:
   postgresql: 9.4
   chrome: stable
-
 cache:
   bundler: true
   yarn: true
   directories:
     - node_modules
-
+notifications:
+  email: false
 before_install:
   - gem install bundler -v 1.16.1
-
 before_script:
   - node --version
   - yarn --version
@@ -39,22 +29,10 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-
 script:
   - bundle exec rspec
-
 after_script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t snibox/snibox .
+  - docker push snibox/snibox
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-
-jobs:
-  include:
-  - stage: build and push docker image
-    rvm: skip
-    addons: skip
-    before_install: skip
-    install: skip
-    before_script: skip
-    script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t snibox/snibox .
-      - docker push snibox/snibox
