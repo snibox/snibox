@@ -49,7 +49,10 @@ after_script:
 jobs:
   include:
   - stage: build and push docker image
+    addons: skip
+    before_install: skip
     install: skip
+    before_script: skip
     script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - docker build -t snibox/snibox .
