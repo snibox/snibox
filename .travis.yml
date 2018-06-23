@@ -1,16 +1,18 @@
 sudo: required
 
+notifications:
+  email: false
+
 jobs:
   include:
   - stage: test
     env:
-      global:
-        - DOMAIN=localhost
-        - JAVASCRIPT_DRIVER=headless_chrome
-        - MAILER_SENDER=noreply@localhost
-        - PORT=3000
-        - RAILS_ENV=test
-        - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
+      - DOMAIN=localhost
+      - JAVASCRIPT_DRIVER=headless_chrome
+      - MAILER_SENDER=noreply@localhost
+      - PORT=3000
+      - RAILS_ENV=test
+      - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
     language: ruby
     rvm:
       - 2.5.1
@@ -22,8 +24,6 @@ jobs:
       yarn: true
       directories:
         - node_modules
-    notifications:
-      email: false
     before_install:
       - gem install bundler -v 1.16.1
     before_script:
