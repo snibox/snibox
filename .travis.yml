@@ -1,5 +1,7 @@
 sudo: required
 
+language: ruby
+
 notifications:
   email: false
 
@@ -13,7 +15,6 @@ jobs:
       - PORT=3000
       - RAILS_ENV=test
       - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
-    language: ruby
     rvm:
       - 2.5.1
     addons:
@@ -38,6 +39,7 @@ jobs:
     after_script:
       - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - stage: deploy docker image
+    install: skip
     script:
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - docker build -t snibox/snibox .
