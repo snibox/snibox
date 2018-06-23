@@ -97,6 +97,7 @@ GEM
       activesupport (>= 3.0.0)
       after_commit_action (~> 1.0)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     debug-extras (0.4.3)
       awesome_print (>= 1.6, < 1.9)
       railties (> 4.0, < 6)
@@ -271,6 +272,7 @@ DEPENDENCIES
   capybara (~> 3.1)
   chromedriver-helper (~> 1.2)
   counter_culture (~> 1.12)
+  database_cleaner (~> 1.7)
   debug-extras
   devise (~> 4.3)
   dotenv-rails (~> 2.2, >= 2.2.1)
