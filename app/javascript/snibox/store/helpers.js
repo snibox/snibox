@@ -99,6 +99,7 @@ export default {
 
         if (!activeLabelExists) {
           localStorage.removeItem('labels_active')
+          state.labels.active = {}
           state.flags.renderAllSnippets = true
         }
       }
