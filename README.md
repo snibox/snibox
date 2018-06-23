@@ -4,7 +4,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/maintainability)](https://codeclimate.com/github/snibox/snibox/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/test_coverage)](https://codeclimate.com/github/snibox/snibox/test_coverage) 
 
-Snibox is a self-hosted private snippets repository. [Demo](#demo).
+Snibox is a self-hosted private snippets repository. 
+Supports various programming languages, markdown, plain text. 
+Developed for organizing private code snippets.
 
 ## Table of Contents
 - [Demo](#demo)
@@ -18,7 +20,7 @@ Snibox is a self-hosted private snippets repository. [Demo](#demo).
 Click the image below to launch demo:
 > It may take up to 30 seconds to wake up free Heroku's server.
 
-[![screen shot 2018-06-22 at 10 54 18 pm](https://user-images.githubusercontent.com/312873/41796454-486e6316-766f-11e8-8097-e6ff8228d89b.png)](https://snibox-demo.herokuapp.com/)
+[![screen shot 2018-06-23 at 5 37 57 pm](https://user-images.githubusercontent.com/312873/41810755-3fa64594-770c-11e8-9beb-c9c20be21d40.png)](https://snibox-demo.herokuapp.com/)
 
 ## Built with
 * Frontend: [Vue.js](https://vuejs.org/)
