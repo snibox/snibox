@@ -3,45 +3,50 @@ sudo: required
 language: ruby
 
 rvm:
-  - 2.4.4
   - 2.3.7
+  - 2.4.4
+  - 2.5.1
 
 env:
-  global:
-    - DOMAIN=localhost
-    - JAVASCRIPT_DRIVER=headless_chrome
-    - MAILER_SENDER=noreply@localhost
-    - PORT=3000
-    - RAILS_ENV=test
-    - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
+  - DOMAIN=localhost
+  - JAVASCRIPT_DRIVER=headless_chrome
+  - MAILER_SENDER=noreply@localhost
+  - PORT=3000
+  - RAILS_ENV=test
+  - CC_TEST_REPORTER_ID=b567597469f06a5541c51f3e59f870eb794029539906d57fa06d8b5d26429f41
 
 notifications:
   email: false
 
+addons:
+  postgresql: 9.4
+  chrome: stable
+
+cache:
+  bundler: true
+  yarn: true
+  directories:
+    - node_modules
+
+before_install:
+  - gem install bundler -v 1.16.1
+
+before_script:
+  - node --version
+  - yarn --version
+  - ./bin/rake db:setup assets:precompile
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
 jobs:
   include:
-  - stage: test
-    addons:
-      postgresql: 9.4
-      chrome: stable
-    cache:
-      bundler: true
-      yarn: true
-      directories:
-        - node_modules
-    before_install:
-      - gem install bundler -v 1.16.1
-    before_script:
-      - node --version
-      - yarn --version
-      - ./bin/rake db:setup assets:precompile
-      - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-      - chmod +x ./cc-test-reporter
-      - ./cc-test-reporter before-build
-    script:
-      - bundle exec rspec
-    after_script:
-      - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
   - stage: build and push docker image
     install: skip
     script:
