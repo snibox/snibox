@@ -63,6 +63,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.after(:each, js: true) do
+    Capybara.execute_script "localStorage.clear()"
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
