@@ -31,8 +31,9 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - bundle exec rspec
-after_script:
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t snibox/snibox .
   - docker push snibox/snibox
+after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
