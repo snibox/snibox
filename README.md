@@ -20,7 +20,7 @@ Developed for organizing private code snippets.
 Click the image below to launch demo:
 > It may take up to 30 seconds to wake up free Heroku's server.
 
-[![screen shot 2018-06-23 at 5 37 57 pm](https://user-images.githubusercontent.com/312873/41810755-3fa64594-770c-11e8-9beb-c9c20be21d40.png)](https://snibox-demo.herokuapp.com/)
+[![screen shot 2018-06-25 at 12 49 19 am](https://user-images.githubusercontent.com/312873/41824011-dc6d33a0-7811-11e8-94bd-1cf2ede595b5.png)](https://snibox-demo.herokuapp.com/)
 
 ## Built with
 * Frontend: [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/)
