@@ -2,7 +2,7 @@
 
   <card id="snippet-form" class="animated fadeInDown">
     <header class="card-header" slot="card-header">
-      <p class="card-header-title">{{ title }}</p>
+      <p class="card-header-title" v-html="title"></p>
     </header>
 
     <div class="card-content" slot="card-content">
@@ -11,20 +11,20 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input id="title" class="input" type="text" placeholder="Title" v-model="snippetTitle">
+                <input id="title" class="input" type="text" placeholder="Title" v-model="editSnippetTitle">
               </div>
             </div>
             <div class="field is-grouped is-grouped-right">
               <div class="control">
                 <div class="select">
-                  <select v-model="snippet.language" @change="changeLanguage">
+                  <select v-model="editSnippetLanguage">
                     <option v-for="(v, k) in language_options" :value="k">{{ v }}</option>
                   </select>
                 </div>
               </div>
               <div class="control">
                 <div class="select">
-                  <select v-model="snippet.tabs">
+                  <select v-model="editSnippetTabs">
                     <option v-for="(v, k) in tab_options" :value="k">{{ v }}</option>
                   </select>
                 </div>
@@ -43,7 +43,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input id="snippet-labels" class="input" type="text" placeholder="Label" v-model="editLabelName">
+                <input id="snippet-labels" class="input" type="text" placeholder="Label" v-model="editSnippetLabel">
               </div>
             </div>
           </div>
@@ -86,21 +86,43 @@
     },
 
     computed: {
-      snippetTitle: {
+      editSnippetTitle: {
         get() {
-          return this.$store.state.labelSnippets.editTitle
+          return this.$store.state.labelSnippets.edit.title
         },
+
         set(value) {
           this.$store.commit('setLabelSnippetEditTitle', value)
         }
       },
 
-      editLabelName: {
+      editSnippetLanguage: {
         get() {
-          return this.$store.state.labelSnippets.editLabelName
+          return this.$store.state.labelSnippets.active.language
         },
+
         set(value) {
-          this.$store.commit('setLabelSnippetEditLabelName', value)
+          this.editor.setOption('mode', value)
+        }
+      },
+
+      editSnippetTabs: {
+        get() {
+          return this.$store.state.labelSnippets.active.tabs
+        },
+
+        set(value) {
+          this.editor.setOption('tabSize', value)
+        }
+      },
+
+      editSnippetLabel: {
+        get() {
+          return this.$store.state.labelSnippets.edit.label
+        },
+
+        set(value) {
+          this.$store.commit('setLabelSnippetEditLabel', value)
         }
       },
 
@@ -124,11 +146,6 @@
           this.$store.commit('setSnippetMode', 'show')
         }
       },
-
-      changeLanguage(e) {
-        e.preventDefault()
-        this.editor.setOption('mode', e.target.value)
-      }
     },
 
     mounted() {

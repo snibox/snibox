@@ -69,12 +69,12 @@ class SnippetService extends BackendService {
     this.options.data = {
       snippet: {
         id: this.component.snippet.id,
-        title: this.component.$store.state.labelSnippets.editTitle,
+        title: this.component.$store.state.labelSnippets.edit.title,
         content: this.component.editor.getValue(),
-        language: this.component.snippet.language,
-        tabs: this.component.snippet.tabs,
+        language: this.component.editor.getOption('mode'),
+        tabs: this.component.editor.getOption('tabSize'),
         label_attributes: {
-          name: this.component.$store.state.labelSnippets.editLabelName
+          name: this.component.$store.state.labelSnippets.edit.label
         }
       }
     }
@@ -95,7 +95,7 @@ class LabelService extends BackendService {
   save() {
     this.options.data = {
       label: {
-        name: this.component.$store.state.labels.editName
+        name: this.component.$store.state.labels.edit.name
       }
     }
     super.save(response => {

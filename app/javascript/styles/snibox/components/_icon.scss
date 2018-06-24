@@ -3,3 +3,9 @@
   vertical-align: middle;
   fill: currentColor;
 }
+
+.icon {
+  &.icon-clippy {
+    margin-bottom: 1px;
+  }
+}

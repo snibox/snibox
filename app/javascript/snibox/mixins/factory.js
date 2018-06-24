@@ -7,7 +7,7 @@ export default {
           title: '',
           content: '',
           language: 'automatically',
-          tabs: 2,
+          tabs: 4,
           label: {
             id: -1,
             name: '',

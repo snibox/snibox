@@ -76,8 +76,9 @@
 
       labelName: {
         get() {
-          return this.$store.state.labels.editName
+          return this.$store.state.labels.edit.name
         },
+
         set(value) {
           this.$store.commit('setLabelEditName', value)
         }

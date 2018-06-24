@@ -72,15 +72,16 @@ export default {
     }
   },
 
+  // TODO: refactor active helpers
   active: {
     setLabel: (state, label) => {
       let snippet = Factory.methods.factory().snippet
       localStorage.setItem('label_snippets_active', JSON.stringify(snippet))
+      state.labels.edit.name = label.name
       state.labelSnippets.active = snippet
       state.labelSnippets.mode = 'create'
-      state.labelSnippets.editLabelName = label.name
-      state.labelSnippets.editTitle = ''
-      state.labels.editName = label.name
+      state.labelSnippets.edit.title = ''
+      state.labelSnippets.edit.label = label.name
       state.flags.renderAllSnippets = false
     },
 
@@ -93,19 +94,15 @@ export default {
 
       // for the case if current active label has been destroyed by snippet reset state to default
       if (state.labelSnippets.active.label.id === -1) {
-        let activeLabelExists = _.find(state.labels.items, o => {
-          return o.id === state.labels.active.id
-        })
-
-        if (!activeLabelExists) {
+        if (!_.find(state.labels.items, {id: state.labels.active.id})) {
           localStorage.removeItem('labels_active')
           state.labels.active = {}
           state.flags.renderAllSnippets = true
         }
       }
 
-      state.labelSnippets.editTitle = state.labelSnippets.active.title
-      state.labelSnippets.editLabelName = state.labelSnippets.active.label.name
+      state.labelSnippets.edit.title = state.labelSnippets.active.title
+      state.labelSnippets.edit.label = state.labelSnippets.active.label.name
     }
   }
 }

@@ -13,14 +13,18 @@ export default new Vuex.Store({
     labels: {
       items: [],
       active: {},
-      editName: ''
+      edit: {
+        name: ''
+      },
     },
     labelSnippets: {
       items: [],
       active: {},
       mode: '',
-      editTitle: '',
-      editLabelName: ''
+      edit: {
+        title: '',
+        label: ''
+      }
     },
     languages: {},
     flags: {
@@ -31,15 +35,15 @@ export default new Vuex.Store({
 
   mutations: {
     setLabelEditName(state, value) {
-      state.labels.editName = value
+      state.labels.edit.name = value
     },
 
     setLabelSnippetEditTitle(state, value) {
-      state.labelSnippets.editTitle = value
+      state.labelSnippets.edit.title = value
     },
 
-    setLabelSnippetEditLabelName(state, value) {
-      state.labelSnippets.editLabelName = value
+    setLabelSnippetEditLabel(state, value) {
+      state.labelSnippets.edit.label = value
     },
 
     setSnippets(state, snippets) {
