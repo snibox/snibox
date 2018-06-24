@@ -7,10 +7,10 @@
             <div class="menu-label">{{ title | setMaxLength('short') }}</div>
           </div>
         </div>
-        <div class="level-right">
+        <div class="level-right" v-if="hasLabel">
           <div class="level-item">
-            <a id="label-edit" class="button is-outlined is-small" v-if="labeled" @click="editLabel">
-              <icon type="pencil"></icon><span>{{ this.showLabelEdit ? 'Cancel' : 'Edit' }}</span>
+            <a id="label-edit" class="button is-outlined is-small" @click="editLabel">
+              <icon :type="editIconType"></icon><span>{{ editTitle }}</span>
             </a>
           </div>
         </div>
@@ -18,7 +18,7 @@
     </div>
 
     <div class="menu-content">
-      <div class="menu-form animated fadeInDown" v-if="labeled" v-show="showLabelEdit">
+      <div class="menu-form animated fadeInDown" v-if="hasLabel" v-show="showLabelEdit">
         <form id="label-edit-form" action="/" @submit="updateLabel">
           <div class="field has-addons">
             <p class="control" style="width: 100%">
@@ -66,11 +66,19 @@
     },
 
     computed: {
+      editIconType() {
+        return this.showLabelEdit ? 'arrow-left' : 'pencil'
+      },
+
+      editTitle() {
+        return this.showLabelEdit ? 'Cancel' : 'Edit'
+      },
+
       labelName: {
-        get () {
+        get() {
           return this.$store.state.labels.editName
         },
-        set (value) {
+        set(value) {
           this.$store.commit('setLabelEditName', value)
         }
       },
@@ -91,8 +99,8 @@
         return this.$store.state.labels.active
       },
 
-      labeled() {
-        return !_.isEmpty(this.$store.state.labels.active) && this.$store.state.labels.active.id
+      hasLabel() {
+        return this.$store.state.labels.active.id
       }
     },
 
