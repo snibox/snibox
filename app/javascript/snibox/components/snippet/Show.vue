@@ -32,7 +32,7 @@
 
     <div class="card-content" slot="card-content">
       <div class='markdown-body' v-if="isMarkdown">
-        <vue-markdown>{{ snippet.content }}</vue-markdown>
+        <vue-markdown :source="snippet.content"></vue-markdown>
       </div>
       <div v-else>
         <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code"
@@ -86,7 +86,7 @@
         return this.$store.state.labelSnippets.active
       },
       isMarkdown() {
-        return this.$store.state.labelSnippets.active.language === 'markdown'
+        return _.isEqual(this.$store.state.labelSnippets.active.language, 'markdown')
       }
     },
 
