@@ -23,7 +23,7 @@ Click the image below to launch demo:
 [![screen shot 2018-06-23 at 5 37 57 pm](https://user-images.githubusercontent.com/312873/41810755-3fa64594-770c-11e8-9beb-c9c20be21d40.png)](https://snibox-demo.herokuapp.com/)
 
 ## Built with
-* Frontend: [Vue.js](https://vuejs.org/)
+* Frontend: [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/)
 * Backend: [Ruby on Rails](https://rubyonrails.org/)
 
 ## Deployment
