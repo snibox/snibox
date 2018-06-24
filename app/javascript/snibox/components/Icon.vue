@@ -8,9 +8,9 @@
   export default {
     props: ['type'],
 
-    data() {
-      return {
-        icon: octicons[this.type].toSVG(),
+    computed: {
+      icon() {
+        return octicons[this.type].toSVG()
       }
     }
   }
