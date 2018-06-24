@@ -87,19 +87,19 @@
 
     computed: {
       snippetTitle: {
-        get () {
+        get() {
           return this.$store.state.labelSnippets.editTitle
         },
-        set (value) {
+        set(value) {
           this.$store.commit('setLabelSnippetEditTitle', value)
         }
       },
 
       editLabelName: {
-        get () {
+        get() {
           return this.$store.state.labelSnippets.editLabelName
         },
-        set (value) {
+        set(value) {
           this.$store.commit('setLabelSnippetEditLabelName', value)
         }
       },
