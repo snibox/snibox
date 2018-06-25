@@ -10,6 +10,7 @@ const SETTINGS = Object.freeze({
 
 export default {
   filters: {
+    // DEPRECATED: length now controlled by css
     setMaxLength(value, type) {
       if (value.length < SETTINGS.textLength[type]) return value
       return value.substring(0, SETTINGS.textLength[type] - 1) + '...'

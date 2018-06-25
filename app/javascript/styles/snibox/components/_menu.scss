@@ -1,12 +1,9 @@
 .menu-list {
+  // TODO: fix this!
   li {
     a {
-      padding:    0.25em 1em;
-      min-height: 30px;
-
-      #snippets & {
-        display: flex;
-      }
+      padding:    0.3em 1em;
+      min-height: 32px;
     }
   }
 }

@@ -1,19 +1,15 @@
 <template>
   <li>
     <a :class="{'is-active': active}" href="#" @click="labelClick">
-      <div class="level is-mobile">
-        <div class="level-left">
-          <div class="level-item" v-if="label.name === ''">
-            <i>untagged</i>
-          </div>
-          <div class="level-item" v-else>
-            {{ label.name | setMaxLength('medium') }}
-          </div>
+      <div class="flex-container">
+        <div class="with-text-overflow" v-if="label.name === ''">
+          <i>untagged</i>
         </div>
-        <div class="level-right">
-          <div class="level-item">
-            <span class="tag is-rounded">{{ label.snippets_count }}</span>
-          </div>
+        <div class="with-text-overflow" v-else>
+          {{ label.name }}
+        </div>
+        <div class="tag is-rounded" style="margin-left: 0.25em">
+          {{ label.snippets_count }}
         </div>
       </div>
     </a>
@@ -21,11 +17,10 @@
 </template>
 
 <script>
-  import Filters from '../mixins/filters'
   import SnippetsBuilder from '../mixins/snippets_builder'
 
   export default {
-    mixins: [Filters, SnippetsBuilder],
+    mixins: [SnippetsBuilder],
 
     props: ['label', 'active'],
 

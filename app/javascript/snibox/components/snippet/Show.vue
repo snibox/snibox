@@ -1,24 +1,21 @@
 <template>
 
   <card id="show-snippet" class="animated fadeInDown">
-    <header class="card-header" slot="card-header">
-      <div class="card-header-title" style="justify-content: space-between;">
-        <div>
-          <p v-if="snippet.id">{{ snippet.title }}</p>
-          <p v-else>Select snippet</p>
-        </div>
-        <div v-if="snippet.id">
-          <div class="field" :class="{ 'has-addons': !isMarkdown }">
-            <p class="control">
-              <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw"
-                 target="_blank"><span>Raw</span></a>
-            </p>
-            <p class="control" v-if="!isMarkdown">
-              <a id="snippet-copy" class="button is-outlined is-small" data-clipboard-target="#code">
-                <icon class="icon-clippy" type="clippy"></icon>
-                <span>Copy</span></a>
-            </p>
-          </div>
+    <header class="card-header flex-container" slot="card-header">
+      <div class="card-header-title with-text-overflow">
+        {{ snippet.id ? snippet.title : 'Select snippet'}}
+      </div>
+      <div v-if="snippet.id">
+        <div class="field" :class="{ 'has-addons': !isMarkdown }">
+          <p class="control">
+            <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw"
+               target="_blank"><span>Raw</span></a>
+          </p>
+          <p class="control" v-if="!isMarkdown">
+            <a id="snippet-copy" class="button is-outlined is-small" data-clipboard-target="#code">
+              <icon class="icon-clippy" type="clippy"></icon>
+              <span>Copy</span></a>
+          </p>
         </div>
       </div>
       <div class="card-header-icon" v-if="snippet.id">

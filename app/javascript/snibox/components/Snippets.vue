@@ -1,18 +1,12 @@
 <template>
   <aside id="snippets" class="menu animated fadeInUp" v-if="readyFlag">
     <div class="menu-top">
-      <div class="level is-mobile">
-        <div class="level-left">
-          <div class="level-item">
-            <div class="menu-label">{{ title | setMaxLength('short') }}</div>
-          </div>
-        </div>
-        <div class="level-right" v-if="hasLabel">
-          <div class="level-item">
-            <a id="label-edit" class="button is-outlined is-small" @click="editLabel">
-              <icon :type="editIconType"></icon><span>{{ editTitle }}</span>
-            </a>
-          </div>
+      <div class="flex-container">
+        <div class="menu-label with-text-overflow">{{ title }}</div>
+        <div v-if="hasLabel">
+          <a id="label-edit" class="button is-outlined is-small" @click="editLabel">
+            <icon :type="editIconType"></icon><span>{{ editTitle }}</span>
+          </a>
         </div>
       </div>
     </div>
@@ -48,7 +42,6 @@
   import Backend from '../api/backend'
   import Card from './Card.vue'
   import DataHelpers from '../mixins/data_helpers'
-  import Filters from '../mixins/filters'
   import Flags from '../mixins/flags'
   import Icon from './Icon.vue'
   import SnippetItem from './SnippetItem.vue'
@@ -56,7 +49,7 @@
   export default {
     components: {Card, Icon, SnippetItem},
 
-    mixins: [DataHelpers, Filters, Flags],
+    mixins: [DataHelpers, Flags],
 
     data() {
       return {
