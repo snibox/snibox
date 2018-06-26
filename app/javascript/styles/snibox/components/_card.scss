@@ -1,5 +1,3 @@
-$card-header-height: 45px;
-
 .card-header {
   height:     $card-header-height;
 
@@ -8,10 +6,17 @@ $card-header-height: 45px;
   }
 }
 
+.card {
+  .dashboard & {
+    box-shadow: none;
+  }
+}
+
 .card-content {
   padding: 1rem 0.75em;
 
   .dashboard & {
-    min-height:  calc(100vh - #{$navbar-height} - #{$card-header-height} - 1px);
+    height:  calc(100vh - #{$navbar-height} - #{$card-header-height} - 1px);
+    overflow: auto;
   }
 }

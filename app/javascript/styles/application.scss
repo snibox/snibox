@@ -1,6 +1,6 @@
 @import "snibox/variables";
 @import "snibox/vendor";
-
+@import "snibox/mixins";
 @import "snibox/components/card";
 @import "snibox/components/editor";
 @import "snibox/components/icon";
@@ -8,7 +8,6 @@
 @import "snibox/components/nav";
 @import "snibox/components/navbar";
 @import "snibox/components/panel";
-
 @import "snibox/utils/codemirror";
 @import "snibox/utils/toasted";
 
@@ -52,7 +51,6 @@ em {
 #app {
   display: flex;
   box-shadow: 0 0 1px #868686;
-  z-index: 10;
 }
 
 #code {
@@ -78,7 +76,6 @@ em {
   background-color: $white;
   margin: 0;
   padding: 0.65em 0.75em;
-  width: calc(#{$sidebar-width} - 2px);
 }
 
 .animated {
@@ -89,17 +86,16 @@ em {
   margin-bottom: 0;
 }
 
-aside {
-  padding-bottom: 15px;
-}
-
 .sidebar {
   position: relative;
   width: $sidebar-width;
-  height: calc(100vh - #{$navbar-height});
   background-color: $white;
-  overflow: auto;
-  z-index: 1;
+
+  .menu-content {
+    padding-bottom: 0.65em;
+    overflow: auto;
+    max-height: calc(100vh - #{$navbar-height} - #{$menu-top-height});
+  }
 }
 
 .sidebar-snippets {
@@ -109,7 +105,6 @@ aside {
 
 .main {
   position: relative;
-  overflow: auto;
   width: calc(100% - #{$sidebar-width} * 2);
 }
 
@@ -127,8 +122,19 @@ aside {
   box-shadow: none;
 }
 
-// phones
-@media (max-width: $tablet) {
+// responsiveness
+@include scale($scale-desktop);
+
+@media (min-width: $widescreen) {
+  @include scale($scale-widescreen);
+}
+
+@media (min-width: $uhd) {
+  @include scale($scale-uhd);
+}
+
+// mobile
+@media screen and (max-width: $tablet) {
   html,
   body {
     height: auto;
@@ -138,19 +144,21 @@ aside {
     width: 100%;
   }
 
-
   #app {
     flex-direction: column;
     margin: 50px 20px 20px;
     box-shadow: none;
-    z-index: 0;
   }
 
   .sidebar {
     width: auto;
     border: 1px solid $border;
-    margin-bottom: 20px;
-    max-height: 300px;
+    margin-bottom: 2em;
+
+    .menu-content {
+      padding-bottom: 0;
+      max-height: calc(300px - #{$menu-top-height});
+    }
   }
 
   .main {

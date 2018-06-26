@@ -1,0 +1,9 @@
+@mixin scale($ratio) {
+  .sidebar {
+    width: $sidebar-width * $ratio;
+  }
+
+  .main {
+    width: calc(100% - #{$sidebar-width} * #{$ratio} * 2);
+  }
+}

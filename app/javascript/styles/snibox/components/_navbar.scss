@@ -7,11 +7,10 @@ $navbar-height: 50px;
 #navbar {
   display: none;
   height: $navbar-height;
-  z-index: 5;
 }
 
 .navbar {
-  box-shadow: 0 0 1px #868686;
+  box-shadow: 0 0 4px #868686;
 }
 
 .navbar-menu {

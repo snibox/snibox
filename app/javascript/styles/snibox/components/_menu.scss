@@ -1,15 +1,16 @@
 .menu-list {
-  // TODO: fix this!
   li {
     a {
-      padding:    0.3em 1em;
+      line-height: 23px;
+      padding: 0.3em 1em;
       min-height: 32px;
     }
   }
 }
 
 .menu-top {
-  margin:      1em 0.75em;
+  height: $menu-top-height;
+  margin: 1em 0.75em;
   line-height: 26px;
 }
 

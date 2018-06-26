@@ -7,19 +7,31 @@ $green: #4caf50;
 $link: $primary;
 $body-size: 15px;
 
-// bulma components variables
+// component: card
 $card-header-background-color: darken(#fff, 1%);
 $card-header-weight: 500;
 
+// component: menu
 $menu-item-radius: 0;
 
+// component: panel
 $panel-heading-radius: 0;
 
-// responsive variables
-$desktop: $tablet + 1px;
-
-// app variables
+// snibox variables
 $animation-duration: .3s;
 $app-background: #f5f8fa;
 $border: #dbdbdb;
+$card-header-height: 45px;
+$menu-top-height: 45px;
 $sidebar-width: 200px;
+
+// responsiveness
+$uhd: 1536 + (2 * $gap);
+
+$scale-desktop: 1;
+$scale-widescreen: 1.2;
+$scale-fullhd: 1.4;
+$scale-uhd: 1.6;
+
+// TODO: why need this?
+$desktop: $tablet + 1px;
