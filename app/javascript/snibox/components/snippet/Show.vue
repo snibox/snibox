@@ -71,6 +71,10 @@
             hljs: ''
           },
           {
+            codemirror: 'sass',
+            hljs: 'scss'
+          },
+          {
             codemirror: 'shell',
             hljs: 'bash'
           }
