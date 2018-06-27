@@ -101,6 +101,7 @@ export default {
         }
       }
 
+      state.labels.edit.name = state.labelSnippets.active.label.name
       state.labelSnippets.edit.title = state.labelSnippets.active.title
       state.labelSnippets.edit.label = state.labelSnippets.active.label.name
     }
