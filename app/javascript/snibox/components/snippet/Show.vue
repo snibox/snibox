@@ -49,8 +49,13 @@
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import Clipboard from 'clipboard'
+  import hljs from 'highlight.js'
   import Icon from '../Icon.vue'
   import VueMarkdown from 'vue-markdown'
+
+  let syncHljsTabs = (component) => {
+    hljs.configure({tabReplace: ' '.repeat(component.$store.state.labelSnippets.active.tabs)})
+  }
 
   export default {
     name: 'snippet-show',
@@ -73,6 +78,10 @@
       }
     },
 
+    beforeMount() {
+      syncHljsTabs(this)
+    },
+
     mounted() {
       this.clipboard = new Clipboard('#snippet-copy')
 
@@ -81,7 +90,11 @@
         that.$toasted.success('Copied!')
       }).on('error', e => {
         that.$toasted.success('Unable to copy snippet.')
-      });
+      })
+    },
+
+    beforeUpdate() {
+      syncHljsTabs(this)
     },
 
     beforeDestroy() {
