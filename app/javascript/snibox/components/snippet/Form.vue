@@ -154,6 +154,7 @@
         lineNumbers: true
       })
       this.editor.setOption('mode', this.$store.state.labelSnippets.active.language)
+      this.editor.setOption('tabSize', this.$store.state.labelSnippets.active.tabs)
 
       // set focus on title textfield
       setTimeout(() => {
