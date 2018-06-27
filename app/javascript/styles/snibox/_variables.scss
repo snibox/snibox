@@ -1,11 +1,14 @@
 @import "../../../node_modules/bulma/sass/utilities/initial-variables";
 
-// override bulma
-$family-monospace: "Menlo", "Consolas", "Ubuntu", monospace;
+// bulma variables
+// typography
+$family-monospace: "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
+$body-size: 15px;
+
+// colors
 $primary: #337ab7;
 $green: #4caf50;
 $link: $primary;
-$body-size: 15px;
 
 // component: card
 $card-header-background-color: darken(#fff, 1%);
@@ -20,7 +23,7 @@ $panel-heading-radius: 0;
 // snibox variables
 $animation-duration: .3s;
 $app-background: #f5f8fa;
-$border: #dbdbdb;
+$border-color: #dbdbdb;
 $card-header-height: 45px;
 $menu-top-height: 45px;
 $sidebar-width: 200px;
