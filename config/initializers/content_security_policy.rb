@@ -5,13 +5,6 @@
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 Rails.application.config.content_security_policy do |policy|
-  if Rails.env.production?
-    # TODO: replace :unsafe_eval with better solution. Otherwise it's useless.
-    policy.script_src :self, :https, :unsafe_eval
-  else
-    policy.connect_src :self, :http, "http://localhost:3035", "ws://localhost:3035"
-    policy.script_src :self, :http, :unsafe_eval
-  end
 #   policy.default_src :self, :https
 #   policy.font_src    :self, :https, :data
 #   policy.img_src     :self, :https, :data
@@ -21,10 +14,19 @@ Rails.application.config.content_security_policy do |policy|
 
 #   # Specify URI for violation reports
 #   # policy.report_uri "/csp-violation-report-endpoint"
+
+  policy.default_src :self, :https
+  policy.font_src    :self, :https, :data
+  policy.img_src     :self, :https, :data
+  policy.object_src  :none
+  policy.style_src   :self, :https, :unsafe_inline
+  policy.script_src  :self, :https, :unsafe_eval
+
+  policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 end
 
 # If you are using UJS then enable automatic nonce generation
-# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
+Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
 
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
