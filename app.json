@@ -1,0 +1,31 @@
+{
+  "name": "Snibox",
+  "description": "Self-hosted private snippets repository.",
+  "website": "https://github.com/snibox/snibox",
+  "repository": "https://github.com/snibox/snibox",
+  "logo": "https://user-images.githubusercontent.com/312873/35063615-acf68302-fbd8-11e7-91c5-0b3b6f5966c4.png",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "env": {
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    },
+    {
+      "plan": "mailgun:starter"
+    }
+  ]
+}
