@@ -23,9 +23,6 @@
   "addons": [
     {
       "plan": "heroku-postgresql"
-    },
-    {
-      "plan": "mailgun:starter"
     }
   ]
 }
