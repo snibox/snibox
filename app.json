@@ -11,7 +11,8 @@
   "env": {
     "SECRET_KEY_BASE": {
       "generator": "secret"
-    }
+    },
+    "FORCE_SSL": "true"
   },
   "addons": [
     {
