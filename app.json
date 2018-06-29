@@ -4,25 +4,26 @@
   "website": "https://github.com/snibox/snibox",
   "repository": "https://github.com/snibox/snibox",
   "logo": "https://avatars3.githubusercontent.com/u/35972977",
+  "success_url": "/register",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
     },
     {
       "url": "heroku/ruby"
-    }
-  ],
-  "env": {
-    "SECRET_KEY_BASE": {
-      "generator": "secret"
-    }
-  },
-  "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
-  },
-  "addons": [
-    {
-      "plan": "heroku-postgresql"
     }
   ]
 }
