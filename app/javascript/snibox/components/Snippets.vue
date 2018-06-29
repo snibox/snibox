@@ -3,7 +3,7 @@
     <div class="menu-top">
       <div class="flex-container">
         <div class="menu-label with-text-overflow">{{ title }}</div>
-        <div v-if="hasLabel">
+        <div class="label-edit-wrapper" v-if="hasLabel">
           <a id="label-edit" class="button is-outlined is-small" @click="editLabel">
             <icon :type="editIconType"></icon><span>{{ editTitle }}</span>
           </a>

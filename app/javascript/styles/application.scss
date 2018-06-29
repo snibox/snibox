@@ -117,6 +117,10 @@ em {
   box-shadow: none;
 }
 
+.label-edit-wrapper {
+  margin-left: 0.35em;
+}
+
 // responsiveness
 @include scale($scale-desktop);
 
