@@ -21,7 +21,7 @@ export default {
 
   toast: {
     success(title) {
-      Swal.mixin(Object.assign({type: 'success', timer: 300000}, options))({title})
+      Swal.mixin(Object.assign({type: 'success', timer: 3000}, options))({title})
     },
 
     warning(title) {
