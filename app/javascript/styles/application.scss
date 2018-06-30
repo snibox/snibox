@@ -13,7 +13,7 @@
 @import "snibox/components/panel";
 
 @import "snibox/utils/codemirror";
-@import "snibox/utils/toasted";
+@import "snibox/utils/sweetalert2";
 
 html {
   background: $app-background;
@@ -39,6 +39,14 @@ em {
   align-items: center;
   display: flex;
   justify-content: space-between;
+
+  #show-snippet & {
+    width: calc(50% + 64px);
+
+    &.with-markdown {
+      width: calc(50% + 32px);
+    }
+  }
 }
 
 .with-text-overflow {
@@ -133,6 +141,14 @@ em {
 }
 
 // mobile
+@media screen and (max-width: $phone-old) {
+  .flex-container {
+    #show-snippet & {
+      width: auto;
+    }
+  }
+}
+
 @media screen and (max-width: $tablet) {
   html,
   body {

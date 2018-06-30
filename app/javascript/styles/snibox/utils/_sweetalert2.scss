@@ -1,0 +1,31 @@
+@keyframes snibox-swal2-show {
+  0% {
+    transform: scale(.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.swal2-show {
+  @extend .is-radiusless;
+
+  animation: snibox-swal2-show .3s !important;
+
+  &.snibox-swal2-slideInRight {
+    animation: slideInRight .3s !important;
+  }
+}
+
+.swal2-toast {
+  .swal2-title {
+    text-align: left !important;
+
+    hr {
+      margin: 0.75em 0;
+    }
+  }
+}

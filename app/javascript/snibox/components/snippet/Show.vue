@@ -1,21 +1,23 @@
 <template>
 
   <card id="show-snippet" class="animated fadeInDown">
-    <header class="card-header flex-container" slot="card-header">
-      <div class="card-header-title with-text-overflow">
-        {{ snippet.id ? snippet.title : 'Select snippet'}}
-      </div>
-      <div v-if="snippet.id">
-        <div class="field" :class="{ 'has-addons': !isMarkdown }">
-          <p class="control">
-            <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw"
-               target="_blank"><span>Raw</span></a>
-          </p>
-          <p class="control" v-if="!isMarkdown">
-            <a id="snippet-copy" class="button is-outlined is-small" data-clipboard-target="#code">
-              <icon class="icon-clippy" type="clippy"></icon>
-              <span>Copy</span></a>
-          </p>
+    <header class="card-header" slot="card-header">
+      <div class="flex-container" :class="{ 'with-markdown': isMarkdown }">
+        <div class="card-header-title with-text-overflow">
+          {{ snippet.id ? snippet.title : 'Select snippet'}}
+        </div>
+        <div class="card-header-title" v-if="snippet.id">
+          <div class="field" :class="{ 'has-addons': !isMarkdown }">
+            <p class="control">
+              <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw"
+                 target="_blank"><span>Raw</span></a>
+            </p>
+            <p class="control" v-if="!isMarkdown">
+              <a id="snippet-copy" class="button is-outlined is-small" data-clipboard-target="#code">
+                <icon class="icon-clippy" type="clippy"></icon>
+                <span>Copy</span></a>
+            </p>
+          </div>
         </div>
       </div>
       <div class="card-header-icon" v-if="snippet.id">
@@ -23,8 +25,7 @@
           <icon type="pencil"></icon>
           <span>Edit</span>
         </a>
-        <a id="snippet-delete" class="button is-outlined is-small is-danger" style="margin-left: 0.2rem;"
-           @click="destroySnippet">
+        <a id="snippet-delete" class="button is-outlined is-small is-danger" @click="destroySnippet">
           <icon type="trashcan"></icon>
           <span>Delete</span>
         </a>
@@ -51,6 +52,8 @@
   import Clipboard from 'clipboard'
   import hljs from 'highlight.js'
   import Icon from '../Icon.vue'
+  import Swal from 'sweetalert2'
+  import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
 
   let syncHljsTabs = (component) => {
@@ -89,11 +92,10 @@
     mounted() {
       this.clipboard = new Clipboard('#snippet-copy')
 
-      let that = this
       this.clipboard.on('success', e => {
-        that.$toasted.success('Copied!')
+        Notifications.toast.success('Copied!')
       }).on('error', e => {
-        that.$toasted.success('Unable to copy snippet.')
+        Notifications.toast.error('Unable to copy snippet.')
       })
     },
 
@@ -136,7 +138,13 @@
       },
 
       destroySnippet() {
-        Backend.snippet.destroy(this)
+        Notifications.confirm(
+            "Are you really want to remove snippet " + this.$store.state.labelSnippets.active.title + "?",
+            result => {
+              if (result.value) {
+                Backend.snippet.destroy(this)
+              }
+            })
       }
     }
   }

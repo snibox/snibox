@@ -1,8 +1,7 @@
 import _ from 'lodash'
 import axios from 'axios'
 import Factory from '../mixins/factory'
-
-const ERROR_MESSAGE_DURATION = 6000
+import Notifications from '../utils/notifications'
 
 class BackendService {
   constructor(component = null, options) {
@@ -22,17 +21,17 @@ class BackendService {
           else {
             // render error notification from api
             if (response.data.hasOwnProperty('errors')) {
-              error_message += '<br/><br/>'
+              error_message += '<hr/>'
               response.data.errors.forEach(error => {
                 error_message = error_message + error + '.<br/>'
               })
             }
-            this.component.$toasted.error(error_message, {duration: ERROR_MESSAGE_DURATION})
+            Notifications.toast.error(error_message)
           }
         })
       .catch(error => {
         console.log(error)
-        this.component.$toasted.error(error_message, {duration: ERROR_MESSAGE_DURATION})
+        Notifications.toast.error(error_message)
       })
   }
 
@@ -43,7 +42,7 @@ class BackendService {
       })
       .catch(error => {
         console.log(error)
-        this.component.$toasted.error(this.options.messages.error, {duration: ERROR_MESSAGE_DURATION})
+        Notifications.toast.error(this.options.messages.error)
       })
   }
 
@@ -55,11 +54,11 @@ class BackendService {
           callback(data)
         }
         this.component.$store.dispatch('setDefaultActiveEntities')
-        this.component.$toasted.success(this.options.messages.success)
+        Notifications.toast.success(this.options.messages.success)
       })
       .catch(error => {
         console.log(error)
-        this.component.$toasted.error('Unable to update application state.', {duration: ERROR_MESSAGE_DURATION})
+        Notifications.toast.error('Unable to update application state.')
       })
   }
 }

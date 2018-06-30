@@ -37,7 +37,7 @@
         <%= f.submit "Update", class: "button is-primary" %>
       </div>
       <div class="control">
-        <%= link_to "Cancel my account", registration_path(resource_name), class: 'button is-danger' , data: { confirm: "Are you sure?" }, method: :delete %>
+        <%= link_to "Cancel my account", registration_path(resource_name), class: 'button is-danger' , data: { 'confirm-swal': "Are you sure?" }, method: :delete %>
       </div>
     </div>
   <% end %>

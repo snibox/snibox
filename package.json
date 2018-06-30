@@ -12,12 +12,12 @@
     "octicons": "^5.0.1",
     "precss": "^2.0.0",
     "rails-ujs": "^5.1.5",
+    "sweetalert2": "^7.24.3",
     "vue": "^2.5.16",
     "vue-highlightjs": "^1.2.3",
     "vue-loader": "^v15.0.0",
     "vue-markdown": "^2.2.4",
     "vue-template-compiler": "^2.5.16",
-    "vue-toasted": "^1.0.27",
     "vuex": "^v3.0.1"
   },
   "devDependencies": {

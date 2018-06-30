@@ -1,14 +1,28 @@
 .card-header {
   height:     $card-header-height;
-
-  .card-header-icon {
-    margin-left: 2rem;
-  }
 }
 
 .card {
   .dashboard & {
     box-shadow: none;
+  }
+}
+
+.card-header {
+  .card-header-title {
+    #show-snippet & {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .card-header-icon {
+    #snippet-delete {
+      margin-left: 0.2rem;
+    }
+  }
+
+  #show-snippet & {
+    justify-content: space-between;
   }
 }
 
@@ -18,5 +32,26 @@
   .dashboard & {
     height:  calc(100vh - #{$navbar-height} - #{$card-header-height} - 1px);
     overflow: auto;
+  }
+}
+
+@media screen and (max-width: $phone-old) {
+  .card-header {
+    #show-snippet & {
+      height: calc(#{$card-header-height} * 2);
+      flex-direction: column;
+    }
+
+    .card-header-icon {
+      #show-snippet & {
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .flex-container {
+    #show-snippet & {
+      width: auto;
+    }
   }
 }

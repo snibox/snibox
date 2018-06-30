@@ -1,10 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import VueToasted from 'vue-toasted'
-
-Vue.use(VueToasted, {
-  duration: 3000,
-  position: 'bottom-right'
-})
+import Notifications from '../snibox/utils/notifications'
 
 document.addEventListener('DOMContentLoaded', () => {
   window.navbar = new Vue({
@@ -16,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resetLocalStorage() {
         localStorage.removeItem('labels_active')
         localStorage.removeItem('label_snippets_active')
-        this.$toasted.success('Local storage flushed!')
+        Notifications.toast.success('Local storage flushed!')
       }
     }
   })
