@@ -1,12 +1,14 @@
 import Vue from 'vue/dist/vue.esm'
-import Notifications from '../snibox/utils/notifications'
+import Notifications from "../snibox/utils/notifications"
 
 document.addEventListener('DOMContentLoaded', () => {
   window.navbar = new Vue({
-    el: '#auth-wrapper',
+    el: '#page-wrapper',
+
     mounted() {
       this.$el.style.display = 'block'
     },
+
     methods: {
       resetLocalStorage() {
         localStorage.removeItem('labels_active')
