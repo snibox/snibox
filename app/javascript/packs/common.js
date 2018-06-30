@@ -33,8 +33,6 @@ const allowAction = element => {
 }
 
 const showConfirmationDialog = element => {
-  const message = element.getAttribute('data-confirm-swal')
-
   Notifications.confirm(
       element.getAttribute('data-text'),
       result => confirmed(element, result)
