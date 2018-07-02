@@ -77,6 +77,10 @@ em {
 
 #app {
   display: flex;
+
+  &.ready {
+    border: 1px solid $border-color;
+  }
 }
 
 #snippets {
@@ -178,7 +182,10 @@ em {
   #app {
     flex-direction: column;
     margin: 50px 20px 20px;
-    box-shadow: none;
+
+    &.ready {
+      border: none;
+    }
   }
 
   .menu-top {
