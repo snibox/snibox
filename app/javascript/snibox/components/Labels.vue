@@ -1,14 +1,8 @@
 <template>
 
-  <aside id="labels" class="menu animated fadeInUp" v-if="readyFlag">
+  <aside id="labels" class="menu animated" v-if="readyFlag">
     <div class="menu-top">
-      <div class="level is-mobile">
-        <div class="level-left">
-          <div class="level-item">
-            <p class="menu-label">Labels</p>
-          </div>
-        </div>
-      </div>
+      <p class="menu-label">Labels</p>
     </div>
 
     <div class="menu-content">

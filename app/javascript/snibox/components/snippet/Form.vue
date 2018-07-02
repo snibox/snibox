@@ -1,6 +1,6 @@
 <template>
 
-  <card id="snippet-form" class="animated fadeInDown">
+  <card id="snippet-form" class="animated">
     <header class="card-header" slot="card-header">
       <p class="card-header-title" v-html="title"></p>
     </header>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="field">
-          <div class="editor">
+          <div class="editor" :style="{maxHeight: editorHeight}">
             <textarea class="file textarea" placeholder="Paste a snippet of code">{{ snippet.content }}</textarea>
           </div>
         </div>
@@ -69,6 +69,7 @@
   import Card from '../Card.vue'
   import CodeMirror from 'codemirror'
   import 'codemirror/addon/display/placeholder'
+  import '../../utils/codemirror_modes'
   import Editor from '../../mixins/editor'
   import Filters from '../../mixins/filters'
 

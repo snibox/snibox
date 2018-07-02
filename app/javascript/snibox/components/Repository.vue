@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ ready: readyFlag }">
     <div class="sidebar sidebar-labels">
       <labels ref="labels"></labels>
     </div>
@@ -20,6 +20,7 @@
   import Backend from '../api/backend'
   import Card from './Card.vue'
   import Factory from '../mixins/factory'
+  import Flags from '../mixins/flags'
   import Labels from './Labels.vue'
   import Snippets from './Snippets.vue'
   import SnippetEdit from './snippet/Edit.vue'
@@ -29,7 +30,7 @@
   export default {
     components: {Card, Labels, Snippets, SnippetEdit, SnippetNew, SnippetShow},
 
-    mixins: [Factory],
+    mixins: [Factory, Flags],
 
     computed: {
       showSnippet() {
@@ -42,14 +43,6 @@
         Backend.data.get('/api/v1/data/default-state', response => {
           this.$store.dispatch('setData', response.data)
           this.$store.dispatch('setDefaultActiveEntities')
-
-          // load codemirror modes
-          let languages = this.$store.state.languages
-          for (let mode in languages) {
-            if (!['automatically', 'plain'].includes(mode)) {
-              require('codemirror/mode/' + mode + '/' + mode + '.js')
-            }
-          }
         })
       }, 250)
     }

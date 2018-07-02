@@ -1,5 +1,5 @@
 <template>
-  <aside id="snippets" class="menu animated fadeInUp" v-if="readyFlag">
+  <aside id="snippets" class="menu animated" v-if="readyFlag">
     <div class="menu-top">
       <div class="flex-container">
         <div class="menu-label with-text-overflow">{{ title }}</div>

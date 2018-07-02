@@ -28,11 +28,6 @@
 
 .card-content {
   padding: 1rem 0.75em;
-
-  .dashboard & {
-    height:  calc(100vh - #{$navbar-height} - #{$card-header-height} - 1px);
-    overflow: auto;
-  }
 }
 
 @media screen and (max-width: $phone-old) {

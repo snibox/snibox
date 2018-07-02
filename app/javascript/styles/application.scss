@@ -35,6 +35,21 @@ em {
   font-size: 12px;
 }
 
+.animated {
+  &#labels {
+    animation-name: fadeInLeft;
+  }
+
+  &#snippets {
+    animation-name: fadeInUp;
+  }
+
+  &#show-snippet,
+  &#snippet-form {
+    animation-name: fadeInRight;
+  }
+}
+
 .flex-container {
   align-items: center;
   display: flex;
@@ -76,7 +91,7 @@ em {
 }
 
 .menu-top {
-  background-color: $white;
+  background: $white;
   margin: 0;
   padding: 0.65em 0.75em;
 }
@@ -92,12 +107,10 @@ em {
 .sidebar {
   position: relative;
   width: $sidebar-width;
-  background-color: $white;
+  z-index: 1;
 
   .menu-content {
     padding-bottom: 0.65em;
-    overflow: auto;
-    max-height: calc(100vh - #{$navbar-height} - #{$menu-top-height});
   }
 }
 
@@ -109,6 +122,13 @@ em {
 .main {
   position: relative;
   width: calc(100% - #{$sidebar-width} * 2);
+}
+
+.sidebar,
+.main {
+  background: $white;
+  overflow: auto;
+  z-index: 1;
 }
 
 .form-footer {
@@ -155,19 +175,18 @@ em {
     height: auto;
   }
 
-  .menu-top {
-    width: 100%;
-  }
-
   #app {
     flex-direction: column;
     margin: 50px 20px 20px;
     box-shadow: none;
   }
 
+  .menu-top {
+    width: 100%;
+  }
+
   .sidebar {
     width: auto;
-    border: 1px solid $border-color;
     margin-bottom: 2em;
 
     .menu-content {
@@ -178,10 +197,28 @@ em {
 
   .main {
     width: auto;
-    border: 1px solid $border-color;
 
     .card-content {
       height: auto;
+    }
+  }
+
+  .animated {
+    &#labels {
+      animation-name: fadeInRight;
+    }
+
+    &#snippets {
+      animation-name: fadeInLeft;
+    }
+  }
+
+  .main,
+  .sidebar {
+    border: none;
+
+    .ready & {
+      box-shadow: $card-shadow;
     }
   }
 }

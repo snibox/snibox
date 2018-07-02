@@ -1,6 +1,6 @@
 <template>
 
-  <card id="show-snippet" class="animated fadeInDown">
+  <card id="show-snippet" class="animated">
     <header class="card-header" slot="card-header">
       <div class="flex-container" :class="{ 'with-markdown': isMarkdown }">
         <div class="card-header-title with-text-overflow">
@@ -52,7 +52,6 @@
   import Clipboard from 'clipboard'
   import hljs from 'highlight.js'
   import Icon from '../Icon.vue'
-  import Swal from 'sweetalert2'
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
 
