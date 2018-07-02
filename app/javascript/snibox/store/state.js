@@ -18,7 +18,7 @@ export default {
   },
   languages: {},
   flags: {
-    renderAllSnippets: false,
-    ready: false
+    ready: false,
+    renderAllSnippets: false
   }
 }
