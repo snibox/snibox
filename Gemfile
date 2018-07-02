@@ -15,6 +15,7 @@ gem 'active_model_serializers', '~> 0.10.7'
 gem 'bootsnap', '~> 1.3', require: false
 gem 'counter_culture', '~> 1.12'
 gem 'devise', '~> 4.3'
+gem 'dotenv-rails', '~> 2.5'
 gem 'uglifier', '~> 3.2'
 gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
 
@@ -31,7 +32,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
   gem 'factory_bot_rails', '~> 4.8'
   gem 'faker', '~> 1.7', '>= 1.7.3'
   gem 'rspec-rails', '~> 3.7'
