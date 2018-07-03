@@ -78,10 +78,6 @@ em {
 #app {
   display: flex;
   height: 100%;
-
-  &.ready {
-    border: 1px solid $border-color;
-  }
 }
 
 #snippets {
@@ -224,8 +220,6 @@ em {
 
   .main,
   .sidebar {
-    border: none;
-
     .ready & {
       box-shadow: $card-shadow;
     }
