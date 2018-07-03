@@ -15,7 +15,8 @@ export default {
       showCancelButton: true,
       confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel',
-      focusCancel: true
+      focusCancel: true,
+      heightAuto: false
     })({html}).then(callback)
   },
 
