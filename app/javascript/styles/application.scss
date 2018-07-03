@@ -5,12 +5,10 @@
 @import "snibox/mixins";
 
 @import "snibox/components/card";
-@import "snibox/components/editor";
 @import "snibox/components/icon";
 @import "snibox/components/menu";
 @import "snibox/components/nav";
 @import "snibox/components/navbar";
-@import "snibox/components/panel";
 
 @import "snibox/utils/animate";
 @import "snibox/utils/codemirror";
@@ -30,6 +28,16 @@ body {
 html,
 body {
   height: 100%;
+}
+
+pre {
+  @extend .is-paddingless;
+  background: none;
+
+  code {
+    font-size: $code-font-size;
+    white-space: pre-wrap;
+  }
 }
 
 .flex-container {
@@ -74,8 +82,8 @@ body {
 }
 
 .menu-top {
+  @extend .is-marginless;
   background: $white;
-  margin: 0;
   padding: 0.65em 0.75em;
 }
 
@@ -120,12 +128,16 @@ body {
   margin-right: 0;
 }
 
-#snippet-form {
-  box-shadow: none;
-}
-
 .label-edit-wrapper {
   margin-left: 0.35em;
+}
+
+.editor {
+  font-size: $code-font-size;
+  height: calc(100vh - 271px);
+  min-height: 200px;
+  border: 1px solid $border-color;
+  width: 100%;
 }
 
 // responsiveness

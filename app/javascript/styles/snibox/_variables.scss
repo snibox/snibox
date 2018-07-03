@@ -1,11 +1,10 @@
 @import "../../../node_modules/bulma/sass/utilities/initial-variables";
 
-// bulma variables
-// typography
+// typography: fonts
 $family-monospace: "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
 $body-size: 15px;
 
-// colors
+// typography: colors
 $primary: #337ab7;
 $green: #4caf50;
 $link: $primary;
@@ -14,27 +13,24 @@ $link: $primary;
 $card-header-background-color: darken(#fff, 1%);
 $card-header-weight: 500;
 
-// component: menu
-$menu-item-radius: 0;
-
-// component: panel
-$panel-heading-radius: 0;
+// miscellaneous
+$radius-small: 0;
+$radius: 0;
+$radius-large: 0;
 
 // snibox variables
 $app-background: #f5f8fa;
 $border-color: #dbdbdb;
-$card-header-height: 45px;
-$menu-top-height: 45px;
+$code-font-size: 14px;
+$shadow-color: #868686;
 $sidebar-width: 200px;
 
 // responsiveness
 $phone-old: 435px;
+$desktop: $tablet + 1px;
 $uhd: 1536 + (2 * $gap);
 
 $scale-desktop: 1;
 $scale-widescreen: 1.2;
 $scale-fullhd: 1.4;
 $scale-uhd: 1.6;
-
-// TODO: why need this?
-$desktop: $tablet + 1px;

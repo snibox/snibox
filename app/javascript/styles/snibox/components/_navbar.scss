@@ -10,7 +10,7 @@ $navbar-height: 50px;
 }
 
 .navbar {
-  box-shadow: 0 0 4px #868686;
+  box-shadow: 0 0 4px $shadow-color;
 }
 
 .navbar-menu {
@@ -27,6 +27,6 @@ $navbar-height: 50px;
 
 @media (max-width: $tablet) {
   #navbar-menu {
-    box-shadow: 0 0 1px #868686;
+    box-shadow: 0 0 1px $shadow-color;
   }
 }

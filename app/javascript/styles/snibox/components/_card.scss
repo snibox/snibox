@@ -1,10 +1,12 @@
+$card-header-height: 45px;
+
 .card-header {
-  height:     $card-header-height;
+  height: $card-header-height;
 }
 
 .card {
   .dashboard & {
-    box-shadow: none;
+    @extend .is-shadowless;
   }
 }
 
