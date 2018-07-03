@@ -138,7 +138,10 @@
 
       destroySnippet() {
         Notifications.confirm(
-            "Are you really want to remove snippet " + this.$store.state.labelSnippets.active.title + "?",
+            "Are you really want to delete snippet " +
+            "<span class='has-text-weight-bold is-italic'>" +
+            this.$store.state.labelSnippets.active.title +
+            "</span>?",
             result => {
               if (result.value) {
                 Backend.snippet.destroy(this)

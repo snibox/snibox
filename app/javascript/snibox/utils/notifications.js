@@ -8,7 +8,7 @@ const options = {
 }
 
 export default {
-  confirm(text, callback) {
+  confirm(html, callback) {
     Swal.mixin({
       title: "Are you sure?",
       type: "error",
@@ -16,7 +16,7 @@ export default {
       confirmButtonText: 'Yes',
       cancelButtonText: 'Cancel',
       focusCancel: true
-    })({text}).then(callback)
+    })({html}).then(callback)
   },
 
   toast: {
