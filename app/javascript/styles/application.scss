@@ -138,6 +138,7 @@ pre {
   min-height: 200px;
   border: 1px solid $border-color;
   width: 100%;
+  border-radius: $radius - 1;
 }
 
 // responsiveness

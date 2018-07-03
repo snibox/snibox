@@ -13,10 +13,11 @@ $link: $primary;
 $card-header-background-color: darken(#fff, 1%);
 $card-header-weight: 500;
 
-// miscellaneous
-$radius-small: 0;
-$radius: 0;
-$radius-large: 0;
+// component: menu
+$menu-item-radius: 0;
+
+// component: panel
+$panel-heading-radius: 0;
 
 // snibox variables
 $app-background: #f5f8fa;
