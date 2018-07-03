@@ -12,6 +12,7 @@
 @import "snibox/components/navbar";
 @import "snibox/components/panel";
 
+@import "snibox/utils/animate";
 @import "snibox/utils/codemirror";
 @import "snibox/utils/sweetalert2";
 
@@ -29,25 +30,6 @@ body {
 html,
 body {
   height: 100%;
-}
-
-em {
-  font-size: 12px;
-}
-
-.animated {
-  &#labels {
-    animation-name: fadeInLeft;
-  }
-
-  &#snippets {
-    animation-name: fadeInUp;
-  }
-
-  &#show-snippet,
-  &#snippet-form {
-    animation-name: fadeInRight;
-  }
 }
 
 .flex-container {
@@ -77,7 +59,7 @@ em {
 
 #app {
   display: flex;
-  height: 100%;
+  height: calc(100% - #{$navbar-height});
 }
 
 #snippets {
@@ -95,10 +77,6 @@ em {
   background: $white;
   margin: 0;
   padding: 0.65em 0.75em;
-}
-
-.animated {
-  animation-duration: $animation-duration;
 }
 
 .content p:not(:last-child) {
@@ -205,16 +183,6 @@ em {
 
     .card-content {
       height: auto;
-    }
-  }
-
-  .animated {
-    &#labels {
-      animation-name: fadeInRight;
-    }
-
-    &#snippets {
-      animation-name: fadeInLeft;
     }
   }
 

@@ -1,0 +1,30 @@
+$animation-duration: .3s;
+
+.animated {
+  animation-duration: $animation-duration;
+
+  &#labels {
+    animation-name: fadeInLeft;
+  }
+
+  &#snippets {
+    animation-name: fadeInUp;
+  }
+
+  &#show-snippet,
+  &#snippet-form {
+    animation-name: fadeInRight;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .animated {
+    &#labels {
+      animation-name: fadeInRight;
+    }
+
+    &#snippets {
+      animation-name: fadeInLeft;
+    }
+  }
+}
