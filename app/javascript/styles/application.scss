@@ -35,7 +35,6 @@ pre {
   background: none;
 
   code {
-    font-size: $code-font-size;
     white-space: pre-wrap;
   }
 }
@@ -133,7 +132,7 @@ pre {
 }
 
 .editor {
-  font-size: $code-font-size;
+  font-size: $code-size;
   height: calc(100vh - 272px);
   min-height: 200px;
   border: 1px solid $border-color;
