@@ -6,7 +6,7 @@
 
 Snibox is a self-hosted code snippets manager. 
 Supports various programming languages, markdown, plain text. 
-Developed for organizing private code snippets.
+Developed to collect and organize code snippets.
 
 ## Table of Contents
 - [Demo](#demo)
