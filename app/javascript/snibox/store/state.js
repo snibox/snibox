@@ -14,6 +14,7 @@ export default {
     edit: {
       title: '',
       language: '',
+      tabs: '',
       label: ''
     }
   },

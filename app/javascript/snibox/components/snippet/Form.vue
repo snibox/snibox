@@ -100,7 +100,7 @@
 
       editSnippetLanguage: {
         get() {
-          return this.$store.state.labelSnippets.active.language
+          return this.$store.state.labelSnippets.edit.language
         },
 
         set(value) {
@@ -111,10 +111,11 @@
 
       editSnippetTabs: {
         get() {
-          return this.$store.state.labelSnippets.active.tabs
+          return this.$store.state.labelSnippets.edit.tabs
         },
 
         set(value) {
+          this.$store.commit('setLabelSnippetEditTabs', value)
           this.editor.setOption('tabSize', value)
         }
       },

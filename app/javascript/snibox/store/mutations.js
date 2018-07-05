@@ -13,6 +13,10 @@ export default {
     state.labelSnippets.edit.language = value
   },
 
+  setLabelSnippetEditTabs(state, value) {
+    state.labelSnippets.edit.tabs = value
+  },
+
   setLabelSnippetEditLabel(state, value) {
     state.labelSnippets.edit.label = value
   },
