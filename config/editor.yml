@@ -31,6 +31,7 @@ languages:
   plain: Plain Text
   puppet: Puppet
   python: Python
+  r: R
   ruby: Ruby
   rust: Rust
   scss: SCSS
