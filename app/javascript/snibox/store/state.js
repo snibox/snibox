@@ -13,6 +13,7 @@ export default {
     mode: '',
     edit: {
       title: '',
+      language: '',
       label: ''
     }
   },

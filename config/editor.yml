@@ -4,6 +4,7 @@ languages:
   coffeescript: CoffeeScript
   crystal: Crystal
   css: CSS
+  bash: Bash
   d: D
   dart: Dart
   django: Django
@@ -19,6 +20,7 @@ languages:
   http: HTTP
   javascript: JavaScript
   julia: Julia
+  less: LESS
   livescript: Livescript
   lua: Lua
   markdown: Markdown
@@ -31,8 +33,8 @@ languages:
   python: Python
   ruby: Ruby
   rust: Rust
-  sass: SCSS
-  shell: Shell
+  scss: SCSS
+  stylus: Stylus
   smalltalk: Smalltalk
   sql: SQL
   stylus: Stylus

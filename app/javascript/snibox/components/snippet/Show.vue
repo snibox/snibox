@@ -37,7 +37,7 @@
         <vue-markdown :source="snippet.content"></vue-markdown>
       </div>
       <div v-else>
-        <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="convertLanguage"></code></pre>
+        <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsLanguage"></code></pre>
         <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
       </div>
     </div>
@@ -66,21 +66,7 @@
 
     data() {
       return {
-        clipboard: null,
-        languageMatrix: [
-          {
-            codemirror: 'automatically',
-            hljs: ''
-          },
-          {
-            codemirror: 'sass',
-            hljs: 'scss'
-          },
-          {
-            codemirror: 'shell',
-            hljs: 'bash'
-          }
-        ]
+        clipboard: null
       }
     },
 
@@ -119,14 +105,8 @@
         return _.isEqual(this.$store.state.labelSnippets.active.language, 'markdown')
       },
 
-      convertLanguage() {
-        let languageRecord = _.find(this.languageMatrix, {codemirror: this.snippet.language})
-
-        if (languageRecord) {
-          return languageRecord.hljs
-        }
-
-        return this.snippet.language
+      hljsLanguage() {
+        return this.snippet.language === 'automatically' ? '' : this.snippet.language
       }
     },
 

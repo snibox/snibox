@@ -71,6 +71,7 @@
   import 'codemirror/addon/display/placeholder'
   import '../../utils/codemirror_modes'
   import Editor from '../../mixins/editor'
+  import { processEditorMode } from '../../mixins/editor'
   import Filters from '../../mixins/filters'
 
   export default {
@@ -103,7 +104,8 @@
         },
 
         set(value) {
-          this.editor.setOption('mode', value)
+          this.$store.commit('setLabelSnippetEditLanguage', value)
+          this.editor.setOption('mode', processEditorMode(value))
         }
       },
 
@@ -154,7 +156,7 @@
       this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
         lineNumbers: true
       })
-      this.editor.setOption('mode', this.$store.state.labelSnippets.active.language)
+      this.editor.setOption('mode', processEditorMode(this.$store.state.labelSnippets.edit.language))
       this.editor.setOption('tabSize', this.$store.state.labelSnippets.active.tabs)
 
       // set focus on title textfield

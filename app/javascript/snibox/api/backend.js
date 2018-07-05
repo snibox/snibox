@@ -70,7 +70,7 @@ class SnippetService extends BackendService {
         id: this.component.snippet.id,
         title: this.component.$store.state.labelSnippets.edit.title,
         content: this.component.editor.getValue(),
-        language: this.component.editor.getOption('mode'),
+        language: this.component.$store.state.labelSnippets.edit.language,
         tabs: this.component.editor.getOption('tabSize'),
         label_attributes: {
           name: this.component.$store.state.labelSnippets.edit.label

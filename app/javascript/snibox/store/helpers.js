@@ -81,6 +81,7 @@ export default {
       state.labelSnippets.active = snippet
       state.labelSnippets.mode = 'create'
       state.labelSnippets.edit.title = ''
+      state.labelSnippets.edit.language = 'automatically'
       state.labelSnippets.edit.label = label.name
       state.flags.renderAllSnippets = false
     },
@@ -103,6 +104,7 @@ export default {
 
       state.labels.edit.name = state.labelSnippets.active.label.name
       state.labelSnippets.edit.title = state.labelSnippets.active.title
+      state.labelSnippets.edit.language = state.labelSnippets.active.language
       state.labelSnippets.edit.label = state.labelSnippets.active.label.name
     }
   }

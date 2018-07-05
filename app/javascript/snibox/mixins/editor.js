@@ -6,6 +6,17 @@ const processIosEditorHeight = () => {
       && document.querySelector('body').offsetWidth > 769
 }
 
+// based on Codemirror sub-modes and hljs analogues
+const editorModesMatrix = {
+  bash: 'shell',
+  less: 'css',
+  scss: 'sass'
+}
+
+export const processEditorMode = (mode) => {
+  return editorModesMatrix.hasOwnProperty(mode) ? editorModesMatrix[mode] : mode
+}
+
 export default {
   data() {
     return {
