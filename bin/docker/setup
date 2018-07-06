@@ -1,32 +1,37 @@
 #!/bin/bash
 
 GREEN='\033[0;32m'
+RED='\033[0;31m'
 NC='\033[0m'
 
-function report_success() {
-  echo -e "${GREEN}Done!${NC}\n"
+function report_status() {
+  if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Done!${NC}\n"
+  else
+    echo -e "${RED}Unable to complete task.${NC}\n"
+  fi
 }
 
 echo "1. Copy .env.production.sample to .env:"
 if [ ! -f .env ]; then
   cp .env.production.sample .env
-  report_success
+  report_status
 else
   echo -e "${GREEN}File already exists.${NC}\n"
 fi
 
 echo "2. Pull images:"
 docker-compose pull
-report_success
+report_status
 
 echo "3. Create database:"
 docker-compose run --rm backend ./bin/rake db:create
-report_success
+report_status
 
 echo "4. Run migrations:"
 docker-compose run --rm backend ./bin/rake db:migrate
-report_success
+report_status
 
 echo "5. Precompile assets:"
 docker-compose run --rm backend ./bin/rake assets:precompile
-report_success
+report_status
