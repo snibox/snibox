@@ -1,5 +1,8 @@
 languages:
   automatically: Automatically
+  c: C
+  cpp: C++
+  cs: C#
   clojure: Clojure
   coffeescript: CoffeeScript
   crystal: Crystal
@@ -17,7 +20,9 @@ languages:
   haml: HAML
   handlebars: Handlebars
   haskell: Haskell
+  html: HTML
   http: HTTP
+  java: Java
   javascript: JavaScript
   julia: Julia
   less: LESS
@@ -25,6 +30,7 @@ languages:
   lua: Lua
   markdown: Markdown
   nginx: Nginx
+  objectivec: Objective-C
   perl: Perl
   php: PHP
   powershell: Powershell

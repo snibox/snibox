@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import Notifications from "../snibox/utils/notifications"
+import Notifications from '../snibox/utils/notifications'
 
 document.addEventListener('DOMContentLoaded', () => {
   window.navbar = new Vue({

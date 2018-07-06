@@ -1,3 +1,4 @@
+import 'codemirror/mode/clike/clike'
 import 'codemirror/mode/clojure/clojure'
 import 'codemirror/mode/coffeescript/coffeescript'
 import 'codemirror/mode/crystal/crystal'

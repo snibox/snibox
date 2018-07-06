@@ -1,21 +1,5 @@
-import MobileDetect from 'mobile-detect'
-
-// ios safari 100vh fix
-const processIosEditorHeight = () => {
-  return new MobileDetect(window.navigator.userAgent).userAgent() === 'Safari'
-      && document.querySelector('body').offsetWidth > 769
-}
-
-// based on Codemirror sub-modes and hljs analogues
-const editorModesMatrix = {
-  bash: 'shell',
-  less: 'css',
-  scss: 'sass'
-}
-
-export const processEditorMode = (mode) => {
-  return editorModesMatrix.hasOwnProperty(mode) ? editorModesMatrix[mode] : mode
-}
+import { processIosEditorHeight } from '../utils/editor_helper'
+import { editorHeightDelta } from '../utils/variables'
 
 export default {
   data() {
@@ -31,7 +15,7 @@ export default {
 
   computed: {
     editorHeight() {
-      return processIosEditorHeight() ? document.querySelector('body').offsetHeight - 271 + 'px' : undefined
+      return processIosEditorHeight() ? document.querySelector('body').offsetHeight - editorHeightDelta + 'px' : undefined
     }
   }
 }

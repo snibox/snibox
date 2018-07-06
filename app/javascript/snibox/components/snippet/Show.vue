@@ -37,7 +37,7 @@
         <vue-markdown :source="snippet.content"></vue-markdown>
       </div>
       <div v-else>
-        <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsLanguage"></code></pre>
+        <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsClass"></code></pre>
         <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
       </div>
     </div>
@@ -50,14 +50,10 @@
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import Clipboard from 'clipboard'
-  import hljs from 'highlight.js'
+  import * as HighlighterHelper from '../../utils/highlighter_helper'
   import Icon from '../Icon.vue'
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
-
-  let syncHljsTabs = (component) => {
-    hljs.configure({tabReplace: ' '.repeat(component.$store.state.labelSnippets.active.tabs)})
-  }
 
   export default {
     name: 'snippet-show',
@@ -71,7 +67,7 @@
     },
 
     beforeMount() {
-      syncHljsTabs(this)
+      HighlighterHelper.syncHljsTabs(this)
     },
 
     mounted() {
@@ -85,7 +81,7 @@
     },
 
     beforeUpdate() {
-      syncHljsTabs(this)
+      HighlighterHelper.syncHljsTabs(this)
     },
 
     beforeDestroy() {
@@ -105,8 +101,8 @@
         return _.isEqual(this.$store.state.labelSnippets.active.language, 'markdown')
       },
 
-      hljsLanguage() {
-        return this.snippet.language === 'automatically' ? '' : this.snippet.language
+      hljsClass() {
+        return HighlighterHelper.processHljsMode(this.snippet.language)
       }
     },
 

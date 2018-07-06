@@ -1,4 +1,4 @@
-import StoreHelpers from "./helpers"
+import StoreHelpers from './helpers'
 
 export default {
   setLabelEditName(state, value) {
