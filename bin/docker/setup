@@ -9,7 +9,7 @@ DEFAULT_SECRET='paste_your_key'
 
 function report_status() {
   if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Done!${NC}"
+    echo -e "${GREEN}Done${NC}"
   else  	
     echo -e "${RED}Unable to complete task${NC}"
     exit 1
@@ -29,7 +29,9 @@ if grep -Rq "$DEFAULT_SECRET" .env
 then	  
   secret=$(docker-compose run --rm backend ./bin/rake secret)
   echo "$secret"
-  sed -i "" -e "s/paste_your_key/$secret/g" .env
+  # based on https://stackoverflow.com/a/22084103
+  sed -i.bak "s/paste_your_key/$secret/" .env
+  rm .env.bak  
   report_status
 else
   echo -e "${GREEN}Personal secret key exists${NC}"
@@ -46,3 +48,5 @@ report_status
 echo -e "\nRun migrations:"
 docker-compose run --rm backend ./bin/rake db:migrate
 report_status
+
+echo -e "\n${GREEN}Setup completed!${NC}"
