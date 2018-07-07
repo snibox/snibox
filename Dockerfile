@@ -1,4 +1,4 @@
-FROM ruby:2.5-alpine
+FROM ruby:2.5.1-alpine3.7
 
 RUN apk -U upgrade \
   && apk add -t build-dependencies \
@@ -18,9 +18,10 @@ COPY Gemfile Gemfile.lock ./
 
 ENV RAILS_ENV production
 ENV RACK_ENV production
+ENV NODE_ENV production
 
 RUN gem install bundler && bundle install --without development test
 
 COPY . ./
 
-RUN ./bin/yarn --pure-lockfile && ./bin/yarn cache clean
+RUN SECRET_KEY_BASE=docker ./bin/rake assets:precompile && ./bin/yarn cache clean

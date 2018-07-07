@@ -2,36 +2,47 @@
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+YELLOW='\033[0;33m'
 NC='\033[0m'
+
+DEFAULT_SECRET='paste_your_key'
 
 function report_status() {
   if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Done!${NC}\n"
-  else
-    echo -e "${RED}Unable to complete task.${NC}\n"
+    echo -e "${GREEN}Done!${NC}"
+  else  	
+    echo -e "${RED}Unable to complete task${NC}"
+    exit 1
   fi
 }
 
-echo "1. Copy .env.production.sample to .env:"
-if [ ! -f .env ]; then
+echo "Copy .env.production.sample to .env:"
+if [ ! -f .env ]; then	
   cp .env.production.sample .env
-  report_status
+  report_status  
 else
-  echo -e "${GREEN}File already exists.${NC}\n"
+  echo -e "${GREEN}File .env already exists${NC}"
 fi
 
-echo "2. Pull images:"
+echo -e "\nInject secret key:"
+if grep -Rq "$DEFAULT_SECRET" .env
+then	  
+  secret=$(docker-compose run --rm backend ./bin/rake secret)
+  echo "$secret"
+  sed -i "" -e "s/paste_your_key/$secret/g" .env
+  report_status
+else
+  echo -e "${GREEN}Personal secret key exists${NC}"
+fi	
+
+echo -e "\nPull images:"
 docker-compose pull
 report_status
 
-echo "3. Create database:"
+echo -e "\nCreate database:"
 docker-compose run --rm backend ./bin/rake db:create
 report_status
 
-echo "4. Run migrations:"
+echo -e "\nRun migrations:"
 docker-compose run --rm backend ./bin/rake db:migrate
-report_status
-
-echo "5. Precompile assets:"
-docker-compose run --rm backend ./bin/rake assets:precompile
 report_status
