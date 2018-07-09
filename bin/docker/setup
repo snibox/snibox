@@ -34,7 +34,7 @@ then
   secret=$(docker-compose run --rm backend ./bin/rake secret)
   echo "$secret"
   # based on https://stackoverflow.com/a/22084103
-  sed -i.bak "s/paste_your_key/$secret/" .env
+  sed -i.bak "s/$DEFAULT_SECRET/$secret/" .env
   rm .env.bak
   report_status
 else
