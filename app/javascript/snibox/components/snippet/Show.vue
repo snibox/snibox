@@ -33,11 +33,11 @@
     </header>
 
     <div class="card-content" slot="card-content">
-      <div class='markdown-body' v-if="isMarkdown">
-        <vue-markdown :source="snippet.content"></vue-markdown>
+      <div class="markdown-body" v-if="isMarkdown">
+        <vue-markdown lang-prefix='' :source="snippet.content"></vue-markdown>
       </div>
-      <div v-else>
-        <pre :style="{'tab-size': snippet.tabs}" v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsClass"></code></pre>
+      <div class="code-body" v-else>
+        <pre :style="{'tab-size': snippet.tabs}" class="is-paddingless" v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsClass"></code></pre>
         <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
       </div>
     </div>
@@ -50,7 +50,7 @@
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import Clipboard from 'clipboard'
-  import { processHljsMode } from '../../utils/highlighter_helper'
+  import * as HighlighterHelper from '../../utils/highlighter_helper'
   import Icon from '../Icon.vue'
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
@@ -67,6 +67,8 @@
     },
 
     mounted() {
+      HighlighterHelper.highlightCodeBlocks(this)
+
       this.clipboard = new Clipboard('#snippet-copy')
 
       this.clipboard.on('success', e => {
@@ -74,6 +76,10 @@
       }).on('error', e => {
         Notifications.toast.error('Unable to copy snippet.')
       })
+    },
+
+    updated() {
+      HighlighterHelper.highlightCodeBlocks(this)
     },
 
     beforeDestroy() {
@@ -94,7 +100,7 @@
       },
 
       hljsClass() {
-        return processHljsMode(this.snippet.language)
+        return HighlighterHelper.processHljsMode(this.snippet.language)
       }
     },
 
