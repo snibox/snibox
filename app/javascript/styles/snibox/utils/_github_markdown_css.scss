@@ -16,4 +16,9 @@
     list-style-type: lower-latin;
     list-style-position: outside;
   }
+
+  .table tbody tr:last-child td,
+  .table tbody tr:last-child th {
+    border-bottom-width: 1px;
+  }
 }
