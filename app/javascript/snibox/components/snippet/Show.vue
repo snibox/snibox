@@ -67,7 +67,7 @@
     },
 
     mounted() {
-      HighlighterHelper.highlightCodeBlocks(this)
+      HighlighterHelper.highlightMarkdownCodeBlocks(this)
 
       this.clipboard = new Clipboard('#snippet-copy')
 
@@ -79,7 +79,7 @@
     },
 
     updated() {
-      HighlighterHelper.highlightCodeBlocks(this)
+      HighlighterHelper.highlightMarkdownCodeBlocks(this)
     },
 
     beforeDestroy() {
