@@ -37,7 +37,7 @@
         <vue-markdown :source="snippet.content"></vue-markdown>
       </div>
       <div v-else>
-        <pre v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsClass"></code></pre>
+        <pre :style="{'tab-size': snippet.tabs}" v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsClass"></code></pre>
         <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
       </div>
     </div>
@@ -50,7 +50,7 @@
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import Clipboard from 'clipboard'
-  import * as HighlighterHelper from '../../utils/highlighter_helper'
+  import { processHljsMode } from '../../utils/highlighter_helper'
   import Icon from '../Icon.vue'
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
@@ -66,10 +66,6 @@
       }
     },
 
-    beforeMount() {
-      HighlighterHelper.syncHljsTabs(this)
-    },
-
     mounted() {
       this.clipboard = new Clipboard('#snippet-copy')
 
@@ -78,10 +74,6 @@
       }).on('error', e => {
         Notifications.toast.error('Unable to copy snippet.')
       })
-    },
-
-    beforeUpdate() {
-      HighlighterHelper.syncHljsTabs(this)
     },
 
     beforeDestroy() {
@@ -102,7 +94,7 @@
       },
 
       hljsClass() {
-        return HighlighterHelper.processHljsMode(this.snippet.language)
+        return processHljsMode(this.snippet.language)
       }
     },
 
