@@ -10,7 +10,7 @@ const hljsModesMatrix = {
 
 export const highlightMarkdownCodeBlocks = (component) => {
   if (_.isEqual(component.$store.state.labelSnippets.active.language, 'markdown')) {
-    component.$el.querySelectorAll('pre code:not(.plain)').forEach((block, i) => {
+    component.$el.querySelectorAll('pre code[class]').forEach((block, i) => {
       hljs.highlightBlock(block);
     })
   }
