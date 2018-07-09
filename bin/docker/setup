@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
@@ -8,34 +10,36 @@ NC='\033[0m'
 DEFAULT_SECRET='paste_your_key'
 
 function report_status() {
-  if [ $? -eq 0 ]; then
+  if [ $? -eq 0 ]
+  then
     echo -e "${GREEN}Done${NC}"
-  else  	
+  else
     echo -e "${RED}Unable to complete task${NC}"
     exit 1
   fi
 }
 
 echo "Copy .env.production.sample to .env:"
-if [ ! -f .env ]; then	
+if [ ! -f .env ]
+then
   cp .env.production.sample .env
-  report_status  
+  report_status
 else
   echo -e "${GREEN}File .env already exists${NC}"
 fi
 
 echo -e "\nInject secret key:"
 if grep -Rq "$DEFAULT_SECRET" .env
-then	  
+then
   secret=$(docker-compose run --rm backend ./bin/rake secret)
   echo "$secret"
   # based on https://stackoverflow.com/a/22084103
   sed -i.bak "s/paste_your_key/$secret/" .env
-  rm .env.bak  
+  rm .env.bak
   report_status
 else
   echo -e "${GREEN}Personal secret key exists${NC}"
-fi	
+fi
 
 echo -e "\nPull images:"
 docker-compose pull
