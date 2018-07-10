@@ -35,6 +35,6 @@ after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 deploy:
   provider: script
-  script: bash ./bin/docker/push
+  script: bash ./scripts/ci/docker_push
   on:
     branch: master
