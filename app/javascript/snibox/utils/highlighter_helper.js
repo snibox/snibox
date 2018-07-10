@@ -3,7 +3,7 @@ import hljs from 'highlight.js'
 import { getPropertyOrDefault } from './tools'
 
 const hljsModesMatrix = {
-  automaticaly: '',
+  automatically: '',
   c: 'cpp',
   html: 'xml'
 }
