@@ -28,11 +28,11 @@ Click the image below to launch demo:
 
 ## Deployment
 Deployment instructions for various platforms available at 
-[deployment guide](https://github.com/snibox/snibox/wiki/Deployment).
+[deployment guide](https://snibox.github.io/docs/deployment.html).
 
 ## Development
 Development instructions for various platforms available at 
-[development guide](https://github.com/snibox/snibox/wiki/Development).
+[development guide](https://snibox.github.io/docs/development.html).
 
 ## Todo
 - [ ] Revisions
