@@ -4,9 +4,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/maintainability)](https://codeclimate.com/github/snibox/snibox/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/test_coverage)](https://codeclimate.com/github/snibox/snibox/test_coverage) 
 
-Snibox is a self-hosted snippet manager. 
-Supports various programming languages, markdown, plain text. 
+Snibox is a self-hosted snippet manager.
 Developed to collect and organize code snippets.
+Supports various programming languages, markdown, plain text. 
 
 ## Table of Contents
 - [Demo](#demo)
