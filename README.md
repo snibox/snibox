@@ -13,7 +13,6 @@ Supports various programming languages, markdown, plain text.
 - [Built with](#built-with)
 - [Deployment](#deployment)    
 - [Development](#development)
-- [Todo](#todo)
 - [License](#license)
 
 ## Demo
@@ -33,9 +32,6 @@ Deployment instructions for various platforms available at
 ## Development
 Development instructions for various platforms available at 
 [development guide](https://snibox.github.io/docs/development.html).
-
-## Todo
-- [ ] Revisions
 
 ## License
 Snibox is released under the [MIT License](https://opensource.org/licenses/MIT).
