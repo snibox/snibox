@@ -36,7 +36,6 @@ Development instructions for various platforms available at
 
 ## Todo
 - [ ] Revisions
-- [ ] Search
 
 ## License
 Snibox is released under the [MIT License](https://opensource.org/licenses/MIT).
