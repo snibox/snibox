@@ -25,8 +25,18 @@ $navbar-height: 50px;
   }
 }
 
-@media (max-width: $tablet) {
-  #navbar-menu {
-    box-shadow: 0 0 1px $shadow-color;
+@media screen and (max-width: $tablet) {
+  .navbar {
+    .navbar-brand {
+      justify-content: space-between;
+    }
+
+    .navbar-burger {
+      margin-left: 0;
+    }
+
+    #navbar-menu {
+      box-shadow: 0 0 1px $shadow-color;
+    }
   }
 }

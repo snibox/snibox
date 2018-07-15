@@ -2,20 +2,28 @@ import Vue from 'vue/dist/vue.esm'
 import store from '../snibox/store'
 import factory from '../snibox/mixins/factory'
 import logo from '../images/logo.png'
+import SearchBox from '../snibox/components/SearchBox.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   window.navbar = new Vue({
     store,
+
     el: '#navbar',
+
     mixins: [factory],
+
+    components: {SearchBox},
+
     data() {
       return {
         logo
       }
     },
+
     mounted() {
       this.$el.style.display = 'flex'
     },
+
     methods: {
       addSnippet(e, redirect = false) {
         e.preventDefault()

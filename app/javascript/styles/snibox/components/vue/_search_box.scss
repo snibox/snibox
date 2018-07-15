@@ -1,0 +1,38 @@
+// TODO: why component styles doesn't work now? is it related to webpacker 4.pre2 ?
+.search-box {
+  .suggestions {
+    position: absolute;
+    top: 3rem;
+    width: 250px;
+    border-radius: $radius-small;
+    background: $white;
+    z-index: 5;
+    box-shadow: $card-shadow;
+
+    li {
+      &.focused {
+        background-color: $menu-item-hover-background-color;
+        color: $menu-item-hover-color;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $phone-old) {
+  .search-box {
+    &.is-hidden-desktop {
+      width: calc(100% - 10rem);
+      .suggestions {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) and (max-width: $desktop + $gap) {
+  .search-box {
+    &.is-hidden-mobile {
+      max-width: 170px;
+    }
+  }
+}
