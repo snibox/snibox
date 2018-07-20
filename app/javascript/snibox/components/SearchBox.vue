@@ -3,7 +3,7 @@
 <template>
   <div class="search-box" v-if="renderSearchBox">
     <p class="control has-icons-left">
-      <input id="search" type="text" class="input"
+      <input type="text" class="input search"
              @focus="focused = true"
              @blur="focused = false"
              @keyup.enter="go(focusIndex)"
@@ -81,7 +81,7 @@
       },
 
       renderSearchBox() {
-        return repository !== undefined
+        return typeof repository !== 'undefined'
       }
     },
 
