@@ -60,6 +60,6 @@ describe 'Search', js: true do
 
   def fill_search_after_delay
     sleep 0.5
-    fill_in 'search', with: 'snippet1'
+    find(:css, '.search').set('snippet1')
   end
 end
