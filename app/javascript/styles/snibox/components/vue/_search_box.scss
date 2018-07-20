@@ -18,7 +18,7 @@
   }
 }
 
-@media screen and (max-width: $phone-old) {
+@media screen and (max-width: 383px) {
   .search-box {
     &.is-hidden-desktop {
       width: calc(100% - 10rem);
