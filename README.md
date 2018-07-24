@@ -1,6 +1,6 @@
 ![Logo](https://user-images.githubusercontent.com/312873/35063615-acf68302-fbd8-11e7-91c5-0b3b6f5966c4.png)
 =
-[![Build Status](https://travis-ci.org/snibox/snibox.svg?branch=master)](https://travis-ci.org/snibox/snibox)
+[![Build Status](https://semaphoreci.com/api/v1/snibox/snibox/branches/master/badge.svg)](https://semaphoreci.com/snibox/snibox)
 [![Maintainability](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/maintainability)](https://codeclimate.com/github/snibox/snibox/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/test_coverage)](https://codeclimate.com/github/snibox/snibox/test_coverage) 
 
