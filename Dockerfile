@@ -1,16 +1,13 @@
 FROM ruby:2.5.1-alpine3.7
 
-RUN apk -U upgrade \
-  && apk add -t build-dependencies \
+RUN apk add --no-cache -t build-dependencies \
     build-base \
     postgresql-dev \
-  && apk add \
+  && apk add --no-cache \
     git \
     tzdata \
     nodejs \
-    yarn \
-  && rm -rf /tmp/* \
-  && rm -rf /var/cache/apk/*
+    yarn
 
 WORKDIR /app
 
