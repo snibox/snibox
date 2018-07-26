@@ -4,6 +4,8 @@ node_modules
 public/assets
 public/packs*
 tmp/cache
+vendor/bundle
+.bundle
 .env
 .env.local
 .env.development
