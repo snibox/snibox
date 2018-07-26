@@ -35,6 +35,7 @@ describe 'Snippets', js: true do
     it 'user able to delete' do
       find('#snippet-delete').click
       find('.swal2-confirm').click
+      sleep 0.5
       within('#snippets') { expect(page).not_to have_content('test snippet') }
     end
 
