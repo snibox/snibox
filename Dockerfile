@@ -17,7 +17,7 @@ ENV RAILS_ENV production
 ENV RACK_ENV production
 ENV NODE_ENV production
 
-RUN gem install bundler && bundle install --without development test
+RUN gem install bundler && bundle install --deployment --without development test
 
 COPY . ./
 
