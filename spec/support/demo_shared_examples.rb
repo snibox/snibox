@@ -3,7 +3,10 @@ shared_examples 'has demo restrictions' do
     visit path
     # defined?(confirm) ? accept_confirm { click_on link_title } : click_on(link_title)
     click_on link_title
-    find('.swal2-confirm').click if defined?(confirm)
+    if defined?(confirm)
+      find('.swal2-confirm').click
+      sleep 0.5
+    end
   end
 
   it 'redirect user and show message' do
