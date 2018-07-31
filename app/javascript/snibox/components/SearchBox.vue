@@ -1,7 +1,7 @@
 <!-- based on https://github.com/vuejs/vuepress/blob/master/lib/default-theme/SearchBox.vue -->
 
 <template>
-  <div class="search-box" v-if="renderSearchBox">
+  <div class="search-box">
     <p class="control has-icons-left has-icons-right">
       <input type="text" class="input search"
              @focus="focused = true"
@@ -93,10 +93,6 @@
       suggestions() {
         return this.query !== '' ?
             new Fuse(repository.$store.state.snippets, searchOptions).search(this.query).slice(0, this.count) : []
-      },
-
-      renderSearchBox() {
-        return typeof repository !== 'undefined'
       }
     },
 

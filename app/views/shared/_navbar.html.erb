@@ -4,7 +4,9 @@
       <%= link_to root_path, class: 'navbar-item' do %>
         <img id="logo" :src="logo" alt="Snibox"/>
       <% end %>
-      <search-box class="navbar-item is-hidden-desktop"></search-box>
+      <% if @activate_repository %>
+        <search-box class="navbar-item is-hidden-desktop"></search-box>
+      <% end %>
       <% if user_signed_in? %>
         <div class="navbar-burger burger" data-target="navbar-menu">
           <span></span>
@@ -23,7 +25,9 @@
           </a>
         </div>
         <div class="navbar-end">
-          <search-box class="navbar-item is-hidden-mobile is-hidden-tablet-only"></search-box>
+          <% if @activate_repository %>
+            <search-box class="navbar-item is-hidden-mobile is-hidden-tablet-only"></search-box>
+          <% end %>
           <%= link_to "Help", help_path, id: "help", class: "navbar-item #{is_active_page(help_path)}" %>
           <%= link_to "Settings", edit_user_registration_path, id: "settings", class: "navbar-item #{is_active_page(edit_user_registration_path)}" %>
           <%= link_to('Logout', destroy_user_session_path, method: :delete, id: :logout, class: "navbar-item") %>
