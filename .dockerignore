@@ -4,6 +4,7 @@ public/assets
 public/packs*
 tmp/cache
 vendor/bundle
+yarn-error.log
 .bundle
 .env
 .env.local
