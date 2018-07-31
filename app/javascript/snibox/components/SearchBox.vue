@@ -2,7 +2,7 @@
 
 <template>
   <div class="search-box" v-if="renderSearchBox">
-    <p class="control has-icons-left">
+    <p class="control has-icons-left has-icons-right">
       <input type="text" class="input search"
              @focus="focused = true"
              @blur="focused = false"
@@ -11,6 +11,7 @@
              @keyup.down="onDown"
              v-model="query"/>
       <span class="icon is-small is-left"><icon class="icon-search" type="search"></icon></span>
+      <span class="icon icon-text is-small is-right">/</span>
     </p>
     <ul class="menu-list suggestions"
         v-if="showSuggestions"
@@ -64,6 +65,20 @@
         focused: false,
         focusIndex: 0
       }
+    },
+
+    mounted() {
+      document.addEventListener('keyup', e => {
+        if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+          this.$el.querySelector('.search').focus()
+        }
+
+        if (e.key === 'Escape' && this.focused) {
+          this.query = ''
+          this.focusIndex = 0
+          this.$el.querySelector('.search').blur()
+        }
+      }, false)
     },
 
     computed: {

@@ -7,6 +7,24 @@ describe 'Search', js: true do
     login
   end
 
+  context 'shortcuts' do
+    before do
+      create(:snippet_with_tag)
+    end
+
+    it 'focus on slash' do
+      sleep 0.5
+      find('body').native.send_key('/')
+      within('.search-box') { expect(page).to have_css('.search-box input:focus') }
+    end
+
+    it 'blur on escape' do
+      fill_search_after_delay
+      find('.search-box input.search').native.send_key(:escape)
+      within('.search-box') { expect(page).not_to have_css('.search-box input:focus') }
+    end
+  end
+
   it 'show suggestions block' do
     create(:snippet_with_tag)
     fill_search_after_delay

@@ -9,3 +9,10 @@
     margin-bottom: 1px;
   }
 }
+
+.icon-text {
+  .search-box & {
+    color: $input-icon-color !important;
+    padding-bottom: 0.2rem;
+  }
+}
