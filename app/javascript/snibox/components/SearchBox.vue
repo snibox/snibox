@@ -2,7 +2,7 @@
 
 <template>
   <div class="search-box">
-    <p class="control has-icons-left has-icons-right">
+    <p class="control has-icons-left" :class="{'has-icons-right': focused === false}">
       <input type="text" class="input search"
              @focus="focused = true"
              @blur="focused = false"
@@ -10,8 +10,8 @@
              @keyup.up="onUp"
              @keyup.down="onDown"
              v-model="query"/>
-      <span class="icon is-small is-left"><icon class="icon-search" type="search"></icon></span>
-      <span class="icon icon-text is-small is-right">/</span>
+      <span class="icon is-small is-left"><icon class="icon-search is-marginless" type="search"></icon></span>
+      <span class="icon is-small is-right" v-if="focused === false"><span class="icon-text">/</span></span>
     </p>
     <ul class="menu-list suggestions"
         v-if="showSuggestions"

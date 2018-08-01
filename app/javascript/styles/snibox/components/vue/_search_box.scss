@@ -16,14 +16,31 @@
       }
     }
   }
+
+  .control {
+    width: 240px;
+  }
+
+  &.is-hidden-desktop {
+    .icon {
+      &.is-right {
+        display: none;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 383px) {
   .search-box {
     &.is-hidden-desktop {
       width: calc(100% - 10rem);
+
       .suggestions {
         width: 100%;
+      }
+
+      .control {
+        width: auto;
       }
     }
   }
@@ -33,6 +50,10 @@
   .search-box {
     &.is-hidden-mobile {
       max-width: 170px;
+
+      .control {
+        width: auto;
+      }
     }
   }
 }
