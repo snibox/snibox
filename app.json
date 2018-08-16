@@ -1,6 +1,6 @@
 {
   "name": "Snibox",
-  "description": "Self-hosted private snippets repository.",
+  "description": "Self-hosted snippet manager.",
   "website": "https://github.com/snibox/snibox",
   "repository": "https://github.com/snibox/snibox",
   "logo": "https://avatars3.githubusercontent.com/u/35972977",
