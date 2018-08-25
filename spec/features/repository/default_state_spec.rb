@@ -15,7 +15,7 @@ describe 'Default state', js: true do
       click_on 'Add snippet'
       expect(page).to have_content('New snippet')
       click_on 'Cancel'
-      expect(page).not_to have_content('New snippet')
+      expect(page).to have_no_content('New snippet')
     end
   end
 end
