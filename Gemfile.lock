@@ -160,7 +160,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.12.0)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-proxy (0.6.4)
       rack
     rack-test (1.1.0)
