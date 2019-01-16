@@ -5,7 +5,7 @@ shared_examples 'has demo restrictions' do
     click_on link_title
     if defined?(confirm)
       find('.swal2-confirm').click
-      sleep 1
+      sleep 2
     end
   end
 
