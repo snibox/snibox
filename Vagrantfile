@@ -24,8 +24,8 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # setup ruby
 # https://stackoverflow.com/a/30106828
-sudo -H -u vagrant bash -i -c 'rbenv install 2.5.1'
-sudo -H -u vagrant bash -i -c 'rbenv global 2.5.1'
+sudo -H -u vagrant bash -i -c 'rbenv install 2.6.1'
+sudo -H -u vagrant bash -i -c 'rbenv global 2.6.1'
 echo 'gem: --no-document' >> ~/.gemrc
 sudo -H -u vagrant bash -i -c 'gem install bundler'
 

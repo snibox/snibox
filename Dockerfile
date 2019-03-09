@@ -1,4 +1,4 @@
-FROM ruby:2.5.1-alpine3.7
+FROM ruby:2.6.1-alpine3.9
 
 RUN apk add --no-cache -t build-dependencies \
     build-base \
