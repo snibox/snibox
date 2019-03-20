@@ -40,7 +40,7 @@ end
 
 group :test do
   gem 'database_cleaner', '~> 1.7'
-  gem 'capybara', '~> 3.13'
+  gem 'capybara', '~> 3.13', '< 3.15'
   gem 'selenium-webdriver', '~> 3.13'
   gem 'chromedriver-helper', '~> 1.2'
   gem 'rails-controller-testing', '~> 1.0'
