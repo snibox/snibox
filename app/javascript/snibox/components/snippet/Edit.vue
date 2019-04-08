@@ -18,7 +18,7 @@
 
     computed: {
       title() {
-        return 'Edit snippet&nbsp;<span class="is-italic">' + this.$store.state.labelSnippets.active.title + '</span>'
+        return 'Edit snippet&nbsp;<span class="is-italic">' + this.$store.state.labelSnippets.active.description + '</span>'
       }
     }
   }

@@ -1,25 +1,9 @@
 <template>
 
-  <card id="show-snippet" class="animated">
+  <div id="show-snippet" class="animated">
     <header class="card-header" slot="card-header">
-      <div class="flex-container" :class="{ 'with-markdown': isMarkdown }">
-        <div class="card-header-title with-text-overflow">
-          {{ snippet.id ? snippet.title : 'Select snippet'}}
-        </div>
-        <div class="card-header-title" v-if="snippet.id">
-          <div class="field" :class="{ 'has-addons': !isMarkdown }">
-            <p class="control">
-              <a id="snippet-raw" class="button is-outlined is-small" :href="linkRaw"
-                 target="_blank"><span>Raw</span></a>
-            </p>
-            <p class="control" v-if="!isMarkdown">
-              <a id="snippet-copy" class="button is-outlined is-small" data-clipboard-target="#code">
-                <icon class="icon-clippy" type="clippy"></icon>
-                <span>Copy</span></a>
-            </p>
-          </div>
-        </div>
-      </div>
+      <p class="card-header-title no-wrap" v-html="snippet.description"></p>
+
       <div class="card-header-icon" v-if="snippet.id">
         <a id="snippet-edit" class="button is-outlined is-small" @click="editSnippet">
           <icon type="pencil"></icon>
@@ -32,17 +16,12 @@
       </div>
     </header>
 
-    <div class="card-content" slot="card-content">
-      <div class="markdown-body" v-if="isMarkdown">
-        <vue-markdown lang-prefix='' :source="snippet.content"></vue-markdown>
-      </div>
-      <div class="code-body" v-else>
-        <pre :style="{'tab-size': snippet.tabs}" class="is-paddingless" v-highlightjs="snippet.content" v-if="snippet.id"><code id="code" :class="hljsClass"></code></pre>
-        <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
-      </div>
+    <div
+      v-for="(snippet_file, index) in snippet.snippet_files"
+      :key="snippet_file.id">
+      <snippet-file-show v-if="showSnippetFile == 'show'" :index="index"></snippet-file-show>
     </div>
-
-  </card>
+  </div>
 
 </template>
 
@@ -54,54 +33,23 @@
   import Icon from '../Icon.vue'
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
+  import SnippetFileShow from '../snippet_file/Show.vue'
 
   export default {
     name: 'snippet-show',
 
-    components: {Card, Icon, VueMarkdown},
+    props: ['index'],
 
-    data() {
-      return {
-        clipboard: null
-      }
-    },
-
-    mounted() {
-      HighlighterHelper.highlightMarkdownCodeBlocks(this)
-
-      this.clipboard = new Clipboard('#snippet-copy')
-
-      this.clipboard.on('success', e => {
-        Notifications.toast.success('Copied!')
-      }).on('error', e => {
-        Notifications.toast.error('Unable to copy snippet.')
-      })
-    },
-
-    updated() {
-      HighlighterHelper.highlightMarkdownCodeBlocks(this)
-    },
-
-    beforeDestroy() {
-      this.clipboard.destroy()
-    },
+    components: {Card, Icon, VueMarkdown, SnippetFileShow},
 
     computed: {
-      linkRaw() {
-        return '/api/v1/snippets/' + this.snippet.id + '/raw'
+      showSnippetFile() {
+        return this.$store.state.labelSnippets.mode
       },
 
       snippet() {
         return this.$store.state.labelSnippets.active
       },
-
-      isMarkdown() {
-        return _.isEqual(this.$store.state.labelSnippets.active.language, 'markdown')
-      },
-
-      hljsClass() {
-        return HighlighterHelper.processHljsMode(this.snippet.language)
-      }
     },
 
     methods: {
@@ -112,9 +60,9 @@
 
       destroySnippet() {
         Notifications.confirm(
-            "Are you really want to delete snippet " +
+            "Are you really sure you want to delete snippet " +
             "<span class='has-text-weight-bold is-italic'>" +
-            this.$store.state.labelSnippets.active.title +
+            this.snippet.description +
             "</span>?",
             result => {
               if (result.value) {

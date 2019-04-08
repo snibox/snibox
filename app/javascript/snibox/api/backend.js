@@ -65,13 +65,22 @@ class BackendService {
 
 class SnippetService extends BackendService {
   save() {
+    let snippet_files_attributes = []
+    this.component.$store.state.labelSnippets.active.snippet_files.forEach((snippet_file, index) => {
+      snippet_files_attributes.push({
+        id: snippet_file.id || null,
+        title: snippet_file.title,
+        content: this.component.$children[0].$children[index].editor.getValue(),
+        language: snippet_file.language,
+        tabs: snippet_file.tabs,
+      })
+    })
+
     this.options.data = {
       snippet: {
         id: this.component.snippet.id,
-        title: this.component.$store.state.labelSnippets.edit.title,
-        content: this.component.editor.getValue(),
-        language: this.component.$store.state.labelSnippets.edit.language,
-        tabs: this.component.$store.state.labelSnippets.edit.tabs,
+        description: this.component.snippet.description,
+        snippet_files_attributes: snippet_files_attributes,
         label_attributes: {
           name: this.component.$store.state.labelSnippets.edit.label
         }
@@ -85,6 +94,12 @@ class SnippetService extends BackendService {
   destroy() {
     super.destroy(response => {
       this.component.$store.commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
+    })
+  }
+
+  destroy_snippet_file() {
+    super.destroy(response => {
+      this.component.$store.commit('setActiveLabelSnippet', response.data.entity)
     })
   }
 }
@@ -141,6 +156,18 @@ export default {
       }
 
       new SnippetService(component, options).destroy()
+    },
+
+    destroy_snippet_file(component, snippet_file_id) {
+      let options = {
+        path: '/api/v1/snippets/:id/destroy/:snippet_file'.replace(':id', component.snippet.id).replace(':snippet_file', snippet_file_id),
+        messages: {
+          success: 'Snippet file removed!',
+          error: 'Unable to delete snippet file.'
+        }
+      }
+
+      new SnippetService(component, options).destroy_snippet_file()
     }
   },
 
