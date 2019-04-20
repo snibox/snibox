@@ -1,20 +1,24 @@
 import StoreHelpers from './helpers'
 
 export default {
+  setSnippetDescription(state, value) {
+    state.labelSnippets.active.description = value
+  },
+
   setLabelEditName(state, value) {
     state.labels.edit.name = value
   },
 
-  setLabelSnippetEditTitle(state, value) {
-    state.labelSnippets.edit.title = value
+  setLabelSnippetEditTitle(state, {index, value}) {
+    state.labelSnippets.active.snippet_files[index].title = value
   },
 
-  setLabelSnippetEditLanguage(state, value) {
-    state.labelSnippets.edit.language = value
+  setLabelSnippetEditLanguage(state, {index, value}) {
+    state.labelSnippets.active.snippet_files[index].language = value
   },
 
-  setLabelSnippetEditTabs(state, value) {
-    state.labelSnippets.edit.tabs = value
+  setLabelSnippetEditTabs(state, {index, value}) {
+    state.labelSnippets.active.snippet_files[index].tabs = value
   },
 
   setLabelSnippetEditLabel(state, value) {
@@ -59,5 +63,21 @@ export default {
 
   setReadyFlag(state, flag) {
     state.flags.ready = flag
+  },
+
+  addSnippetFile(state, snippetIndex) {
+    if (snippetIndex === -1) {
+      snippetIndex = state.snippets.length - 1
+    }
+    state.labelSnippets.active.snippet_files.push({
+      title: '',
+      content: '',
+      language: 'automatically',
+      tabs: 4,
+    })
+  },
+
+  removeSnippetFile(state, snippetIndex) {
+    state.labelSnippets.active.snippet_files.splice(snippetIndex, 1)
   }
 }

@@ -20,6 +20,9 @@ describe 'Labels', js: true do
     end
     within('#snippets') do
       expect(page).not_to have_css('#label-edit-form')
+      first('li > a').click
+    end
+    within('#show-snippet') do
       expect(page).to have_content('snippet_1')
     end
   end

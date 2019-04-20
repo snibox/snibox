@@ -10,25 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_05_181630) do
+ActiveRecord::Schema.define(version: 2019_04_01_062316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "labels", force: :cascade do |t|
     t.string "name"
-    t.integer "snippets_count", default: 0
+    t.integer "snippets_count", default: 0, null: false
     t.index ["name"], name: "index_labels_on_name", unique: true
   end
 
-  create_table "snippets", force: :cascade do |t|
+  create_table "snippet_files", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "language"
     t.integer "tabs", limit: 2
+    t.bigint "snippet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["snippet_id"], name: "index_snippet_files_on_snippet_id"
+  end
+
+  create_table "snippets", force: :cascade do |t|
     t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.integer "snippet_files_count", default: 0, null: false
     t.index ["label_id"], name: "index_snippets_on_label_id"
   end
 

@@ -81,6 +81,19 @@ pre {
   padding-top: 5px;
 }
 
+#snippet-file-form {
+  &.card {
+    border: 1px solid $border-color;
+    border-radius: $radius - 1;
+    margin-bottom: 1em;
+  }
+}
+
+[id^=snippet-file-form-] {
+  border: 1px solid $border-color;
+  margin-bottom: .75em;
+}
+
 .menu-top {
   @extend .is-marginless;
   background: $white;
@@ -134,11 +147,24 @@ pre {
 
 .editor {
   font-size: $code-size;
-  height: calc(100vh - 272px);
+  height: calc(100vh - 542px);
   min-height: 200px;
   border: 1px solid $border-color;
   width: 100%;
   border-radius: $radius - 1;
+}
+
+.center {
+  text-align: center;
+}
+
+.no-height {
+  height: auto;
+  min-height: 0;
+}
+
+.no-border {
+  border: 0;
 }
 
 // responsiveness

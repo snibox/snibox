@@ -18,7 +18,8 @@ Rails.application.routes.draw do
 
       resources :snippets, except: [:show] do
         member do
-          get 'raw', to: 'snippets#raw', as: 'raw_snippet'
+          get 'raw/:snippet_file', to: 'snippets#raw', as: 'raw_snippet'
+          delete 'destroy/:snippet_file', to: 'snippets#destroy_snippet_file', as: 'destroy_snippet_file'
         end
       end
 

@@ -12,8 +12,15 @@ $card-header-height: 45px;
 
 .card-header {
   .card-header-title {
-    #show-snippet & {
+    #show-snippet &:not(.no-wrap) {
       flex-direction: row-reverse;
+    }
+
+    &.no-wrap {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex-direction: row;
     }
   }
 

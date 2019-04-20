@@ -2,40 +2,28 @@
 
   <card id="snippet-form" class="animated">
     <header class="card-header" slot="card-header">
-      <p class="card-header-title" v-html="title"></p>
+      <p class="card-header-title no-wrap" v-html="title"></p>
     </header>
 
     <div class="card-content" slot="card-content">
       <form action="/" @submit="submitAction">
         <div class="field is-horizontal">
-          <div class="field-body">
-            <div class="field">
-              <div class="control is-expanded">
-                <input id="title" class="input" type="text" placeholder="Title" v-model="editSnippetTitle">
-              </div>
-            </div>
-            <div class="field is-grouped is-grouped-right">
-              <div class="control">
-                <div class="select">
-                  <select v-model="editSnippetLanguage">
-                    <option v-for="(v, k) in language_options" :value="k">{{ v }}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="control">
-                <div class="select">
-                  <select v-model="editSnippetTabs">
-                    <option v-for="(v, k) in tab_options" :value="k">{{ v }}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+          <div class="editor no-height no-border">
+            <textarea name="description" class="file textarea" placeholder="What is your snippet about?" v-model="editSnippetDescription">{{ snippet.description }}</textarea>
           </div>
         </div>
 
-        <div class="field">
-          <div class="editor" :style="{maxHeight: editorHeight}">
-            <textarea class="file textarea" placeholder="Paste a snippet of code">{{ snippet.content }}</textarea>
+        <div
+          class="field"
+          v-for="(snippetFile, index) in snippetFiles"
+        >
+          <snippet-file-form
+            :index="index"
+            :title="snippetFile.title || 'New snippet file'"
+          />
+
+          <div class="control center">
+            <button class="button is-primary" @click="addFile($store.state.snippets.indexOf(snippet), $event)">Add snippet file</button>
           </div>
         </div>
 
@@ -67,6 +55,7 @@
 <script>
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
+  import SnippetFileForm from '../snippet_file/Form.vue'
   import CodeMirror from 'codemirror'
   import 'codemirror/addon/display/placeholder'
   import '../../utils/codemirror_modes'
@@ -77,7 +66,7 @@
   export default {
     props: ['title', 'action'],
 
-    components: {Card},
+    components: {Card, SnippetFileForm},
 
     mixins: [Editor, Filters],
 
@@ -88,35 +77,13 @@
     },
 
     computed: {
-      editSnippetTitle: {
+      editSnippetDescription: {
         get() {
-          return this.$store.state.labelSnippets.edit.title
+          return this.snippet.description
         },
 
         set(value) {
-          this.$store.commit('setLabelSnippetEditTitle', value)
-        }
-      },
-
-      editSnippetLanguage: {
-        get() {
-          return this.$store.state.labelSnippets.edit.language
-        },
-
-        set(value) {
-          this.$store.commit('setLabelSnippetEditLanguage', value)
-          this.editor.setOption('mode', processEditorMode(value))
-        }
-      },
-
-      editSnippetTabs: {
-        get() {
-          return this.$store.state.labelSnippets.edit.tabs
-        },
-
-        set(value) {
-          this.$store.commit('setLabelSnippetEditTabs', value)
-          this.editor.setOption('tabSize', value)
+          this.$store.commit('setSnippetDescription', value)
         }
       },
 
@@ -132,10 +99,19 @@
 
       snippet() {
         return this.$store.state.labelSnippets.active
+      },
+
+      snippetFiles() {
+        return this.snippet.snippet_files
       }
     },
 
     methods: {
+      addFile(snippetIndex, e) {
+        e.preventDefault();
+        this.$store.commit('addSnippetFile', snippetIndex)
+      },
+
       submitAction(e) {
         e.preventDefault()
         Backend.snippet[this.action](this)
@@ -154,11 +130,11 @@
 
     mounted() {
       // init codemirror
-      this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
-        lineNumbers: true,
-        mode: processEditorMode(this.$store.state.labelSnippets.edit.language),
-        tabSize: this.$store.state.labelSnippets.active.tabs
-      })
+      // this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
+      //   lineNumbers: true,
+      //   mode: processEditorMode(this.$store.state.labelSnippets.edit.language),
+      //   tabSize: this.$store.state.labelSnippets.active.tabs
+      // })
 
       // set focus on title textfield
       setTimeout(() => {
