@@ -12,7 +12,6 @@ class ConvertSnippetsToSnippetFiles < ActiveRecord::Migration[5.2]
       snippet_file.save!
     end
 
-    remove_column :snippets, :title
     remove_column :snippets, :content
     remove_column :snippets, :language
     remove_column :snippets, :tabs

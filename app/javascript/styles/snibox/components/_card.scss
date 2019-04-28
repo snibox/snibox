@@ -35,8 +35,19 @@ $card-header-height: 45px;
   }
 }
 
+.card-description {
+  padding: 1rem 0.75em;
+}
+
 .card-content {
   padding: 1rem 0.75em;
+
+  &.collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .5s cubic-bezier(0, 1, 0, 1);
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: $phone-old) {

@@ -3,6 +3,11 @@
   <card :id="`snippet-file-form-${index}`" class="animated">
     <header class="card-header" slot="card-header">
       <p class="card-header-title" v-html="title"></p>
+      <collapsible-controls
+        :index="index"
+        :id="`#snippet-file-form-${index}`"
+      >
+      </collapsible-controls>
       <div class="card-header-icon">
         <a
           :id="`snippet-delete-${index}`"
@@ -21,7 +26,7 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input :id="`title-${index}`" class="input" type="text" placeholder="Title" v-model="editSnippetTitle">
+                <input :id="`title-${index}`" class="input" type="text" placeholder="Title" v-model="editSnippetFileTitle">
               </div>
             </div>
             <div class="field is-grouped is-grouped-right">
@@ -60,16 +65,18 @@
   import Card from '../Card.vue'
   import CodeMirror from 'codemirror'
   import 'codemirror/addon/display/placeholder'
+  import CollapsibleControls from '../CollapsibleControls.vue'
   import '../../utils/codemirror_modes'
   import Editor from '../../mixins/editor'
   import Filters from '../../mixins/filters'
   import Icon from '../Icon.vue'
   import { processEditorMode } from '../../utils/editor_helper'
+  import Notifications from '../../utils/notifications'
 
   export default {
     props: ['title', 'action', 'index'],
 
-    components: {Card, Icon},
+    components: {Card, CollapsibleControls, Icon, Notifications},
 
     mixins: [Editor, Filters],
 
@@ -80,7 +87,7 @@
     },
 
     computed: {
-      editSnippetTitle: {
+      editSnippetFileTitle: {
         get() {
           return this.snippetFile.title
         },
@@ -129,7 +136,21 @@
         e.preventDefault();
 
         if (this.snippet.snippet_files.length > 1) {
-          this.$store.commit('removeSnippetFile', snippetIndex)
+          Notifications.confirm(
+              'Are you really sure you want to delete snippet file ' +
+              '<span class=\'has-text-weight-bold is-italic\'>' +
+              this.snippet.snippet_files[snippetIndex].title +
+              '</span>?',
+              result => {
+                if (result.value) {
+                  if (typeof this.snippet.snippet_files[snippetIndex].id !== 'undefined') {
+                    Backend.snippet.destroy_snippet_file(this, this.snippet.snippet_files[snippetIndex].id)
+                  } else {
+                    this.$store.commit('removeSnippetFile', snippetIndex)
+                  }
+                }
+              })
+
         }
       },
 

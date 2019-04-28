@@ -79,6 +79,7 @@ class SnippetService extends BackendService {
     this.options.data = {
       snippet: {
         id: this.component.snippet.id,
+        title: this.component.snippet.title,
         description: this.component.snippet.description,
         snippet_files_attributes: snippet_files_attributes,
         label_attributes: {

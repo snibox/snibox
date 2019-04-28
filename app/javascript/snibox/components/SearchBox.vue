@@ -22,7 +22,7 @@
           @mouseenter="focus(i)">
         <a href="#" @click.prevent>
           <div class="flex-container">
-            <div class="with-text-overflow">{{ suggestion.description }}</div>
+            <div class="with-text-overflow">{{ suggestion.title }}</div>
             <div class="tag is-rounded" :class="{'is-italic': suggestion.label.name === ''}">
               {{ suggestion.label.name === '' ? 'untagged' : suggestion.label.name }}
             </div>
@@ -70,8 +70,6 @@
 
     mounted() {
       document.addEventListener('keyup', e => {
-        console.log(e.key);
-        console.log(e.keyCode);
         if ((e.key === '/' || e.key === '>') && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
           this.$el.querySelector('.search').focus()
         }

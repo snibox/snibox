@@ -4,7 +4,7 @@ class AddSnippetFilesToSnippets < ActiveRecord::Migration[5.2]
     add_column :snippets, :snippet_files_count, :integer, null: false, default: 0
 
     create_table :snippet_files do |t|
-      t.string :title
+      t.string :title, null: false
       t.text :content
       t.string :language
       t.integer :tabs, limit: 2

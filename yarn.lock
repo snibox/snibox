@@ -4697,9 +4697,12 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
-octicons@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/octicons/-/octicons-5.0.1.tgz#0fa0c4fd3680d251266f073736539317cb846e4f"
+octicons@^8.0.1:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/octicons/-/octicons-8.5.0.tgz#b64383093e1469dc169fd2a76946fccc25f6bbf1"
+  integrity sha512-l4GCHwBvStuwVfIuqUx/ktFJQJdCqLnd0bi2dvYZzkza6wj9EUksfMUlTqyVMULbPIvRTXxOqn/W07fsMu1bXA==
+  dependencies:
+    object-assign "^4.1.1"
 
 on-finished@~2.3.0:
   version "2.3.0"

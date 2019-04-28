@@ -14,7 +14,7 @@ describe 'Snippets', js: true do
     end
 
     it 'tagged snippet' do
-      create_snippet('test snippet', 'test label')
+      create_snippet('test snippet', 'test description', 'test label')
       within('#labels') do
         expect(page).to have_content('test label')
         expect(page).to have_content('untagged')
@@ -23,7 +23,7 @@ describe 'Snippets', js: true do
     end
 
     it 'adds a snippet file' do
-      create_snippet('test snippet', 'test label')
+      create_snippet('test snippet', 'test description', 'test label')
 
       sleep 1
       find('#snippet-edit').click
@@ -31,7 +31,7 @@ describe 'Snippets', js: true do
         expect(page).to have_css('#snippet-file-form-0')
         expect(page).not_to have_css('#snippet-file-form-1')
 
-        click_button('Add snippet file')
+        click_button('Add file')
         expect(page).to have_css('#snippet-file-form-1')
 
         fill_in_snippet_file_title(1, 'my second snippet title')
@@ -42,20 +42,21 @@ describe 'Snippets', js: true do
       expect(page).to have_css('#show-snippet-1')
     end
 
-    it 'removes a snippet file' do
-      create_snippet('test snippet', 'test label')
+    it 'removes a persisted snippet file' do
+      create_snippet('test snippet', 'test description', 'test label')
 
       sleep 1
       find('#snippet-edit').click
       within('#snippet-form') do
-        click_button('Add snippet file')
+        click_button('Add file')
 
         fill_in_snippet_file_title(1, 'my second snippet title')
         fill_in_editor_field(1)
         click_on 'Update'
       end
 
-      within('#show-snippet-1') do
+      find('#snippet-edit').click
+      within('#snippet-form') do
         find('#snippet-delete-1').click
       end
 
@@ -64,11 +65,43 @@ describe 'Snippets', js: true do
 
       expect(page).not_to have_css('#show-snippet-1')
     end
+
+    it 'removes an unpersisted snippet file' do
+      create_snippet('test snippet', 'test description', 'test label')
+
+      sleep 1
+      find('#snippet-edit').click
+      within('#snippet-form') do
+        click_button('Add file')
+
+        fill_in_snippet_file_title(1, 'my second snippet title')
+        fill_in_editor_field(1)
+        find('#snippet-delete-1').click
+      end
+
+      sleep 1
+      click_button('Yes')
+
+      expect(page).not_to have_css('#snippet-delete-1')
+    end
+
+    it 'user collapses a snippet file' do
+      create_snippet('test snippet', 'test description', 'test label')
+
+      sleep 1
+      find('#snippet-edit').click
+      expect(page).to have_css('#snippet-file-form-0 .card-header')
+      expect(page).to have_css('#title-0')
+
+      find('#snippet-collapse-0').click
+      expect(page).to have_css('#snippet-file-form-0 .card-header')
+      expect(page).not_to have_css('#title-0')
+    end
   end
 
   context 'show' do
     before do
-      create_snippet('test snippet', 'test label')
+      create_snippet('test snippet', 'test description', 'test label')
     end
 
     it 'user able to view raw' do
@@ -91,7 +124,8 @@ describe 'Snippets', js: true do
     it 'user able to edit snippet' do
       find('#snippet-edit').click
       sleep 1
-      fill_in 'description', with: 'edited snippet'
+      fill_in 'title', with: 'edited snippet title'
+      fill_in 'description', with: 'edited snippet description'
       fill_in 'snippet-labels', with: 'edited label', fill_options: { clear: :backspace }
       click_on 'Update'
 
@@ -99,15 +133,27 @@ describe 'Snippets', js: true do
         expect(page).to have_content('edited label')
         expect(page).to have_content('untagged')
       end
-      within('#snippets') { expect(page).to have_content('edited snippet') }
+      within('#snippets') { expect(page).to have_content('edited snippet title') }
+
+      within('#show-snippet') { expect(page).to have_content('edited snippet description') }
+    end
+
+    it 'user callapses a snippet file' do
+      expect(page).to have_css('#show-snippet-0 .card-header')
+      expect(page).to have_css('#code-0')
+
+      find('#snippet-collapse-0').click
+      expect(page).to have_css('#show-snippet-0 .card-header')
+      expect(page).not_to have_css('#code-0')
     end
   end
 
   private
 
-  def create_snippet(description, label = nil)
+  def create_snippet(title, description = nil, label = nil)
     click_on 'Add snippet'
-    fill_in 'description', with: description
+    fill_in 'title', with: title
+    fill_in 'description', with: description.presence || 'my awesome snippet'
     fill_in_snippet_file_title(0, 'my snippet title')
     fill_in_editor_field(0)
     fill_in 'snippet-labels', with: label unless label.nil?

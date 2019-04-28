@@ -11,7 +11,7 @@
     "github-markdown-css": "^2.10.0",
     "lodash": "^4.17.4",
     "mobile-detect": "^1.4.2",
-    "octicons": "^5.0.1",
+    "octicons": "^8.0.1",
     "precss": "^2.0.0",
     "rails-ujs": "^5.1.5",
     "sweetalert2": "^7.24.3",
