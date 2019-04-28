@@ -1,5 +1,5 @@
 require 'simplecov'
-require 'chromedriver/helper'
+require 'webdrivers'
 
 SimpleCov.configure do
   load_profile 'test_frameworks'
@@ -15,9 +15,7 @@ end
 
 SimpleCov.start
 
-# based on https://semaphoreci.com/docs/how-to-update-chrome.html 
-# and http://chromedriver.chromium.org/downloads
-Chromedriver.set_version '73.0.3683.68'
+Webdrivers::Chromedriver.version = '2.46'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
