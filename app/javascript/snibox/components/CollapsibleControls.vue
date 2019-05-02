@@ -1,20 +1,12 @@
 <template>
-  <div class="card-header-icon">
-    <a
-      :id="`snippet-collapse-${index}`"
-      class="button is-small"
-      @click="collapseCardContent">
-      <icon
-        v-if="collapse"
-        type="fold-down">
-      </icon>
-      <icon
-        v-if="!collapse"
-        type="fold-up">
-      </icon>
-      <span>Collapse</span>
-    </a>
-  </div>
+  <a :id="`snippet-collapse-${index}`"
+     class="card-header-icon"
+     @click="collapseCardContent">
+    <icon v-if="collapse"
+          type="chevron-up"/>
+    <icon v-if="!collapse"
+          type="chevron-down"/>
+  </a>
 </template>
 
 <script>
@@ -35,15 +27,15 @@
 
     methods: {
       collapseCardContent(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         if (this.collapse) {
-          this.$root.$el.querySelector(this.id + ' .card-content').classList.remove('collapse');
+          this.$root.$el.querySelector(this.id + ' .card-content').classList.remove('collapse')
         } else {
-          this.$root.$el.querySelector(this.id + ' .card-content').classList.add('collapse');
+          this.$root.$el.querySelector(this.id + ' .card-content').classList.add('collapse')
         }
         this.collapse = !this.collapse
       }
     }
-  };
+  }
 </script>
