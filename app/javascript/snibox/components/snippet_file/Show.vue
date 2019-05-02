@@ -20,17 +20,11 @@
           </div>
         </div>
       </div>
-      <div class="card-header-icon" v-if="snippetFile.id">
-        <a
-          :id="`snippet-delete-${index}`"
-          class="button is-outlined is-small is-danger"
-          :disabled="this.snippet.snippet_files.length === 1"
-          @click="destroySnippet"
-        >
-          <icon type="trashcan"></icon>
-          <span>Delete</span>
-        </a>
-      </div>
+      <collapsible-controls
+        :index="index"
+        :id="`#show-snippet-${index}`"
+      >
+      </collapsible-controls>
     </header>
 
     <div class="card-content" slot="card-content">
@@ -51,6 +45,7 @@
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import Clipboard from 'clipboard'
+  import CollapsibleControls from '../CollapsibleControls.vue'
   import * as HighlighterHelper from '../../utils/highlighter_helper'
   import Icon from '../Icon.vue'
   import Notifications from '../../utils/notifications'
@@ -59,9 +54,9 @@
   export default {
     name: 'snippet-file-show',
 
-    props: ['index'],
+    props: ['index', 'collapse'],
 
-    components: {Card, Icon, VueMarkdown},
+    components: {Card, CollapsibleControls, Icon, VueMarkdown},
 
     data() {
       return {
@@ -108,25 +103,6 @@
 
       hljsClass() {
         return HighlighterHelper.processHljsMode(this.snippetFile.language)
-      }
-    },
-
-    methods: {
-      destroySnippet() {
-        if (this.snippet.snippet_files.length === 1) {
-          return;
-        }
-
-        Notifications.confirm(
-            "Are you really sure you want to delete snippet file " +
-            "<span class='has-text-weight-bold is-italic'>" +
-            this.snippetFile.title +
-            "</span>?",
-            result => {
-              if (result.value) {
-                Backend.snippet.destroy_snippet_file(this, this.snippetFile.id)
-              }
-            })
       }
     }
   }

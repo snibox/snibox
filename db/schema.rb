@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_062316) do
   end
 
   create_table "snippet_files", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.text "content"
     t.string "language"
     t.integer "tabs", limit: 2
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_04_01_062316) do
   end
 
   create_table "snippets", force: :cascade do |t|
+    t.string "title"
     t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

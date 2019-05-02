@@ -2,7 +2,7 @@
 
   <div id="show-snippet" class="animated">
     <header class="card-header" slot="card-header">
-      <p class="card-header-title no-wrap" v-html="snippet.description"></p>
+      <p class="card-header-title no-wrap" v-html="snippet.title"></p>
 
       <div class="card-header-icon" v-if="snippet.id">
         <a id="snippet-edit" class="button is-outlined is-small" @click="editSnippet">
@@ -15,6 +15,10 @@
         </a>
       </div>
     </header>
+
+    <div class="card-description">
+      <p class="card-header-description no-wrap" v-html="snippet.description"></p>
+    </div>
 
     <div
       v-for="(snippet_file, index) in snippet.snippet_files"
@@ -62,7 +66,7 @@
         Notifications.confirm(
             "Are you really sure you want to delete snippet " +
             "<span class='has-text-weight-bold is-italic'>" +
-            this.snippet.description +
+            this.snippet.title +
             "</span>?",
             result => {
               if (result.value) {

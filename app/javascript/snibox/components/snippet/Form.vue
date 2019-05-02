@@ -8,22 +8,18 @@
     <div class="card-content" slot="card-content">
       <form action="/" @submit="submitAction">
         <div class="field is-horizontal">
-          <div class="editor no-height no-border">
-            <textarea name="description" class="file textarea" placeholder="What is your snippet about?" v-model="editSnippetDescription">{{ snippet.description }}</textarea>
+          <div class="field-body">
+            <div class="field">
+              <div class="control is-expanded">
+                <input id="title" name="title" class="input" type="text" placeholder="Snippet title" v-model="editSnippetTitle">
+              </div>
+            </div>
           </div>
         </div>
 
-        <div
-          class="field"
-          v-for="(snippetFile, index) in snippetFiles"
-        >
-          <snippet-file-form
-            :index="index"
-            :title="snippetFile.title || 'New snippet file'"
-          />
-
-          <div class="control center">
-            <button class="button is-primary" @click="addFile($store.state.snippets.indexOf(snippet), $event)">Add snippet file</button>
+        <div class="field is-horizontal">
+          <div class="editor no-height no-border">
+            <textarea name="description" class="file textarea" placeholder="What is your snippet about?" v-model="editSnippetDescription">{{ snippet.description }}</textarea>
           </div>
         </div>
 
@@ -35,6 +31,20 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="control center">
+          <button class="button is-primary" @click="addFile($store.state.snippets.indexOf(snippet), $event)">Add file</button>
+        </div>
+
+        <div
+          class="field"
+          v-for="(snippetFile, index) in snippetFiles"
+        >
+          <snippet-file-form
+            :index="index"
+            :title="snippetFile.title || 'New snippet file'"
+          />
         </div>
 
         <div class="field is-grouped form-footer">
@@ -77,6 +87,16 @@
     },
 
     computed: {
+      editSnippetTitle: {
+        get() {
+          return this.snippet.title
+        },
+
+        set(value) {
+          this.$store.commit('setSnippetTitle', value)
+        }
+      },
+
       editSnippetDescription: {
         get() {
           return this.snippet.description
@@ -129,13 +149,6 @@
     },
 
     mounted() {
-      // init codemirror
-      // this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
-      //   lineNumbers: true,
-      //   mode: processEditorMode(this.$store.state.labelSnippets.edit.language),
-      //   tabSize: this.$store.state.labelSnippets.active.tabs
-      // })
-
       // set focus on title textfield
       setTimeout(() => {
         this.$el.querySelector('input[type=text]').focus()

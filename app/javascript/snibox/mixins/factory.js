@@ -4,6 +4,8 @@ export default {
       return {
         snippet: {
           id: null,
+          title: '',
+          description: '',
           label: {
             id: -1,
             name: '',

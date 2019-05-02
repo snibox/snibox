@@ -1,6 +1,10 @@
 import StoreHelpers from './helpers'
 
 export default {
+  setSnippetTitle(state, value) {
+    state.labelSnippets.active.title = value
+  },
+
   setSnippetDescription(state, value) {
     state.labelSnippets.active.description = value
   },
