@@ -1,8 +1,14 @@
+<!-- TODO: snippet_files should be snippetFiles (move to camelCase) -->
+<!-- TODO: copy doesn't work when snippet collapsed -->
+
 <template>
 
   <card :id="`show-snippet-${index}`" class="animated">
     <header class="card-header" slot="card-header">
-      <div class="flex-container" :class="{ 'with-markdown': isMarkdown }">
+      <div class="flex-container" :class="{ 'with-markdown': isMarkdown }" style="width: 100%;">
+        <collapsible-controls
+            :index="index"
+            :id="`#show-snippet-${index}`"/>
         <div class="card-header-title with-text-overflow">
           {{ snippetFile.id ? snippetFile.title : 'Select snippet'}}
         </div>
@@ -13,18 +19,14 @@
                  target="_blank"><span>Raw</span></a>
             </p>
             <p class="control" v-if="!isMarkdown">
-              <a :id="`snippet-copy-${index}`" class="button is-outlined is-small" :data-clipboard-target="`#code-${index}`">
+              <a :id="`snippet-copy-${index}`" class="button is-outlined is-small"
+                 :data-clipboard-target="`#code-${index}`">
                 <icon class="icon-clippy" type="clippy"></icon>
                 <span>Copy</span></a>
             </p>
           </div>
         </div>
       </div>
-      <collapsible-controls
-        :index="index"
-        :id="`#show-snippet-${index}`"
-      >
-      </collapsible-controls>
     </header>
 
     <div class="card-content" slot="card-content">
@@ -32,7 +34,8 @@
         <vue-markdown lang-prefix='' :source="snippetFile.content"></vue-markdown>
       </div>
       <div class="code-body" v-else>
-        <pre :style="{'tab-size': snippetFile.tabs}" class="is-paddingless" v-highlightjs="snippetFile.content" v-if="snippetFile.id"><code :id="`code-${index}`" :class="hljsClass"></code></pre>
+        <pre :style="{'tab-size': snippetFile.tabs}" class="is-paddingless" v-highlightjs="snippetFile.content"
+             v-if="snippetFile.id"><code :id="`code-${index}`" :class="hljsClass"></code></pre>
         <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
       </div>
     </div>
@@ -42,7 +45,6 @@
 </template>
 
 <script>
-  import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import Clipboard from 'clipboard'
   import CollapsibleControls from '../CollapsibleControls.vue'
@@ -67,7 +69,7 @@
     mounted() {
       HighlighterHelper.highlightMarkdownCodeBlocks(this)
 
-      this.clipboard = new Clipboard('#snippet-copy')
+      this.clipboard = new Clipboard(`#snippet-copy-${this.index}`)
 
       this.clipboard.on('success', e => {
         Notifications.toast.success('Copied!')
@@ -98,7 +100,7 @@
       },
 
       isMarkdown() {
-        return _.isEqual(this.$store.state.labelSnippets.active.language, 'markdown')
+        return this.snippetFile.language === 'markdown'
       },
 
       hljsClass() {

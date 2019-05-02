@@ -17,7 +17,10 @@
     </header>
 
     <div class="card-description">
+      <!-- TODO: experimental. Improve this -->
       <p class="card-header-description no-wrap" v-html="snippet.description"></p>
+      <br v-if="snippet.description"/>
+      <p class="is-italic">Files ({{ snippet.snippet_files.length }})</p>
     </div>
 
     <div
@@ -32,8 +35,6 @@
 <script>
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
-  import Clipboard from 'clipboard'
-  import * as HighlighterHelper from '../../utils/highlighter_helper'
   import Icon from '../Icon.vue'
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'

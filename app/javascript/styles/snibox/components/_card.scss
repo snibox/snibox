@@ -2,6 +2,11 @@ $card-header-height: 45px;
 
 .card-header {
   height: $card-header-height;
+
+  .dashboard & {
+    // TODO: where this color?
+    box-shadow: 0 0 1px 1px rgba(10, 10, 10, .1);
+  }
 }
 
 .card {
