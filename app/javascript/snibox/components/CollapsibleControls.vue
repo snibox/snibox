@@ -3,7 +3,7 @@
      class="card-header-icon"
      @click="collapseCardContent">
     <icon v-if="collapse"
-          type="chevron-up"/>
+          type="chevron-right"/>
     <icon v-if="!collapse"
           type="chevron-down"/>
   </a>
@@ -30,9 +30,9 @@
         e.preventDefault()
 
         if (this.collapse) {
-          this.$root.$el.querySelector(this.id + ' .card-content').classList.remove('collapse')
+          this.$root.$el.querySelector(this.id + ' .card-content').classList.remove('collapsed')
         } else {
-          this.$root.$el.querySelector(this.id + ' .card-content').classList.add('collapse')
+          this.$root.$el.querySelector(this.id + ' .card-content').classList.add('collapsed')
         }
         this.collapse = !this.collapse
       }

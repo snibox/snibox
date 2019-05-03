@@ -47,11 +47,12 @@ $card-header-height: 45px;
 .card-content {
   padding: 1rem 0.75em;
 
-  &.collapse {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .5s cubic-bezier(0, 1, 0, 1);
-    padding: 0;
+  &.collapsed {
+    // to make collapsed elements compatible with clipboard.js
+    // https://github.com/zenorocha/clipboard.js/issues/560#issuecomment-408606225
+    opacity: 0;
+    position: absolute;
+    z-index: -10;
   }
 }
 

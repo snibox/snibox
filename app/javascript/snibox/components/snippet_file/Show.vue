@@ -1,30 +1,29 @@
+<!-- TODO: copy doesn't work when snippet collapsed       ± (refactor this) -->
+<!-- TODO: fix markdown highlighting                      ± (recheck) -->
 <!-- TODO: snippet_files should be snippetFiles (move to camelCase) -->
-<!-- TODO: copy doesn't work when snippet collapsed -->
 
 <template>
 
   <card :id="`show-snippet-${index}`" class="animated">
     <header class="card-header" slot="card-header">
-      <div class="flex-container" :class="{ 'with-markdown': isMarkdown }" style="width: 100%;">
-        <collapsible-controls
-            :index="index"
-            :id="`#show-snippet-${index}`"/>
-        <div class="card-header-title with-text-overflow">
-          {{ snippetFile.id ? snippetFile.title : 'Select snippet'}}
-        </div>
-        <div class="card-header-title" v-if="snippetFile.id">
-          <div class="field" :class="{ 'has-addons': !isMarkdown }">
-            <p class="control">
-              <a :id="`snippet-raw-${index}`" class="button is-outlined is-small" :href="linkRaw"
-                 target="_blank"><span>Raw</span></a>
-            </p>
-            <p class="control" v-if="!isMarkdown">
-              <a :id="`snippet-copy-${index}`" class="button is-outlined is-small"
-                 :data-clipboard-target="`#code-${index}`">
-                <icon class="icon-clippy" type="clippy"></icon>
-                <span>Copy</span></a>
-            </p>
-          </div>
+      <collapsible-controls
+          :index="index"
+          :id="`#show-snippet-${index}`"/>
+      <div class="card-header-title with-text-overflow" style="padding-left: 0;">
+        {{ snippetFile.id ? snippetFile.title : 'Select snippet'}}
+      </div>
+      <div class="card-header-title" v-if="snippetFile.id">
+        <div class="field" :class="{ 'has-addons': !isMarkdown }">
+          <p class="control">
+            <a :id="`snippet-raw-${index}`" class="button is-outlined is-small" :href="linkRaw"
+               target="_blank"><span>Raw</span></a>
+          </p>
+          <p class="control" v-if="!isMarkdown">
+            <a :id="`snippet-copy-${index}`" class="button is-outlined is-small"
+               :data-clipboard-target="`#code-${index}`">
+              <icon class="icon-clippy" type="clippy"></icon>
+              <span>Copy</span></a>
+          </p>
         </div>
       </div>
     </header>
@@ -46,7 +45,7 @@
 
 <script>
   import Card from '../Card.vue'
-  import Clipboard from 'clipboard'
+  import ClipboardJS from 'clipboard'
   import CollapsibleControls from '../CollapsibleControls.vue'
   import * as HighlighterHelper from '../../utils/highlighter_helper'
   import Icon from '../Icon.vue'
@@ -69,7 +68,7 @@
     mounted() {
       HighlighterHelper.highlightMarkdownCodeBlocks(this)
 
-      this.clipboard = new Clipboard(`#snippet-copy-${this.index}`)
+      this.clipboard = new ClipboardJS(`#snippet-copy-${this.index}`)
 
       this.clipboard.on('success', e => {
         Notifications.toast.success('Copied!')

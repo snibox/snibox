@@ -48,9 +48,9 @@ pre {
   #show-snippet & {
     width: calc(50% + 64px);
 
-    &.with-markdown {
-      width: calc(50% + 32px);
-    }
+    //&.with-markdown {
+    //  width: calc(50% + 32px);
+    //}
   }
 }
 
