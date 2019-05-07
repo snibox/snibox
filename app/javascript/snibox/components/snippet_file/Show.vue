@@ -1,6 +1,5 @@
 <!-- TODO: copy doesn't work when snippet collapsed       ± (refactor this) -->
 <!-- TODO: fix markdown highlighting                      ± (recheck) -->
-<!-- TODO: snippet_files should be snippetFiles (move to camelCase) -->
 
 <template>
 
@@ -95,7 +94,7 @@
       },
 
       snippetFile() {
-        return this.$store.state.labelSnippets.active.snippet_files[this.index]
+        return this.$store.state.labelSnippets.active.snippetFiles[this.index]
       },
 
       isMarkdown() {

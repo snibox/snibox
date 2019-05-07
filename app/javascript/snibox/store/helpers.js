@@ -5,9 +5,10 @@ import SnippetsBuilder from '../mixins/snippets_builder'
 export default {
   localStorage: {
     setDefault: (commit) => {
+      // We use _ (lodash) to convert underscore_case to camelCase
       let localActive = {
         labels: JSON.parse(localStorage.getItem('labels_active')) || {},
-        labelSnippets: JSON.parse(localStorage.getItem('label_snippets_active')) || {},
+        labelSnippets: _.mapKeys(JSON.parse(localStorage.getItem('label_snippets_active')) || {}, (v, k) => _.camelCase(k)),
       }
 
       if (localActive.labelSnippets.id) {

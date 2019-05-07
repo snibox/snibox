@@ -47,9 +47,9 @@
     minMatchCharLength: 1,
     keys: [
       'description',
-      'snippet_files.content',
-      'snippet_files.title',
-      'snippet_files.language',
+      'snippetFiles.content',
+      'snippetFiles.title',
+      'snippetFiles.language',
       'label.name'
     ]
   }

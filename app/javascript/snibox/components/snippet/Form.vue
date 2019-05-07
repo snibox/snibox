@@ -122,7 +122,7 @@
       },
 
       snippetFiles() {
-        return this.snippet.snippet_files
+        return this.snippet.snippetFiles
       }
     },
 

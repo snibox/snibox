@@ -12,7 +12,7 @@
         <a
           :id="`snippet-delete-${index}`"
           class="button is-outlined is-small is-danger"
-          :disabled="this.snippet.snippet_files.length === 1"
+          :disabled="this.snippet.snippetFiles.length === 1"
           @click="destroySnippet(index, $event)">
           <icon type="trashcan"></icon>
           <span>Delete</span>
@@ -127,7 +127,7 @@
       },
 
       snippetFile() {
-        return this.snippet.snippet_files[this.index]
+        return this.snippet.snippetFiles[this.index]
       }
     },
 
@@ -135,16 +135,16 @@
       destroySnippet(snippetIndex, e) {
         e.preventDefault();
 
-        if (this.snippet.snippet_files.length > 1) {
+        if (this.snippet.snippetFiles.length > 1) {
           Notifications.confirm(
               'Are you really sure you want to delete snippet file ' +
               '<span class=\'has-text-weight-bold is-italic\'>' +
-              this.snippet.snippet_files[snippetIndex].title +
+              this.snippet.snippetFiles[snippetIndex].title +
               '</span>?',
               result => {
                 if (result.value) {
-                  if (typeof this.snippet.snippet_files[snippetIndex].id !== 'undefined') {
-                    Backend.snippet.destroy_snippet_file(this, this.snippet.snippet_files[snippetIndex].id)
+                  if (typeof this.snippet.snippetFiles[snippetIndex].id !== 'undefined') {
+                    Backend.snippet.destroy_snippet_file(this, this.snippet.snippetFiles[snippetIndex].id)
                   } else {
                     this.$store.commit('removeSnippetFile', snippetIndex)
                   }

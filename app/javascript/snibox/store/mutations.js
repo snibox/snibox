@@ -14,15 +14,15 @@ export default {
   },
 
   setLabelSnippetEditTitle(state, {index, value}) {
-    state.labelSnippets.active.snippet_files[index].title = value
+    state.labelSnippets.active.snippetFiles[index].title = value
   },
 
   setLabelSnippetEditLanguage(state, {index, value}) {
-    state.labelSnippets.active.snippet_files[index].language = value
+    state.labelSnippets.active.snippetFiles[index].language = value
   },
 
   setLabelSnippetEditTabs(state, {index, value}) {
-    state.labelSnippets.active.snippet_files[index].tabs = value
+    state.labelSnippets.active.snippetFiles[index].tabs = value
   },
 
   setLabelSnippetEditLabel(state, value) {
@@ -73,7 +73,7 @@ export default {
     if (snippetIndex === -1) {
       snippetIndex = state.snippets.length - 1
     }
-    state.labelSnippets.active.snippet_files.push({
+    state.labelSnippets.active.snippetFiles.push({
       title: '',
       content: '',
       language: 'automatically',
@@ -82,6 +82,6 @@ export default {
   },
 
   removeSnippetFile(state, snippetIndex) {
-    state.labelSnippets.active.snippet_files.splice(snippetIndex, 1)
+    state.labelSnippets.active.snippetFiles.splice(snippetIndex, 1)
   }
 }

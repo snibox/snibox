@@ -20,12 +20,12 @@
       <!-- TODO: experimental. Improve this -->
       <p class="card-header-description no-wrap" v-html="snippet.description"></p>
       <br v-if="snippet.description"/>
-      <p class="is-italic">Files ({{ snippet.snippet_files.length }})</p>
+      <p class="is-italic">Files ({{ snippet.snippetFiles.length }})</p>
     </div>
 
     <div
-      v-for="(snippet_file, index) in snippet.snippet_files"
-      :key="snippet_file.id">
+      v-for="(snippetFile, index) in snippet.snippetFiles"
+      :key="snippetFile.id">
       <snippet-file-show v-if="showSnippetFile == 'show'" :index="index"></snippet-file-show>
     </div>
   </div>

@@ -11,7 +11,7 @@ export default {
             name: '',
             snippets_count: 0
           },
-          snippet_files: [{
+          snippetFiles: [{
             title: '',
             content: '',
             language: 'automatically',

@@ -65,14 +65,14 @@ class BackendService {
 
 class SnippetService extends BackendService {
   save() {
-    let snippet_files_attributes = []
-    this.component.$store.state.labelSnippets.active.snippet_files.forEach((snippet_file, index) => {
-      snippet_files_attributes.push({
-        id: snippet_file.id || null,
-        title: snippet_file.title,
+    let snippetFilesAttributes = []
+    this.component.$store.state.labelSnippets.active.snippetFiles.forEach((snippetFile, index) => {
+      snippetFilesAttributes.push({
+        id: snippetFile.id || null,
+        title: snippetFile.title,
         content: this.component.$children[0].$children[index].editor.getValue(),
-        language: snippet_file.language,
-        tabs: snippet_file.tabs,
+        language: snippetFile.language,
+        tabs: snippetFile.tabs,
       })
     })
 
@@ -81,7 +81,7 @@ class SnippetService extends BackendService {
         id: this.component.snippet.id,
         title: this.component.snippet.title,
         description: this.component.snippet.description,
-        snippet_files_attributes: snippet_files_attributes,
+        snippet_files_attributes: snippetFilesAttributes,
         label_attributes: {
           name: this.component.$store.state.labelSnippets.edit.label
         }
@@ -98,7 +98,7 @@ class SnippetService extends BackendService {
     })
   }
 
-  destroy_snippet_file() {
+  destroySnippetFile() {
     super.destroy(response => {
       this.component.$store.commit('setActiveLabelSnippet', response.data.entity)
     })
@@ -159,7 +159,7 @@ export default {
       new SnippetService(component, options).destroy()
     },
 
-    destroy_snippet_file(component, snippet_file_id) {
+    destroySnippetFile(component, snippet_file_id) {
       let options = {
         path: '/api/v1/snippets/:id/destroy/:snippet_file'.replace(':id', component.snippet.id).replace(':snippet_file', snippet_file_id),
         messages: {
@@ -168,7 +168,7 @@ export default {
         }
       }
 
-      new SnippetService(component, options).destroy_snippet_file()
+      new SnippetService(component, options).destroySnippetFile()
     }
   },
 
