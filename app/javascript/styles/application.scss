@@ -149,6 +149,10 @@ pre {
   border-radius: $radius - 1;
 }
 
+.label {
+  font-weight: 500;
+}
+
 .no-height {
   height: auto;
   min-height: 0;
