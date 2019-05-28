@@ -11,15 +11,24 @@
           <div class="field-body">
             <div class="field">
               <div class="control is-expanded">
-                <input id="title" name="title" class="input" type="text" placeholder="Snippet title" v-model="editSnippetTitle">
+                <input id="title" name="title" class="input" type="text" placeholder="Title"
+                       v-model="editSnippetTitle">
               </div>
             </div>
           </div>
         </div>
 
+        <div class="field">
+          <label class="label">Files</label>
+          <div class="field" v-for="(snippetFile, index) in snippetFiles">
+            <snippet-file-form :index="index" :title="snippetFile.title || 'New snippet file'"/>
+          </div>
+        </div>
+
         <div class="field is-horizontal">
           <div class="editor no-height no-border">
-            <textarea name="description" class="file textarea" placeholder="What is your snippet about?" v-model="editSnippetDescription">{{ snippet.description }}</textarea>
+            <input name="description" class="input" placeholder="Description"
+                      v-model="editSnippetDescription"/>
           </div>
         </div>
 
@@ -33,18 +42,10 @@
           </div>
         </div>
 
-        <div class="control center">
-          <button class="button is-primary" @click="addFile($store.state.snippets.indexOf(snippet), $event)">Add file</button>
-        </div>
-
-        <div
-          class="field"
-          v-for="(snippetFile, index) in snippetFiles"
-        >
-          <snippet-file-form
-            :index="index"
-            :title="snippetFile.title || 'New snippet file'"
-          />
+        <div class="control">
+          <button class="button is-primary" @click="addFile($store.state.snippets.indexOf(snippet), $event)">
+            Add file
+          </button>
         </div>
 
         <div class="field is-grouped form-footer">
@@ -119,7 +120,7 @@
 
     methods: {
       addFile(snippetIndex, e) {
-        e.preventDefault();
+        e.preventDefault()
         this.$store.commit('addSnippetFile', snippetIndex)
       },
 
@@ -132,8 +133,7 @@
         e.preventDefault()
         if (this.$store.state.snippets.mode === 'create') {
           this.$store.commit('setSnippetMode', null)
-        }
-        else {
+        } else {
           this.$store.commit('setSnippetMode', 'show')
         }
       },

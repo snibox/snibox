@@ -89,12 +89,6 @@ pre {
   }
 }
 
-[id^=snippet-file-form-] {
-  border: 1px solid $border-color;
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
-
 .menu-top {
   @extend .is-marginless;
   background: $white;
@@ -153,10 +147,6 @@ pre {
   border: 1px solid $border-color;
   width: 100%;
   border-radius: $radius - 1;
-}
-
-.center {
-  text-align: center;
 }
 
 .no-height {

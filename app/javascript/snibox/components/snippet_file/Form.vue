@@ -1,62 +1,62 @@
 <template>
 
-  <card :id="`snippet-file-form-${index}`" class="animated">
-    <header class="card-header" slot="card-header">
-      <p class="card-header-title" v-html="title"></p>
-      <collapsible-controls
-        :index="index"
-        :id="`#snippet-file-form-${index}`"
-      >
-      </collapsible-controls>
-      <div class="card-header-icon">
-        <a
-          :id="`snippet-delete-${index}`"
-          class="button is-outlined is-small is-danger"
-          :disabled="this.snippet.snippetFiles.length === 1"
-          @click="destroySnippet(index, $event)">
-          <icon type="trashcan"></icon>
-          <span>Delete</span>
-        </a>
-      </div>
-    </header>
-
-    <div class="card-content" slot="card-content">
-      <form action="/" @submit="submitAction">
-        <div class="field is-horizontal">
-          <div class="field-body">
-            <div class="field">
-              <div class="control is-expanded">
-                <input :id="`title-${index}`" class="input" type="text" placeholder="Title" v-model="editSnippetFileTitle">
-              </div>
+  <form action="/" @submit="submitAction">
+    <card :id="`snippet-file-form-${index}`" class="animated">
+      <header class="card-header" slot="card-header" style="justify-content: space-between">
+        <div style="display: flex;">
+          <collapsible-controls
+              :index="index"
+              :id="`#snippet-file-form-${index}`"
+          />
+          <div class="field has-addons is-marginless" style="align-items: center">
+            <div class="control is-expanded">
+              <input :id="`title-${index}`" class="input" type="text" placeholder="Title"
+                     v-model="editSnippetFileTitle">
             </div>
-            <div class="field is-grouped is-grouped-right">
-              <div class="control">
-                <div class="select">
-                  <select v-model="editSnippetLanguage">
-                    <option v-for="(v, k) in languageOptions" :value="k">{{ v }}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="control">
-                <div class="select">
-                  <select v-model="editSnippetTabs">
-                    <option v-for="(v, k) in tabOptions" :value="k">{{ v }}</option>
-                  </select>
-                </div>
-              </div>
+            <div class="control">
+              <a
+                  :id="`snippet-delete-${index}`"
+                  class="button is-danger is-outlined"
+                  :disabled="this.snippet.snippetFiles.length === 1"
+                  @click="destroySnippet(index, $event)">
+                <icon type="trashcan"></icon>
+              </a>
             </div>
           </div>
         </div>
 
+        <div class="card-header-icon">
+          <div class="field is-grouped is-grouped-right is-marginless" style="align-items: center;">
+            <div class="control">
+              <div class="select">
+                <select v-model="editSnippetLanguage">
+                  <option v-for="(v, k) in languageOptions" :value="k">{{ v }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="control">
+              <div class="select">
+                <select v-model="editSnippetTabs">
+                  <option v-for="(v, k) in tabOptions" :value="k">{{ v }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- TODO: check _card.scss -->
+      <div class="card-content is-paddingless" slot="card-content"
+           style="box-shadow: 0 0 1px 1px rgba(10, 10, 10, .1);">
         <div class="field">
-          <div class="editor" :style="{maxHeight: editorHeight}">
+          <div class="editor" :style="{maxHeight: editorHeight}" style="border: none;">
             <textarea class="file textarea" placeholder="Paste a snippet of code">{{ snippetFile.content }}</textarea>
           </div>
         </div>
 
-      </form>
-    </div>
-  </card>
+      </div>
+    </card>
+  </form>
 
 </template>
 
@@ -133,7 +133,7 @@
 
     methods: {
       destroySnippet(snippetIndex, e) {
-        e.preventDefault();
+        e.preventDefault()
 
         if (this.snippet.snippetFiles.length > 1) {
           Notifications.confirm(
@@ -163,8 +163,7 @@
         e.preventDefault()
         if (this.$store.state.snippets.mode === 'create') {
           this.$store.commit('setSnippetMode', null)
-        }
-        else {
+        } else {
           this.$store.commit('setSnippetMode', 'show')
         }
       },
@@ -174,8 +173,8 @@
       // init codemirror
       this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
         lineNumbers: true,
-        mode: processEditorMode(this.snippetFile.language),
-        tabSize: this.snippetFile.language.tabs
+        mode:        processEditorMode(this.snippetFile.language),
+        tabSize:     this.snippetFile.language.tabs
       })
 
       // set focus on title textfield
