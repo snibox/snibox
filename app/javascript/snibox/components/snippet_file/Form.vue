@@ -33,14 +33,14 @@
               <div class="control">
                 <div class="select">
                   <select v-model="editSnippetLanguage">
-                    <option v-for="(v, k) in language_options" :value="k">{{ v }}</option>
+                    <option v-for="(v, k) in languageOptions" :value="k">{{ v }}</option>
                   </select>
                 </div>
               </div>
               <div class="control">
                 <div class="select">
                   <select v-model="editSnippetTabs">
-                    <option v-for="(v, k) in tab_options" :value="k">{{ v }}</option>
+                    <option v-for="(v, k) in tabOptions" :value="k">{{ v }}</option>
                   </select>
                 </div>
               </div>
@@ -144,7 +144,7 @@
               result => {
                 if (result.value) {
                   if (typeof this.snippet.snippetFiles[snippetIndex].id !== 'undefined') {
-                    Backend.snippet.destroy_snippet_file(this, this.snippet.snippetFiles[snippetIndex].id)
+                    Backend.snippet.destroySnippetFile(this, this.snippet.snippetFiles[snippetIndex].id)
                   } else {
                     this.$store.commit('removeSnippetFile', snippetIndex)
                   }

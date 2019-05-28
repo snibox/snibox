@@ -66,25 +66,16 @@
   import Backend from '../../api/backend'
   import Card from '../Card.vue'
   import SnippetFileForm from '../snippet_file/Form.vue'
-  import CodeMirror from 'codemirror'
   import 'codemirror/addon/display/placeholder'
   import '../../utils/codemirror_modes'
-  import Editor from '../../mixins/editor'
   import Filters from '../../mixins/filters'
-  import { processEditorMode } from '../../utils/editor_helper'
 
   export default {
     props: ['title', 'action'],
 
     components: {Card, SnippetFileForm},
 
-    mixins: [Editor, Filters],
-
-    data() {
-      return {
-        editor: null
-      }
-    },
+    mixins: [Filters],
 
     computed: {
       editSnippetTitle: {

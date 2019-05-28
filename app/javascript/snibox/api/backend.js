@@ -11,7 +11,7 @@ class BackendService {
 
   // create or update
   save(callback = null) {
-    let error_message = this.options.messages.error
+    let errorMessage = this.options.messages.error
     axios[this.options.method](this.options.path, this.options.data)
       .then(
         response => {
@@ -21,17 +21,17 @@ class BackendService {
           else {
             // render error notification from api
             if (response.data.hasOwnProperty('errors')) {
-              error_message += '<hr/>'
+              errorMessage += '<hr/>'
               response.data.errors.forEach(error => {
-                error_message = error_message + error + '.<br/>'
+                errorMessage = errorMessage + error + '.<br/>'
               })
             }
-            Notifications.toast.error(error_message)
+            Notifications.toast.error(errorMessage)
           }
         })
       .catch(error => {
         console.log(error)
-        Notifications.toast.error(error_message)
+        Notifications.toast.error(errorMessage)
       })
   }
 
@@ -159,9 +159,9 @@ export default {
       new SnippetService(component, options).destroy()
     },
 
-    destroySnippetFile(component, snippet_file_id) {
+    destroySnippetFile(component, snippetFileId) {
       let options = {
-        path: '/api/v1/snippets/:id/destroy/:snippet_file'.replace(':id', component.snippet.id).replace(':snippet_file', snippet_file_id),
+        path: '/api/v1/snippets/:id/destroy/:snippet_file'.replace(':id', component.snippet.id).replace(':snippet_file', snippetFileId),
         messages: {
           success: 'Snippet file removed!',
           error: 'Unable to delete snippet file.'

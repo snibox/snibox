@@ -4,8 +4,8 @@ import { editorHeightDelta } from '../utils/variables'
 export default {
   data() {
     return {
-      language_options: this.$store.state.languages,
-      tab_options: {
+      languageOptions: this.$store.state.languages,
+      tabOptions: {
         2: '2 spaces',
         4: '4 spaces',
         8: '8 spaces',
