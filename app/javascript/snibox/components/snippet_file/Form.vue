@@ -174,8 +174,8 @@
       // init codemirror
       this.editor = CodeMirror.fromTextArea(this.$el.querySelector('.file'), {
         lineNumbers: true,
-        mode: processEditorMode(this.$store.state.labelSnippets.edit.language),
-        tabSize: this.$store.state.labelSnippets.active.tabs
+        mode: processEditorMode(this.snippetFile.language),
+        tabSize: this.snippetFile.language.tabs
       })
 
       // set focus on title textfield
