@@ -8,55 +8,68 @@
     <div class="card-content" slot="card-content">
       <form action="/" @submit="submitAction">
         <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Title *</label>
+          </div>
           <div class="field-body">
             <div class="field">
-              <div class="control is-expanded">
-                <input id="title" name="title" class="input" type="text" placeholder="Title"
-                       v-model="editSnippetTitle">
+              <div class="control">
+                <input id="title" name="title" class="input" type="text" v-model="editSnippetTitle">
               </div>
             </div>
           </div>
         </div>
 
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Description</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input name="description" class="input" v-model="editSnippetDescription"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Label</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input id="snippet-labels" class="input" type="text" v-model="editSnippetLabel">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div class="field">
-          <label class="label">Files</label>
           <div class="field" v-for="(snippetFile, index) in snippetFiles">
             <snippet-file-form :index="index" :title="snippetFile.title || 'New snippet file'"/>
           </div>
         </div>
 
-        <div class="field is-horizontal">
-          <div class="editor no-height no-border">
-            <input name="description" class="input" placeholder="Description"
-                      v-model="editSnippetDescription"/>
+        <div class="field is-horizontal form-footer" style="justify-content: space-between">
+          <div class="control">
+            <button class="button is-primary is-outlined"
+                    @click="addFile($store.state.snippets.indexOf(snippet), $event)">
+              Add file
+            </button>
           </div>
-        </div>
 
-        <div class="field is-horizontal">
-          <div class="field-body">
-            <div class="field">
-              <div class="control is-expanded">
-                <input id="snippet-labels" class="input" type="text" placeholder="Label" v-model="editSnippetLabel">
-              </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary" @click="submitAction">{{ action | capitalize}}</button>
+            </div>
+            <div class="control">
+              <button class="button is-text" @click="cancelAction">Cancel</button>
             </div>
           </div>
         </div>
-
-        <div class="control">
-          <button class="button is-primary" @click="addFile($store.state.snippets.indexOf(snippet), $event)">
-            Add file
-          </button>
-        </div>
-
-        <div class="field is-grouped form-footer">
-          <div class="control">
-            <button class="button is-primary" @click="submitAction">{{ action | capitalize}}</button>
-          </div>
-          <div class="control">
-            <button class="button is-text" @click="cancelAction">Cancel</button>
-          </div>
-        </div>
-
       </form>
     </div>
   </card>

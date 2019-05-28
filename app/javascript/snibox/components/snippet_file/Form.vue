@@ -10,7 +10,7 @@
           />
           <div class="field has-addons is-marginless" style="align-items: center">
             <div class="control is-expanded">
-              <input :id="`title-${index}`" class="input" type="text" placeholder="Title"
+              <input :id="`title-${index}`" class="input" type="text" placeholder="File title"
                      v-model="editSnippetFileTitle">
             </div>
             <div class="control">
@@ -181,6 +181,16 @@
       setTimeout(() => {
         this.$el.querySelector('input[type=text]').focus()
       }, 100)
+
+      // TODO: replace scrollIntoView to something where smooth is compatible with all browsers
+      setTimeout(() => {
+        if (this.index) {
+          let el = document.getElementById(`snippet-file-form-${this.index}`)
+          if (el) {
+            el.scrollIntoView({behavior: 'smooth'})
+          }
+        }
+      }, 200)
     }
   }
 </script>
