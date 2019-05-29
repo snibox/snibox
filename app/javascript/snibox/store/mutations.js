@@ -1,32 +1,48 @@
 import StoreHelpers from './helpers'
 
 export default {
-  setSnippetTitle(state, value) {
-    state.labelSnippets.active.title = value
-  },
-
-  setSnippetDescription(state, value) {
-    state.labelSnippets.active.description = value
-  },
-
   setLabelEditName(state, value) {
     state.labels.edit.name = value
   },
 
-  setLabelSnippetEditTitle(state, {index, value}) {
-    state.labelSnippets.active.snippetFiles[index].title = value
+  setLabelSnippetsEditTitle(state, value) {
+    state.labelSnippets.edit.title = value
   },
 
-  setLabelSnippetEditLanguage(state, {index, value}) {
-    state.labelSnippets.active.snippetFiles[index].language = value
-  },
-
-  setLabelSnippetEditTabs(state, {index, value}) {
-    state.labelSnippets.active.snippetFiles[index].tabs = value
+  setLabelSnippetsEditDescription(state, value) {
+    state.labelSnippets.edit.description = value
   },
 
   setLabelSnippetEditLabel(state, value) {
     state.labelSnippets.edit.label = value
+  },
+
+  setLabelSnippetEditFileTitle(state, {index, value}) {
+    state.labelSnippets.edit.snippetFiles[index].title = value
+  },
+
+  setLabelSnippetEditFileLanguage(state, {index, value}) {
+    state.labelSnippets.edit.snippetFiles[index].language = value
+  },
+
+  setLabelSnippetEditFileTabs(state, {index, value}) {
+    state.labelSnippets.edit.snippetFiles[index].tabs = value
+  },
+
+  addSnippetFile(state, snippetIndex) {
+    if (snippetIndex === -1) {
+      snippetIndex = state.snippets.length - 1
+    }
+    state.labelSnippets.edit.snippetFiles.push({
+      title: '',
+      content: '',
+      language: 'automatically',
+      tabs: 4
+    })
+  },
+
+  removeSnippetFile(state, snippetIndex) {
+    state.labelSnippets.edit.snippetFiles.splice(snippetIndex, 1)
   },
 
   setSnippets(state, snippets) {
@@ -69,19 +85,7 @@ export default {
     state.flags.ready = flag
   },
 
-  addSnippetFile(state, snippetIndex) {
-    if (snippetIndex === -1) {
-      snippetIndex = state.snippets.length - 1
-    }
-    state.labelSnippets.active.snippetFiles.push({
-      title: '',
-      content: '',
-      language: 'automatically',
-      tabs: 4,
-    })
-  },
-
-  removeSnippetFile(state, snippetIndex) {
-    state.labelSnippets.active.snippetFiles.splice(snippetIndex, 1)
+  setScrollToLatestFileFlag(state, flag) {
+    state.flags.scrollToLatestFile = flag
   }
 }

@@ -2,7 +2,9 @@
 
   <div id="show-snippet" class="animated">
     <header class="card-header" slot="card-header">
-      <p class="card-header-title no-wrap" v-html="snippet.title"></p>
+      <div class="card-header-title with-text-overflow">
+        {{ snippet.id ? snippet.title : 'Select snippet'}}
+      </div>
 
       <div class="card-header-icon" v-if="snippet.id">
         <a id="snippet-edit" class="button is-outlined is-small" @click="editSnippet">
@@ -16,14 +18,17 @@
       </div>
     </header>
 
-    <div class="card-description">
+    <div class="card-description" v-if="snippet.id">
       <!-- TODO: experimental. Improve this -->
       <p class="card-header-description no-wrap" v-html="snippet.description"></p>
       <br v-if="snippet.description"/>
       <p class="is-italic">Files ({{ snippet.snippetFiles.length }})</p>
     </div>
+    <p class="card-description no-wrap" v-else>
+      Nothing to show. Select a snippet to view or create the new one!
+    </p>
 
-    <div
+    <div v-if="snippet.id"
       v-for="(snippetFile, index) in snippet.snippetFiles"
       :key="snippetFile.id">
       <snippet-file-show v-if="showSnippetFile == 'show'" :index="index"></snippet-file-show>

@@ -81,11 +81,18 @@ export default {
       state.labels.edit.name = label.name
       state.labelSnippets.active = snippet
       state.labelSnippets.mode = 'create'
+
       // TODO: grab these values from snippet
       state.labelSnippets.edit.title = ''
-      state.labelSnippets.edit.language = 'automatically'
-      state.labelSnippets.edit.tabs = 4
+      state.labelSnippets.edit.description = ''
       state.labelSnippets.edit.label = label.name
+      state.labelSnippets.edit.snippetFiles = [{
+        title: '',
+        content: '',
+        language: 'automatically',
+        tabs: 4,
+      }]
+
       state.flags.renderAllSnippets = false
     },
 
@@ -106,10 +113,26 @@ export default {
       }
 
       state.labels.edit.name = state.labelSnippets.active.label.name
+      state.labelSnippets.edit.id = state.labelSnippets.active.id
       state.labelSnippets.edit.title = state.labelSnippets.active.title
-      state.labelSnippets.edit.language = state.labelSnippets.active.language
-      state.labelSnippets.edit.tabs = state.labelSnippets.active.tabs
+      state.labelSnippets.edit.description = state.labelSnippets.active.description
       state.labelSnippets.edit.label = state.labelSnippets.active.label.name
+
+      // state.labelSnippets.edit.snippetFiles = state.labelSnippets.active.snippetFiles
+
+      // TODO: move away from this quick solution
+      if (state.labelSnippets.active.snippetFiles) {
+        state.labelSnippets.edit.snippetFiles = []
+        state.labelSnippets.active.snippetFiles.forEach((v, i) => {
+          state.labelSnippets.edit.snippetFiles.push({
+            id: v.hasOwnProperty('id') ? v.id : null,
+            title: v.title,
+            language: v.language,
+            tabs: v.tabs,
+            content: v.content
+          })
+        })
+      }
     }
   }
 }

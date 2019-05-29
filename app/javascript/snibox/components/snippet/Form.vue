@@ -94,21 +94,21 @@
     computed: {
       editSnippetTitle: {
         get() {
-          return this.snippet.title
+          return this.$store.state.labelSnippets.edit.title
         },
 
         set(value) {
-          this.$store.commit('setSnippetTitle', value)
+          this.$store.commit('setLabelSnippetsEditTitle', value)
         }
       },
 
       editSnippetDescription: {
         get() {
-          return this.snippet.description
+          return this.$store.state.labelSnippets.edit.description
         },
 
         set(value) {
-          this.$store.commit('setSnippetDescription', value)
+          this.$store.commit('setLabelSnippetsEditDescription', value)
         }
       },
 
@@ -123,18 +123,21 @@
       },
 
       snippet() {
-        return this.$store.state.labelSnippets.active
+        return this.$store.state.labelSnippets.edit
       },
 
       snippetFiles() {
-        return this.snippet.snippetFiles
+        return this.$store.state.labelSnippets.edit.snippetFiles
       }
     },
 
     methods: {
       addFile(snippetIndex, e) {
         e.preventDefault()
+
+        // TODO: move to action
         this.$store.commit('addSnippetFile', snippetIndex)
+        this.$store.commit('setScrollToLatestFileFlag', true)
       },
 
       submitAction(e) {

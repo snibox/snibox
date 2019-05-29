@@ -66,7 +66,7 @@ class BackendService {
 class SnippetService extends BackendService {
   save() {
     let snippetFilesAttributes = []
-    this.component.$store.state.labelSnippets.active.snippetFiles.forEach((snippetFile, index) => {
+    this.component.$store.state.labelSnippets.edit.snippetFiles.forEach((snippetFile, index) => {
       snippetFilesAttributes.push({
         id: snippetFile.id || null,
         title: snippetFile.title,
@@ -79,8 +79,8 @@ class SnippetService extends BackendService {
     this.options.data = {
       snippet: {
         id: this.component.snippet.id,
-        title: this.component.snippet.title,
-        description: this.component.snippet.description,
+        title: this.component.$store.state.labelSnippets.edit.title,
+        description: this.component.$store.state.labelSnippets.edit.description,
         snippet_files_attributes: snippetFilesAttributes,
         label_attributes: {
           name: this.component.$store.state.labelSnippets.edit.label

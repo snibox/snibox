@@ -15,12 +15,14 @@ export default {
       title: '',
       language: '',
       tabs: '',
-      label: ''
+      label: '',
+      snippetFiles: []
     }
   },
   languages: {},
   flags: {
     ready: false,
-    renderAllSnippets: false
+    renderAllSnippets: false,
+    scrollToLatestFile: false
   }
 }
