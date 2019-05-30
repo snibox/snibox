@@ -55,7 +55,7 @@
 
         <div class="field is-horizontal form-footer" style="justify-content: space-between">
           <div class="control">
-            <button class="button is-primary is-outlined"
+            <button class="button is-primary is-outlined" type="button"
                     @click="addFile($store.state.snippets.indexOf(snippet), $event)">
               Add file
             </button>
@@ -63,10 +63,10 @@
 
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-primary" @click="submitAction">{{ action | capitalize}}</button>
+              <button class="button is-primary" type="submit" @click="submitAction">{{ action | capitalize}}</button>
             </div>
             <div class="control">
-              <button class="button is-text" @click="cancelAction">Cancel</button>
+              <button class="button is-text" type="button" @click="cancelAction">Cancel</button>
             </div>
           </div>
         </div>
