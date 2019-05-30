@@ -111,28 +111,13 @@ export default {
           state.flags.renderAllSnippets = true
         }
       }
+    }
+  },
 
-      state.labels.edit.name = state.labelSnippets.active.label.name
-      state.labelSnippets.edit.id = state.labelSnippets.active.id
-      state.labelSnippets.edit.title = state.labelSnippets.active.title
-      state.labelSnippets.edit.description = state.labelSnippets.active.description
+  edit: {
+    createEditableSnippetCopy: (state) => {
+      state.labelSnippets.edit = Object.assign({}, state.labelSnippets.active)
       state.labelSnippets.edit.label = state.labelSnippets.active.label.name
-
-      // state.labelSnippets.edit.snippetFiles = state.labelSnippets.active.snippetFiles
-
-      // TODO: move away from this quick solution
-      if (state.labelSnippets.active.snippetFiles) {
-        state.labelSnippets.edit.snippetFiles = []
-        state.labelSnippets.active.snippetFiles.forEach((v, i) => {
-          state.labelSnippets.edit.snippetFiles.push({
-            id: v.hasOwnProperty('id') ? v.id : null,
-            title: v.title,
-            language: v.language,
-            tabs: v.tabs,
-            content: v.content
-          })
-        })
-      }
     }
   }
 }

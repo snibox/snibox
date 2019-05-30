@@ -1,5 +1,7 @@
 import StoreHelpers from './helpers'
 
+// TODO: refactor StoreHelpers.edit.createEditableSnippetCopy usage
+
 export default {
   setLabelEditName(state, value) {
     state.labels.edit.name = value
@@ -67,10 +69,15 @@ export default {
     state.labelSnippets.active = item
     localStorage.setItem('label_snippets_active', JSON.stringify(item))
     StoreHelpers.active.setLabelSnippet(state)
+    StoreHelpers.edit.createEditableSnippetCopy(state)
   },
 
   setSnippetMode(state, mode) {
     state.labelSnippets.mode = mode
+
+    if (mode === 'edit') {
+      StoreHelpers.edit.createEditableSnippetCopy(state)
+    }
   },
 
   setLanguages(state, languages) {
