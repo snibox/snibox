@@ -91,11 +91,11 @@ describe 'Snippets', js: true do
       sleep 1
       find('#snippet-edit').click
       expect(page).to have_css('#snippet-file-form-0 .card-header')
-      expect(page).to have_css('#title-0')
+      expect(page).to have_css('#card-content-0')
 
       find('#snippet-collapse-0').click
       expect(page).to have_css('#snippet-file-form-0 .card-header')
-      expect(page).not_to have_css('#title-0')
+      expect(page).not_to have_css('#card-content-0')
     end
   end
 

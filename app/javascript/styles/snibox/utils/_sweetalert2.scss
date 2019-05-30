@@ -15,8 +15,21 @@
 
   animation: snibox-swal2-show .3s !important;
 
+  // TODO: refactor this
   &.snibox-swal2-slideInRight {
     animation: slideInRight .3s !important;
+  }
+
+  &.snibox-swal2-slideInLeft {
+    animation: slideInLeft .3s !important;
+  }
+
+  &.snibox-swal2-slideInDown {
+    animation: slideInDown .3s !important;
+  }
+
+  &.snibox-swal2-slideInUp {
+    animation: slideInUp .3s !important;
   }
 }
 

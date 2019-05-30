@@ -46,7 +46,7 @@
       </header>
 
       <!-- TODO: check _card.scss -->
-      <div class="card-content is-paddingless" slot="card-content"
+      <div :id="`card-content-${index}`" class="card-content is-paddingless" slot="card-content"
            style="box-shadow: 0 0 1px 1px rgba(10, 10, 10, .1);">
         <div class="field">
           <div class="editor" :style="{maxHeight: editorHeight}" style="border: none;">

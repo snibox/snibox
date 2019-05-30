@@ -13,8 +13,7 @@ export default {
     mode: '',
     edit: {
       title: '',
-      language: '',
-      tabs: '',
+      description: '',
       label: '',
       snippetFiles: []
     }
