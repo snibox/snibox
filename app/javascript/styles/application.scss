@@ -65,6 +65,10 @@ pre {
   }
 }
 
+.shadow-light {
+  box-shadow: 0 0 1px 1px rgba($black, 0.1);
+}
+
 #app {
   display: flex;
   height: calc(100% - #{$navbar-height});

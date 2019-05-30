@@ -3,12 +3,12 @@
   <form action="/" @submit="submitAction">
     <card :id="`snippet-file-form-${index}`" class="animated">
       <header class="card-header" slot="card-header" style="justify-content: space-between">
-        <div style="display: flex;">
+        <div style="display: flex; align-items: center;">
           <collapsible-controls
               :index="index"
               :id="`#snippet-file-form-${index}`"
           />
-          <div class="field has-addons is-marginless" style="align-items: center">
+          <div class="field has-addons is-marginless">
             <div class="control is-expanded">
               <input :id="`title-${index}`" class="input" type="text" placeholder="File title"
                      v-model="editFileTitle">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="card-header-icon">
-          <div class="field is-grouped is-grouped-right is-marginless" style="align-items: center;">
+          <div class="field is-grouped is-grouped-right is-marginless">
             <div class="control">
               <div class="select">
                 <select v-model="editFileLanguage">
@@ -45,9 +45,7 @@
         </div>
       </header>
 
-      <!-- TODO: check _card.scss -->
-      <div :id="`card-content-${index}`" class="card-content is-paddingless" slot="card-content"
-           style="box-shadow: 0 0 1px 1px rgba(10, 10, 10, .1);">
+      <div :id="`card-content-${index}`" class="card-content is-paddingless shadow-light" slot="card-content">
         <div class="field">
           <div class="editor" :style="{maxHeight: editorHeight}" style="border: none;">
             <textarea class="file textarea" placeholder="Paste a snippet of code">{{ snippetFile.content }}</textarea>
