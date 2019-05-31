@@ -72,8 +72,11 @@ class SnippetService extends BackendService {
         title: snippetFile.title,
         content: this.component.$children[0].$children[index].editor.getValue(),
         language: snippetFile.language,
-        tabs: snippetFile.tabs,
+        tabs: snippetFile.tabs
       })
+      if (snippetFile.hasOwnProperty('_destroy')) {
+        snippetFilesAttributes[snippetFilesAttributes.length - 1]['_destroy'] = true
+      }
     })
 
     this.options.data = {
@@ -95,12 +98,6 @@ class SnippetService extends BackendService {
   destroy() {
     super.destroy(response => {
       this.component.$store.commit('setActiveLabelSnippet', Factory.methods.factory().snippet)
-    })
-  }
-
-  destroySnippetFile() {
-    super.destroy(response => {
-      this.component.$store.commit('setActiveLabelSnippet', response.data.entity)
     })
   }
 }
@@ -158,18 +155,6 @@ export default {
 
       new SnippetService(component, options).destroy()
     },
-
-    destroySnippetFile(component, snippetFileId) {
-      let options = {
-        path: '/api/v1/snippets/:id/destroy/:snippet_file'.replace(':id', component.snippet.id).replace(':snippet_file', snippetFileId),
-        messages: {
-          success: 'Snippet file removed!',
-          error: 'Unable to delete snippet file.'
-        }
-      }
-
-      new SnippetService(component, options).destroySnippetFile()
-    }
   },
 
   label: {

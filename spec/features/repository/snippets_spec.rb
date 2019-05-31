@@ -60,8 +60,8 @@ describe 'Snippets', js: true do
         find('#snippet-delete-1').click
       end
 
-      sleep 1
-      click_button('Yes')
+      # sleep 1
+      # click_button('Yes')
 
       expect(page).not_to have_css('#show-snippet-1')
     end
@@ -79,8 +79,8 @@ describe 'Snippets', js: true do
         find('#snippet-delete-1').click
       end
 
-      sleep 1
-      click_button('Yes')
+      # sleep 1
+      # click_button('Yes')
 
       expect(page).not_to have_css('#snippet-delete-1')
     end

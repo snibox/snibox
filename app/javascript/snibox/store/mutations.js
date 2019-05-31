@@ -44,7 +44,12 @@ export default {
   },
 
   removeSnippetFile(state, snippetIndex) {
-    state.labelSnippets.edit.snippetFiles.splice(snippetIndex, 1)
+    if (state.labelSnippets.edit.snippetFiles[snippetIndex].id) {
+      state.labelSnippets.edit.snippetFiles[snippetIndex]._destroy = true
+    }
+    else {
+      state.labelSnippets.edit.snippetFiles.splice(snippetIndex, 1)
+    }
   },
 
   setSnippets(state, snippets) {

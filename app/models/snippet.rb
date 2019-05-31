@@ -5,7 +5,7 @@ class Snippet < ApplicationRecord
   counter_culture :label
 
   accepts_nested_attributes_for :label
-  accepts_nested_attributes_for :snippet_files
+  accepts_nested_attributes_for :snippet_files, allow_destroy: true
 
   validates :title, presence: true, length: { maximum: 40 }
   validates :description, length: { maximum: 2000 }

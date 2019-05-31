@@ -1,6 +1,6 @@
 <template>
 
-  <form action="/" @submit="submitAction">
+  <form action="/" @submit="submitAction" v-if="!snippetFile._destroy">
     <card :id="`snippet-file-form-${index}`" class="animated">
       <header class="card-header" slot="card-header" style="justify-content: space-between">
         <div style="display: flex; align-items: center;">
@@ -134,21 +134,8 @@
         e.preventDefault()
 
         if (this.snippet.snippetFiles.length > 1) {
-          Notifications.confirm(
-              'Are you really sure you want to delete snippet file ' +
-              '<span class=\'has-text-weight-bold is-italic\'>' +
-              this.snippet.snippetFiles[snippetIndex].title +
-              '</span>?',
-              result => {
-                if (result.value) {
-                  if (typeof this.snippet.snippetFiles[snippetIndex].id !== 'undefined') {
-                    Backend.snippet.destroySnippetFile(this, this.snippet.snippetFiles[snippetIndex].id)
-                  } else {
-                    this.$store.commit('removeSnippetFile', snippetIndex)
-                  }
-                }
-              })
-
+          this.$store.commit('removeSnippetFile', snippetIndex)
+          this.$forceUpdate()
         }
       },
 

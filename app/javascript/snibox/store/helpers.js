@@ -116,7 +116,9 @@ export default {
 
   edit: {
     createEditableSnippetCopy: (state) => {
-      state.labelSnippets.edit = Object.assign({}, state.labelSnippets.active)
+      // state.labelSnippets.edit = Object.assign({}, state.labelSnippets.active)
+      // https://scotch.io/bar-talk/copying-objects-in-javascript#toc-deep-copying-objects
+      state.labelSnippets.edit = JSON.parse(JSON.stringify(state.labelSnippets.active))
       state.labelSnippets.edit.label = state.labelSnippets.active.label.name
     }
   }
