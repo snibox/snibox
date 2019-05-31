@@ -19,7 +19,7 @@ Supports various programming languages, markdown, plain text.
 Click the image below to launch demo:
 > It may take up to 30 seconds to wake up free Heroku's server.
 
-[![screen shot 2019-01-16 at 4 38 39 pm](https://user-images.githubusercontent.com/312873/51252703-8e5ce500-19ad-11e9-88d4-89f4831aa9da.png)](https://snibox-demo.herokuapp.com/)
+[![Screen Shot 2019-06-01 at 12 41 17 AM](https://user-images.githubusercontent.com/312873/58736419-6fb03580-8406-11e9-9ae3-986596e0e462.png)](https://snibox-demo.herokuapp.com/)
 
 ## Built with
 * Frontend: [Vue.js](https://vuejs.org/) + [Vuex](https://vuex.vuejs.org/)
