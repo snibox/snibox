@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@rails/webpacker": "^4.0.0-pre.2",
-    "animate.css": "^3.5.2",
+    "animate.css": "^3.7.1",
     "axios": "^0.16.2",
     "bulma": "^0.7.1",
     "clipboard": "^2.0.4",
@@ -14,6 +14,7 @@
     "octicons": "^8.4.2",
     "precss": "^2.0.0",
     "rails-ujs": "^5.1.5",
+    "smoothscroll-polyfill": "^0.4.4",
     "sweetalert2": "^7.24.3",
     "vue": "^2.5.16",
     "vue-highlightjs": "^1.2.3",

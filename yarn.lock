@@ -108,9 +108,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-animate.css@^3.5.2:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.6.1.tgz#4ea8a48556378bc8d7535224296c4c0dac9229de"
+animate.css@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.1.tgz#07da14b94185b73f06fcb90faeddb97846b2d481"
+  integrity sha512-FglP5lfDn2hRefXxXkvqBH2YGJRDRCuytbRU2bD86TIPyVe6yFQIx/XDmijOVoYRvBGKz3B8Y7cgzvLez4pTjA==
 
 ansi-escapes@^1.0.0:
   version "1.4.0"
@@ -6416,6 +6417,11 @@ slice-ansi@0.0.4:
 slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
+
+smoothscroll-polyfill@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/smoothscroll-polyfill/-/smoothscroll-polyfill-0.4.4.tgz#3a259131dc6930e6ca80003e1cb03b603b69abf8"
+  integrity sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"
