@@ -44,7 +44,6 @@
   import Notifications from '../../utils/notifications'
   import VueMarkdown from 'vue-markdown'
   import SnippetFileShow from '../snippet_file/Show.vue'
-  import helpers from '../../store/helpers'
 
   export default {
     name: 'snippet-show',

@@ -60,7 +60,8 @@
 
     data() {
       return {
-        clipboard: null
+        clipboard: null,
+        destroyed: false
       }
     },
 
@@ -77,11 +78,17 @@
     },
 
     updated() {
-      HighlighterHelper.highlightMarkdownCodeBlocks(this)
+      if (!this.destroyed) {
+        HighlighterHelper.highlightMarkdownCodeBlocks(this)
+      }
     },
 
     beforeDestroy() {
       this.clipboard.destroy()
+    },
+
+    destroyed() {
+      this.destroyed = true
     },
 
     computed: {
