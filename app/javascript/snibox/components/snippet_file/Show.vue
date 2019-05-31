@@ -1,6 +1,3 @@
-<!-- TODO: copy doesn't work when snippet collapsed       ± (refactor this) -->
-<!-- TODO: fix markdown highlighting                      ± (recheck) -->
-
 <template>
 
   <card :id="`show-snippet-${index}`" class="animated">
@@ -32,9 +29,8 @@
         <vue-markdown lang-prefix='' :source="snippetFile.content"></vue-markdown>
       </div>
       <div class="code-body" v-else>
-        <pre :style="{'tab-size': snippetFile.tabs}" class="is-paddingless" v-highlightjs="snippetFile.content"
-             v-if="snippetFile.id"><code :id="`code-${index}`" :class="hljsClass"></code></pre>
-        <p v-else>Nothing to show. Select a snippet to view or create the new one!</p>
+        <pre :style="{'tab-size': snippetFile.tabs}" class="is-paddingless" v-highlightjs="snippetFile.content"><code
+            :id="`code-${index}`" :class="hljsClass"></code></pre>
       </div>
     </div>
 

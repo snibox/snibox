@@ -47,10 +47,6 @@ pre {
 
   #show-snippet & {
     width: calc(50% + 64px);
-
-    //&.with-markdown {
-    //  width: calc(50% + 32px);
-    //}
   }
 }
 
@@ -178,14 +174,6 @@ pre {
 }
 
 // mobile
-@media screen and (max-width: $phone-old) {
-  .flex-container {
-    #show-snippet & {
-      width: auto;
-    }
-  }
-}
-
 @media screen and (max-width: $tablet) {
   html,
   body {
