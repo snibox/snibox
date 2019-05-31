@@ -69,13 +69,12 @@ export default {
     state.labelSnippets.active = item
     localStorage.setItem('label_snippets_active', JSON.stringify(item))
     StoreHelpers.active.setLabelSnippet(state)
-    StoreHelpers.edit.createEditableSnippetCopy(state)
   },
 
   setSnippetMode(state, mode) {
     state.labelSnippets.mode = mode
 
-    if (mode === 'edit') {
+    if (['create', 'edit'].includes(mode)) {
       StoreHelpers.edit.createEditableSnippetCopy(state)
     }
   },
