@@ -62,7 +62,7 @@ describe 'Search', js: true do
 
     context 'without label' do
       before do
-        create(:snippet_without_tag, title: 'snippet_1')
+        create(:snippet_without_tag, description: 'snippet_1')
         fill_search_after_delay
       end
       it 'show snippet with untagged label' do

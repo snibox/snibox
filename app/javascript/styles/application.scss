@@ -47,10 +47,6 @@ pre {
 
   #show-snippet & {
     width: calc(50% + 64px);
-
-    &.with-markdown {
-      width: calc(50% + 32px);
-    }
   }
 }
 
@@ -63,6 +59,10 @@ pre {
   &.menu-label {
     margin-bottom: 0;
   }
+}
+
+.shadow-light {
+  box-shadow: 0 0 1px 1px rgba($black, 0.1);
 }
 
 #app {
@@ -79,6 +79,14 @@ pre {
 #page-wrapper {
   display: none;
   padding-top: 5px;
+}
+
+#snippet-file-form {
+  &.card {
+    border: 1px solid $border-color;
+    border-radius: $radius - 1;
+    margin-bottom: 1em;
+  }
 }
 
 .menu-top {
@@ -134,11 +142,24 @@ pre {
 
 .editor {
   font-size: $code-size;
-  height: calc(100vh - 272px);
+  height: calc(100vh - 25rem);
   min-height: 200px;
   border: 1px solid $border-color;
   width: 100%;
   border-radius: $radius - 1;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.no-height {
+  height: auto;
+  min-height: 0;
+}
+
+.no-border {
+  border: 0;
 }
 
 // responsiveness
@@ -153,14 +174,6 @@ pre {
 }
 
 // mobile
-@media screen and (max-width: $phone-old) {
-  .flex-container {
-    #show-snippet & {
-      width: auto;
-    }
-  }
-}
-
 @media screen and (max-width: $tablet) {
   html,
   body {

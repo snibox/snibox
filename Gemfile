@@ -42,10 +42,10 @@ group :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'capybara', '~> 3.15'
   gem 'selenium-webdriver', '~> 3.13'
-  gem 'chromedriver-helper', '~> 1.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', '~> 0.14.1', require: false
+  gem 'webdrivers', '~> 3.0'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

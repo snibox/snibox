@@ -2,6 +2,7 @@ class Api::V1::SnippetsController < Api::BaseController
   include ResponseData
 
   before_action :set_snippet, except: :create
+  before_action :set_snippet_file, only: [:raw]
 
   def create
     @snippet = Snippet.new(snippet_params)
@@ -21,7 +22,7 @@ class Api::V1::SnippetsController < Api::BaseController
   end
 
   def raw
-    render plain: @snippet.content
+    render plain: @snippet_file.content
   end
 
   private
@@ -30,9 +31,13 @@ class Api::V1::SnippetsController < Api::BaseController
     @snippet = Snippet.find(params[:id])
   end
 
+  def set_snippet_file
+    @snippet_file = @snippet.snippet_files.find_by(id: params[:snippet_file])
+  end
+
   def snippet_params
     # TODO: it's legacy for core counter_cache issues
-    data = params.require(:snippet).permit(:title, :content, :language, :tabs, label_attributes: [:name])
+    data = params.require(:snippet).permit(:title, :description, snippet_files_attributes: [:id, :title, :content, :language, :tabs, :_destroy], label_attributes: [:name])
     label = data[:label_attributes]['name'].blank? ? nil : Label.find_or_create_by(name: data[:label_attributes]['name'])
     data.except(:label_attributes).merge(label: label)
   end

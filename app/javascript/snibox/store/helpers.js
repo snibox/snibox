@@ -5,9 +5,10 @@ import SnippetsBuilder from '../mixins/snippets_builder'
 export default {
   localStorage: {
     setDefault: (commit) => {
+      // We use _ (lodash) to convert underscore_case to camelCase
       let localActive = {
         labels: JSON.parse(localStorage.getItem('labels_active')) || {},
-        labelSnippets: JSON.parse(localStorage.getItem('label_snippets_active')) || {},
+        labelSnippets: _.mapKeys(JSON.parse(localStorage.getItem('label_snippets_active')) || {}, (v, k) => _.camelCase(k)),
       }
 
       if (localActive.labelSnippets.id) {
@@ -80,11 +81,18 @@ export default {
       state.labels.edit.name = label.name
       state.labelSnippets.active = snippet
       state.labelSnippets.mode = 'create'
+
       // TODO: grab these values from snippet
       state.labelSnippets.edit.title = ''
-      state.labelSnippets.edit.language = 'automatically'
-      state.labelSnippets.edit.tabs = 4
+      state.labelSnippets.edit.description = ''
       state.labelSnippets.edit.label = label.name
+      state.labelSnippets.edit.snippetFiles = [{
+        title: '',
+        content: '',
+        language: 'automatically',
+        tabs: 4,
+      }]
+
       state.flags.renderAllSnippets = false
     },
 
@@ -103,11 +111,14 @@ export default {
           state.flags.renderAllSnippets = true
         }
       }
+    }
+  },
 
-      state.labels.edit.name = state.labelSnippets.active.label.name
-      state.labelSnippets.edit.title = state.labelSnippets.active.title
-      state.labelSnippets.edit.language = state.labelSnippets.active.language
-      state.labelSnippets.edit.tabs = state.labelSnippets.active.tabs
+  edit: {
+    createEditableSnippetCopy: (state) => {
+      // state.labelSnippets.edit = Object.assign({}, state.labelSnippets.active)
+      // https://scotch.io/bar-talk/copying-objects-in-javascript#toc-deep-copying-objects
+      state.labelSnippets.edit = JSON.parse(JSON.stringify(state.labelSnippets.active))
       state.labelSnippets.edit.label = state.labelSnippets.active.label.name
     }
   }

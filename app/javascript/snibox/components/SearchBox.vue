@@ -46,10 +46,11 @@
     maxPatternLength: 32,
     minMatchCharLength: 1,
     keys: [
-      'content',
-      'title',
-      'label.name',
-      'language'
+      'description',
+      'snippetFiles.content',
+      'snippetFiles.title',
+      'snippetFiles.language',
+      'label.name'
     ]
   }
 
@@ -69,7 +70,7 @@
 
     mounted() {
       document.addEventListener('keyup', e => {
-        if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        if ((e.key === '/' || e.key === '>') && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
           this.$el.querySelector('.search').focus()
         }
 

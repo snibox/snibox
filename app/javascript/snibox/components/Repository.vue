@@ -35,6 +35,10 @@
     computed: {
       showSnippet() {
         return this.$store.state.labelSnippets.mode
+      },
+
+      snippet() {
+        return this.$store.state.labelSnippets.active
       }
     },
 

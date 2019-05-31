@@ -1,5 +1,6 @@
 import Rails from 'rails-ujs'
 import Notifications from '../snibox/utils/notifications'
+import smoothscroll from 'smoothscroll-polyfill'
 
 import '../styles/application.scss'
 
@@ -49,3 +50,5 @@ const confirmed = (element, result) => {
 Rails.delegate(document, 'a[data-confirm-swal]', 'click', handleConfirm)
 
 Rails.start()
+
+smoothscroll.polyfill()

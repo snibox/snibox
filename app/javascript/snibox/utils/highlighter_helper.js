@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import hljs from 'highlight.js'
 import { getPropertyOrDefault } from './tools'
 
@@ -9,9 +8,9 @@ const hljsModesMatrix = {
 }
 
 export const highlightMarkdownCodeBlocks = (component) => {
-  if (_.isEqual(component.$store.state.labelSnippets.active.language, 'markdown')) {
+  if (component.$store.state.labelSnippets.active.snippetFiles[component.index].language === 'markdown') {
     component.$el.querySelectorAll('pre code[class]').forEach((block, i) => {
-      hljs.highlightBlock(block);
+      hljs.highlightBlock(block)
     })
   }
 }

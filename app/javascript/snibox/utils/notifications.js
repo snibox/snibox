@@ -2,9 +2,9 @@ import Swal from 'sweetalert2'
 
 const options = {
   toast: true,
-  position: 'bottom-end',
+  position: 'top',
   showConfirmButton: false,
-  customClass: 'snibox-swal2-slideInRight'
+  customClass: 'snibox-swal2-slideInDown'
 }
 
 export default {

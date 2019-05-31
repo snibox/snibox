@@ -11,7 +11,7 @@ class BackendService {
 
   // create or update
   save(callback = null) {
-    let error_message = this.options.messages.error
+    let errorMessage = this.options.messages.error
     axios[this.options.method](this.options.path, this.options.data)
       .then(
         response => {
@@ -21,17 +21,17 @@ class BackendService {
           else {
             // render error notification from api
             if (response.data.hasOwnProperty('errors')) {
-              error_message += '<hr/>'
+              errorMessage += '<hr/>'
               response.data.errors.forEach(error => {
-                error_message = error_message + error + '.<br/>'
+                errorMessage = errorMessage + error + '.<br/>'
               })
             }
-            Notifications.toast.error(error_message)
+            Notifications.toast.error(errorMessage)
           }
         })
       .catch(error => {
         console.log(error)
-        Notifications.toast.error(error_message)
+        Notifications.toast.error(errorMessage)
       })
   }
 
@@ -65,13 +65,26 @@ class BackendService {
 
 class SnippetService extends BackendService {
   save() {
+    let snippetFilesAttributes = []
+    this.component.$store.state.labelSnippets.edit.snippetFiles.forEach((snippetFile, index) => {
+      snippetFilesAttributes.push({
+        id: snippetFile.id || null,
+        title: snippetFile.title,
+        content: this.component.$children[0].$children[index].editor.getValue(),
+        language: snippetFile.language,
+        tabs: snippetFile.tabs
+      })
+      if (snippetFile.hasOwnProperty('_destroy')) {
+        snippetFilesAttributes[snippetFilesAttributes.length - 1]['_destroy'] = true
+      }
+    })
+
     this.options.data = {
       snippet: {
         id: this.component.snippet.id,
         title: this.component.$store.state.labelSnippets.edit.title,
-        content: this.component.editor.getValue(),
-        language: this.component.$store.state.labelSnippets.edit.language,
-        tabs: this.component.$store.state.labelSnippets.edit.tabs,
+        description: this.component.$store.state.labelSnippets.edit.description,
+        snippet_files_attributes: snippetFilesAttributes,
         label_attributes: {
           name: this.component.$store.state.labelSnippets.edit.label
         }
@@ -141,7 +154,7 @@ export default {
       }
 
       new SnippetService(component, options).destroy()
-    }
+    },
   },
 
   label: {

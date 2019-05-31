@@ -1,2 +1,2 @@
-export const editorHeightDelta = 271
+export const editorHeightDelta = 372
 export const tabletWidth = 769

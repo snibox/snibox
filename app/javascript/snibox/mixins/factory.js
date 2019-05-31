@@ -5,14 +5,18 @@ export default {
         snippet: {
           id: null,
           title: '',
-          content: '',
-          language: 'automatically',
-          tabs: 4,
+          description: '',
           label: {
             id: -1,
             name: '',
             snippets_count: 0
-          }
+          },
+          snippetFiles: [{
+            title: '',
+            content: '',
+            language: 'automatically',
+            tabs: 4,
+          }]
         }
       }
     }

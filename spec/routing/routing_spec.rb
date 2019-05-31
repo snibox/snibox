@@ -40,7 +40,7 @@ describe Api::V1::SnippetsController do
   end
 
   it 'routes to #raw' do
-    expect(get: '/api/v1/snippets/1/raw').to route_to('api/v1/snippets#raw', id: '1')
+    expect(get: '/api/v1/snippets/1/raw/1').to route_to('api/v1/snippets#raw', id: '1', snippet_file: '1')
   end
 end
 

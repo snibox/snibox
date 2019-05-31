@@ -4,7 +4,7 @@ $animation-duration: .3s;
   animation-duration: $animation-duration;
 
   &#labels {
-    animation-name: fadeInLeft;
+    animation-name: fadeInRight;
   }
 
   &#snippets {
@@ -13,7 +13,7 @@ $animation-duration: .3s;
 
   &#show-snippet,
   &#snippet-form {
-    animation-name: fadeInRight;
+    animation-name: fadeInLeft;
   }
 }
 

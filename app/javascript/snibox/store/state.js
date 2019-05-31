@@ -13,14 +13,15 @@ export default {
     mode: '',
     edit: {
       title: '',
-      language: '',
-      tabs: '',
-      label: ''
+      description: '',
+      label: '',
+      snippetFiles: []
     }
   },
   languages: {},
   flags: {
     ready: false,
-    renderAllSnippets: false
+    renderAllSnippets: false,
+    scrollToLatestFile: false
   }
 }
