@@ -36,6 +36,7 @@
 .swal2-toast {
   .swal2-title {
     text-align: left !important;
+    flex-direction: column;
 
     hr {
       margin: 0.75em 0;

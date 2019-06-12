@@ -17,7 +17,7 @@ gem 'counter_culture', '~> 1.12'
 gem 'devise', '~> 4.5'
 gem 'dotenv-rails', '~> 2.6'
 gem 'uglifier', '~> 4.1'
-gem 'webpacker', '4.0.0.pre.pre.2'
+gem 'webpacker', '~> 4.0'
 
 group :development do
   gem 'awesome_print', '~> 1.8'
