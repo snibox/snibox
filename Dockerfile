@@ -17,6 +17,8 @@ ENV RAILS_ENV production
 ENV RACK_ENV production
 ENV NODE_ENV production
 
+VOLUME /app/db/database
+
 RUN gem install bundler && bundle install --deployment --without development test
 
 COPY . ./
