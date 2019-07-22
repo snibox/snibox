@@ -1,10 +1,11 @@
 class Snippet < ApplicationRecord
-  belongs_to :label, optional: true
+  has_many :labelings
   has_many :snippet_files
+  has_many :labels, through: :labelings
 
-  counter_culture :label
+  # counter_culture :label
 
-  accepts_nested_attributes_for :label
+  accepts_nested_attributes_for :labels
   accepts_nested_attributes_for :snippet_files, allow_destroy: true
 
   validates :title, presence: true, length: { maximum: 40 }

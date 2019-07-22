@@ -5,28 +5,31 @@ import SnippetsBuilder from '../mixins/snippets_builder'
 export default {
   localStorage: {
     setDefault: (commit) => {
+      if (typeof localStorage.getItem('labels_active') === 'undefined') {
+        var localstorage_label = {};
+      } else {
+        var localstorage_label = localStorage.getItem('labels_active')
+      }
       // We use _ (lodash) to convert underscore_case to camelCase
       let localActive = {
-        labels: JSON.parse(localStorage.getItem('labels_active')) || {},
+        labels: JSON.parse(localstorage_label),
         labelSnippets: _.mapKeys(JSON.parse(localStorage.getItem('label_snippets_active')) || {}, (v, k) => _.camelCase(k)),
       }
-
-      if (localActive.labelSnippets.id) {
-        commit('setActiveLabelSnippet', localActive.labelSnippets)
-        commit('setSnippetMode', 'show')
+      if (_.isEmpty(localActive.labels)) {
+        commit('setRenderAllSnippetsFlag', true)
       }
       else {
+        commit('setActiveLabel', localActive.labels)
         let snippet = Factory.methods.factory().snippet
-
-        if (_.isEmpty(localActive.labels)) {
-          commit('setRenderAllSnippetsFlag', true)
+        snippet.labels = localActive.labels
+        if (localActive.labelSnippets.id) {
+          commit('setActiveLabelSnippet', localActive.labelSnippets)
+          commit('setSnippetMode', 'show')
         }
         else {
-          commit('setActiveLabel', localActive.labels)
-          snippet.label = localActive.labels
+          commit('setActiveLabelSnippet', snippet)
+          commit('setSnippetMode', 'create')
         }
-        commit('setActiveLabelSnippet', snippet)
-        commit('setSnippetMode', 'create')
       }
     }
   },
@@ -40,9 +43,11 @@ export default {
       let labels = []
 
       data.snippets.forEach(snippet => {
-        if (!_.isNull(snippet.label.id)) {
-          labels.push(snippet.label)
-        }
+        snippet.labels.forEach(label => {
+          if (!_.isNull(label.id)) {
+            labels.push(label)
+          }
+        })
       })
 
       if (labels.length) {
@@ -98,13 +103,13 @@ export default {
 
     setLabelSnippet: (state) => {
       // ignore active label update for initial and new snippets states
-      if (!state.flags.renderAllSnippets && state.labelSnippets.active.label.id !== -1) {
-        localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
-        state.labels.active = state.labelSnippets.active.label
-      }
+      // if (!state.flags.renderAllSnippets && !_.some(state.labelSnippets.active.labels, {id: -1})) {
+      //   localStorage.setItem('labels_active', JSON.stringify(state.labelSnippets.active.label))
+      //   state.labels.active = state.labelSnippets.active.label
+      // }
 
       // for the case if current active label has been destroyed by snippet reset state to default
-      if (state.labelSnippets.active.label.id === -1) {
+      if (_.some(state.labelSnippets.active.labels, {id: -1})) {
         if (!_.find(state.labels.items, {id: state.labels.active.id})) {
           localStorage.removeItem('labels_active')
           state.labels.active = {}
@@ -119,7 +124,15 @@ export default {
       // state.labelSnippets.edit = Object.assign({}, state.labelSnippets.active)
       // https://scotch.io/bar-talk/copying-objects-in-javascript#toc-deep-copying-objects
       state.labelSnippets.edit = JSON.parse(JSON.stringify(state.labelSnippets.active))
-      state.labelSnippets.edit.label = state.labelSnippets.active.label.name
+      if (state.labelSnippets.edit.id !== null ) {
+        let labels = [];
+        state.labelSnippets.active.labels.forEach(function(label) {
+          labels.push(label.name)
+        });
+        state.labelSnippets.edit.label = labels
+      } else {
+        state.labelSnippets.edit.label = ''
+      }
     }
   }
 }

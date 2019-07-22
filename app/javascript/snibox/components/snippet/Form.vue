@@ -35,12 +35,12 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label">Label</label>
+            <label class="label">Labels</label>
           </div>
           <div class="field-body">
             <div class="field">
               <div class="control">
-                <input id="snippet-labels" class="input" type="text" v-model="editSnippetLabel">
+                <input id="snippet-labels" class="input" type="text" v-model="editSnippetLabel" placeholder="separate labels with a comma, for example :    rails , RUBY   ,RUBY on rails">
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
 
           <div class="field is-grouped">
             <div class="control">
-              <button class="button is-primary" type="submit" @click="submitAction">{{ action | capitalize}}</button>
+              <button class="button is-primary create-button" type="submit" @click="submitAction">{{ action | capitalize}}</button>
             </div>
             <div class="control">
               <button class="button is-text" type="button" @click="cancelAction">Cancel</button>
@@ -143,6 +143,7 @@
       submitAction(e) {
         e.preventDefault()
         Backend.snippet[this.action](this)
+        this.$store.commit('setSnippetMode', 'show')
       },
 
       cancelAction(e) {

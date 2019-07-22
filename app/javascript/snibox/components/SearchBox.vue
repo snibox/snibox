@@ -22,9 +22,9 @@
           @mouseenter="focus(i)">
         <a href="#" @click.prevent>
           <div class="flex-container">
-            <div class="with-text-overflow">{{ suggestion.title }}</div>
-            <div class="tag is-rounded" :class="{'is-italic': suggestion.label.name === ''}">
-              {{ suggestion.label.name === '' ? 'untagged' : suggestion.label.name }}
+            <div class="with-text-overflow"> {{ suggestion.title }} </div>
+            <div v-for="label in suggestion.labels" class="tag is-rounded" :class="{'is-italic': label.name === ''}">
+              {{ label.name === '' ? 'untagged' : label.name }}
             </div>
           </div>
         </a>
@@ -50,7 +50,7 @@
       'snippetFiles.content',
       'snippetFiles.title',
       'snippetFiles.language',
-      'label.name'
+      'labels.name'
     ]
   }
 
@@ -122,8 +122,7 @@
         if (!this.showSuggestions) {
           return
         }
-
-        repository.$store.commit('setActiveLabel', this.suggestions[i].label)
+        repository.$store.commit('setActiveLabel', this.suggestions[i].labels[0])
         let labelSnippets = this.computeLabelSnippets(repository.$store, repository.$store.state.snippets)
         repository.$store.commit('setLabelSnippets', labelSnippets)
         repository.$store.commit('setActiveLabelSnippet', this.suggestions[i])

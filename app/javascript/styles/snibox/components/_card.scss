@@ -58,6 +58,22 @@ $card-header-height: 45px;
   }
 }
 
+.show-snippet-labels {
+  display: flex;
+  div {
+    background-color:  #4a4a4a;
+    color: whitesmoke;
+    padding: 0.1rem 0.8rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 13px;
+  }
+  h4  {
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
+  }
+}
+
 @media screen and (max-width: $phone) {
   .card-header {
     [id^=snippet-file-form-] & {

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :label do
-    name { Faker::Hacker.abbreviation }
+    name { 'tag_1' }
   end
 end

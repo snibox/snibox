@@ -11,7 +11,7 @@ export default {
 
   untagged: state => {
     return _.filter(state.snippets, v => {
-      return _.isEmpty(v.label.name)
+      return _.isNull(v.labels[0].id)
     })
   }
 }

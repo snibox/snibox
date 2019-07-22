@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Labels', js: true do
   before do
-    create(:snippet_with_tag)
+    create(:snippet)
     login
   end
 

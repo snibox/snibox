@@ -82,7 +82,7 @@
           return 'All snippets'
         }
 
-        if (_.isEmpty(this.$store.state.labels.active.name)) {
+        if (typeof (this.$store.state.labels.active) === 'undefined') {
           return 'Untagged'
         }
 
@@ -94,6 +94,9 @@
       },
 
       hasLabel() {
+        if (typeof (this.$store.state.labels.active) === 'undefined') {
+          return 'Untagged'
+        }
         return this.$store.state.labels.active.id
       }
     },
