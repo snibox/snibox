@@ -241,10 +241,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webdrivers (3.8.0)
+    webdrivers (4.1.2)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
-      selenium-webdriver (~> 3.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webpacker (4.0.7)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
@@ -287,7 +287,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (~> 4.1)
   web-console (~> 3.7)
-  webdrivers (~> 3.0)
+  webdrivers (~> 4.0)
   webpacker (~> 4.0)
 
 RUBY VERSION
