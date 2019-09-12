@@ -14,7 +14,7 @@ gem 'puma', '~> 3.12'
 gem 'active_model_serializers', '~> 0.10.8'
 gem 'bootsnap', '~> 1.3', require: false
 gem 'counter_culture', '~> 1.12'
-gem 'devise', '~> 4.5'
+gem 'devise', '~> 4.7'
 gem 'dotenv-rails', '~> 2.6'
 gem 'uglifier', '~> 4.1'
 gem 'webpacker', '~> 4.0'
