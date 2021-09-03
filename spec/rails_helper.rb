@@ -15,7 +15,7 @@ end
 
 SimpleCov.start
 
-Webdrivers::Chromedriver.version = '2.46'
+# Webdrivers::Chromedriver.version = '2.46'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'

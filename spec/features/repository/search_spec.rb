@@ -9,7 +9,7 @@ describe 'Search', js: true do
 
   context 'shortcuts' do
     before do
-      create(:snippet_with_tag)
+      create(:snippet)
     end
 
     it 'focus on slash' do
@@ -26,7 +26,7 @@ describe 'Search', js: true do
   end
 
   it 'show suggestions block' do
-    create(:snippet_with_tag)
+    create(:snippet)
     fill_search_after_delay
     within('.search-box') { expect(page).to have_css('.suggestions') }
   end
@@ -40,7 +40,7 @@ describe 'Search', js: true do
   end
 
   it 'open snippet when click on suggestion' do
-    create(:snippet_with_tag)
+    create(:snippet)
     fill_search_after_delay
     find('.suggestions a').click
     within('#show-snippet') { expect(page).to have_content('snippet_1') }
@@ -49,7 +49,7 @@ describe 'Search', js: true do
   context 'search snippets' do
     context 'with label' do
       before do
-        create(:snippet_with_tag)
+        create(:snippet)
         fill_search_after_delay
       end
       it 'show snippet with label' do

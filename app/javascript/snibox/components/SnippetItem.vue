@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a class="with-text-overflow" :class="{'is-active': active}" href="#" @click="loadSnippet">
+    <a class="with-text-overflow snippet-name" :class="{'is-active': active}" href="#" @click="loadSnippet">
       {{ snippet.title }}
     </a>
   </li>

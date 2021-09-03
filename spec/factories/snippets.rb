@@ -1,9 +1,11 @@
 FactoryBot.define do
-  factory :snippet_with_tag, class: Snippet do
+  factory :snippet, class: Snippet do
     title { 'snippet_1' }
     description { Faker::Lorem.sentence }
-    label_attributes { { name: 'tag_1' } }
     snippet_files { build_list :snippet_file, 3 }
+    after(:create) { |snippet|
+      snippet.labels << FactoryBot.create(:label)
+    }
   end
 
   factory :snippet_without_tag, class: Snippet do
