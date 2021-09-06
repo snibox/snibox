@@ -23,6 +23,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Copy env for testing
+      uses: canastro/copy-file-action@master
+      with:
+        source: ".env.test.sample"
+        target: ".env"
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
