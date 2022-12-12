@@ -4,6 +4,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/maintainability)](https://codeclimate.com/github/snibox/snibox/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dde7ef3c752b360accc4/test_coverage)](https://codeclimate.com/github/snibox/snibox/test_coverage) 
 
+# Tests taken in this fork:
+[![Ruby Tests](https://github.com/micheleIT/snibox/actions/workflows/ruby.yml/badge.svg?branch=master)](https://github.com/micheleIT/snibox/actions/workflows/ruby.yml)
+[![CodeQL](https://github.com/micheleIT/snibox/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/micheleIT/snibox/actions/workflows/codeql-analysis.yml)
+[![Brakeman Scan](https://github.com/micheleIT/snibox/actions/workflows/brakeman-analysis.yml/badge.svg)](https://github.com/micheleIT/snibox/actions/workflows/brakeman-analysis.yml)
+
 Snibox is a self-hosted snippet manager.
 Developed to collect and organize code snippets.
 Supports various programming languages, markdown, plain text. 
