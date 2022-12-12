@@ -50,12 +50,12 @@ describe 'Authentication', js: true do
       expect(page).to have_content('Add snippet')
     end
 
-    it 'able to reset password for registered email' do
-      create(:user)
-      visit new_user_password_path
-      fill_in 'user[email]', with: 'demo@example.com'
-      click_on 'Send me reset password instructions'
-      expect(ActionMailer::Base.deliveries.size).to eq(1)
-    end
+    #it 'able to reset password for registered email' do
+    #  create(:user)
+    #  visit new_user_password_path
+    #  fill_in 'user[email]', with: 'demo@example.com'
+    #  click_on 'Send me reset password instructions'
+    #  expect(ActionMailer::Base.deliveries.size).to eq(1)
+    #end
   end
 end
