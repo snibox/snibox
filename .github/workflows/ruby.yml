@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        ruby-version: ['2.6.5']
+        ruby-version: ['2.6.5','2.6.10','2.7.6']
     services:
       postgres:
         image: postgres:11
