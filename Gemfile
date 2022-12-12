@@ -9,7 +9,7 @@ ruby '>= 2.5.0'
 
 gem 'rails', '~> 5.2', '>= 5.2.3'
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 
 gem 'active_model_serializers', '~> 0.10.8'
 gem 'bootsnap', '~> 1.3', require: false

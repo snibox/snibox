@@ -142,7 +142,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (3.12.6)
+    puma (4.3.12)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.7.0)
@@ -271,7 +272,7 @@ DEPENDENCIES
   listen (~> 3.1)
   pg (~> 1.1, >= 1.1.4)
   pry-rails
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (~> 5.2, >= 5.2.3)
   rails-controller-testing (~> 1.0)
   rspec-rails (~> 3.8)
